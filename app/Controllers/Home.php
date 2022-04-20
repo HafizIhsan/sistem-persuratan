@@ -38,4 +38,9 @@ class Home extends BaseController
     {
         return view('dokumentasi_perjanjian_kerjasama');
     }
+
+    public function data_surat_keluar()
+    {
+        return view('data_surat_keluar');
+    }
 }

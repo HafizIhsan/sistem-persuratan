@@ -53,8 +53,15 @@
             <span>Surat Masuk</span></a>
     </li>
 
-    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - Surat Masuk -->
     <li class="nav-item">
+        <a class="nav-link" href="dokumentasi_surat_masuk">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Surat Lainnya</span></a>
+    </li>
+
+    <!-- Nav Item - Pages Collapse Menu -->
+    <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
             <i class="fas fa-fw fa-cog"></i>
             <span>Surat Lainnya</span>
@@ -66,7 +73,7 @@
                 <a class="collapse-item" href="dokumentasi_berita_acara">Berita Acara</a>
             </div>
         </div>
-    </li>
+    </li> -->
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -84,9 +91,9 @@
         </a>
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="dokumentasi_nota_kesepahaman">Surat Keluar</a>
-                <a class="collapse-item" href="dokumentasi_perjanjian_kerjasama">Surat Masuk</a>
-                <a class="collapse-item" href="dokumentasi_berita_acara">Surat Lainnya</a>
+                <a class="collapse-item" href="data_surat_keluar">Surat Keluar</a>
+                <a class="collapse-item" href="data_surat_keluar">Surat Masuk</a>
+                <a class="collapse-item" href="data_surat_keluar">Surat Lainnya</a>
             </div>
         </div>
     </li>
@@ -99,10 +106,17 @@
         </a>
         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="dokumentasi_nota_kesepahaman">Admin</a>
-                <a class="collapse-item" href="dokumentasi_perjanjian_kerjasama">Pegawai</a>
+                <a class="collapse-item" href="data_surat_keluar">Admin</a>
+                <a class="collapse-item" href="data_surat_keluar">Pegawai</a>
             </div>
         </div>
+    </li>
+
+    <!-- Nav Item - Surat Masuk -->
+    <li class="nav-item">
+        <a class="nav-link" href="data_klasifikasi_surat">
+            <i class="fas fa-fw fa-chart-area"></i>
+            <span>Data Klasifikasi Surat</span></a>
     </li>
 
     <!-- Divider -->

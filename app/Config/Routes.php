@@ -39,6 +39,10 @@ $routes->get('/dokumentasi_surat_masuk', 'Home::dokumentasi_surat_masuk');
 $routes->get('/dokumentasi_nota_kesepahaman', 'Home::dokumentasi_nota_kesepahaman');
 $routes->get('/dokumentasi_berita_acara', 'Home::dokumentasi_berita_acara');
 $routes->get('/dokumentasi_perjanjian_kerjasama', 'Home::dokumentasi_perjanjian_kerjasama');
+$routes->get('/data_surat_keluar', 'Home::data_surat_keluar');
+
+$routes->get('/data_klasifikasi_surat', 'KlasifikasiSuratController::index');
+$routes->add('/data_klasifikasi_surat', 'KlasifikasiSuratController::create');
 
 /*
  * --------------------------------------------------------------------
