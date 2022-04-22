@@ -17,6 +17,9 @@
     <!-- Custom styles for this template-->
     <link href="<?= base_url('assets/css/sb-admin-2.min.css') ?>" rel="stylesheet">
     <link href="<?= base_url('assets/vendor/datatables/dataTables.bootstrap4.min.css') ?>" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/vendor/bootstrap/js/bootstrap..min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/css/tpicker.css') ?>">
 
     <?= $this->renderSection('styles') ?>
 </head>
@@ -88,6 +91,9 @@
     <!-- Page level custom scripts -->
     <script src="<?= base_url('assets/js/demo/datatables-demo.js') ?>"></script>
 
+    <!-- Datetimepicker -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+    <script type="text/javascript" src="<?= base_url('assets/js/tpicker.js') ?>"></script>
 
     <?= $this->renderSection('scripts') ?>
 </body>

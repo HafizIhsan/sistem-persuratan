@@ -16,9 +16,10 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Kategori</th>
+                            <th></th>
+                            <th>Kode</th>
                             <th>Nomor</th>
+                            <th>Kategori</th>
                             <th>Keterangan</th>
                         </tr>
                     </thead>
@@ -32,8 +33,9 @@
                             } ?>
                             <tr>
                                 <td><?= ++$key ?></td>
-                                <td><?php echo $kategori . " (" . $klasifikasi_surat['KODE'] . ")"; ?></td>
+                                <td><?= $klasifikasi_surat['KODE'] ?></td>
                                 <td><?= $klasifikasi_surat['NOMOR_KLASIFIKASI'] ?></td>
+                                <td><?= $kategori ?></td>
                                 <td><?= $klasifikasi_surat['KETERANGAN'] ?></td>
                             </tr>
                         <?php endforeach; ?>
