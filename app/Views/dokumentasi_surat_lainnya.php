@@ -3,11 +3,21 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Dokumentasi Surat Keluar</h1>
+        <h1 class="h3 mb-0 text-gray-800">Dokumentasi Surat Lainnya</h1>
     </div>
     <!-- Content Row -->
     <div class="col-xl-9">
-        <form id="formDokumentasiSuratKeluar" method="POST">
+        <form id="formDokumentasiSuratLainnya" method="POST">
+            <div class="form-group row">
+                <label for="pilihJenisSurat" class="col-sm-3 col-form-label">Jenis Surat</label>
+                <div class="col-sm-9">
+                    <select id="pilihJenisSurat" class="form-control">
+                        <?php foreach ($jenis_surat_lainnya as $key => $jenis_surat_lainnya) : ?>
+                            <option><?= $jenis_surat_lainnya['JENIS_SURAT'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
             <div class="form-group row">
                 <label for="inputNoSurat" class="col-sm-3 col-form-label">Nomor Surat</label>
                 <div class="col-sm-9">
@@ -15,12 +25,21 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="pilihPetugas" class="col-sm-3 col-form-label">Status Surat</label>
+                <label for="inputPihakPertama" class="col-sm-3 col-form-label">Pihak Pertama</label>
                 <div class="col-sm-9">
-                    <select id="pilihPetugas" class="form-control" placeholder="Pilih petugas">
-                        <option>Belum Terkirim</option>
-                        <option>Sudah Terkirim</option>
-                    </select>
+                    <input type="text" class="form-control" id="inputPihakPertama" placeholder="">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="inputPihakKedua" class="col-sm-3 col-form-label">Pihak Kedua</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="inputPihakKedua" placeholder="">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="keteranganSurat" class="col-sm-3 col-form-label">Keterangan</label>
+                <div class="col-sm-9">
+                    <textarea class="form-control" id="keteranganSurat" rows="3"></textarea>
                 </div>
             </div>
             <div class="form-group row">
@@ -63,24 +82,6 @@
 <?= $this->endSection() ?>
 <?= $this->section('scripts') ?>
 <script>
-    function change_active(radio, form) {
-        var penugasan = document.getElementById(form);
-        if (radio.checked == true) {
-            penugasan.hidden = false;
-        } else {
-            penugasan.hidden = true;
-        }
-    }
-
-    function change_deactive(radio, form) {
-        var penugasan = document.getElementById(form);
-        if (radio.checked == true) {
-            penugasan.hidden = true;
-        } else {
-            penugasan.hidden = false;
-        }
-    }
-
     $(function() {
         $('#datepicker').datepicker({
             format: 'dd/mm/yyyy'
@@ -89,7 +90,7 @@
 
     $(function() {
         $('#submitDokumentasi').on('click', function(e) {
-            $('#formDokumentasiSuratKeluar').submit();
+            $('#formDokumentasiSuratLainnya').submit();
         });
     });
 </script>

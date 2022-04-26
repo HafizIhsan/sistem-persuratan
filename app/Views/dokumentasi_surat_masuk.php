@@ -8,7 +8,7 @@
     <!-- Content Row -->
     <div class="col-xl-9">
 
-        <form>
+        <form id="formDokumentasiSuratMasuk" method="POST">
             <div class="form-group row">
                 <label for="inputNoSurat" class="col-sm-3 col-form-label">Nomor Surat</label>
                 <div class="col-sm-9">
@@ -55,7 +55,7 @@
                 <div class="form-group row">
                     <label for="pilihPetugas" class="col-sm-3 col-form-label">Petugas</label>
                     <div class="col-sm-9">
-                        <select id="pilihPetugas" class="form-control">
+                        <select id="pilihPetugas" class="form-control" placeholder="Pilih petugas">
                             <option selected>Pilih petugas</option>
                             <option>Petugas 1</option>
                             <option>Petugas 2</option>
@@ -113,7 +113,7 @@
                         <div class="modal-body">Pilih "Selesai" jika data sudah benar.</div>
                         <div class="modal-footer form-group">
                             <button class="btn btn-secondary" type="button" data-dismiss="modal">Kembali</button>
-                            <button class="btn btn-primary" type="submit" data-dismiss="modal">Selesai</button>
+                            <button id="submitDokumentasi" class="btn btn-primary" type="submit" data-dismiss="modal">Selesai</button>
                         </div>
                     </div>
                 </div>
@@ -146,6 +146,12 @@
     $(function() {
         $('#datepicker').datepicker({
             format: 'dd/mm/yyyy'
+        });
+    });
+
+    $(function() {
+        $('#submitDokumentasi').on('click', function(e) {
+            $('#formDokumentasiSuratMasuk').submit();
         });
     });
 </script>

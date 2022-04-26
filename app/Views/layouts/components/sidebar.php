@@ -28,7 +28,7 @@
         <a class="nav-link" href="buat_surat_keluar">
 
             <i class="fas fa-fw fa-envelope"></i>
-            <span>Buat Surat Keluar</span></a>
+            <span>Membuat Surat Keluar</span></a>
     </li>
 
     <!-- Divider -->
@@ -36,7 +36,7 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Buat Dokumentasi
+        Dokumentasi Surat
     </div>
 
     <!-- Nav Item - Surat Keluar -->
@@ -55,32 +55,17 @@
 
     <!-- Nav Item - Surat Masuk -->
     <li class="nav-item">
-        <a class="nav-link" href="dokumentasi_surat_masuk">
+        <a class="nav-link" href="dokumentasi_surat_lainnya">
             <i class="fas fa-fw"></i>
             <span>Surat Lainnya</span></a>
     </li>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-    <!-- <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-            <i class="fas fa-fw fa-cog"></i>
-            <span>Surat Lainnya</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="dokumentasi_nota_kesepahaman">Nota Kesepahaman</a>
-                <a class="collapse-item" href="dokumentasi_perjanjian_kerjasama">Perjanjian Kerjasama</a>
-                <a class="collapse-item" href="dokumentasi_berita_acara">Berita Acara</a>
-            </div>
-        </div>
-    </li> -->
 
     <!-- Divider -->
     <hr class="sidebar-divider">
 
     <!-- Heading -->
     <div class="sidebar-heading">
-        Data
+        Kelola Data
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->

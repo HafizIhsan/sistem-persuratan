@@ -33,16 +33,20 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::dashboard');
 $routes->get('/dashboard', 'Home::dashboard');
+
 $routes->get('/buat_surat_keluar', 'Home::buat_surat_keluar');
+
 $routes->get('/dokumentasi_surat_keluar', 'Home::dokumentasi_surat_keluar');
 $routes->get('/dokumentasi_surat_masuk', 'Home::dokumentasi_surat_masuk');
-$routes->get('/dokumentasi_nota_kesepahaman', 'Home::dokumentasi_nota_kesepahaman');
-$routes->get('/dokumentasi_berita_acara', 'Home::dokumentasi_berita_acara');
-$routes->get('/dokumentasi_perjanjian_kerjasama', 'Home::dokumentasi_perjanjian_kerjasama');
+
 $routes->get('/data_surat_keluar', 'Home::data_surat_keluar');
 
 $routes->get('/data_klasifikasi_surat', 'KlasifikasiSuratController::index');
 $routes->add('/data_klasifikasi_surat', 'KlasifikasiSuratController::create');
+$routes->get('/kelola_klasifikasi_surat', 'KlasifikasiSuratController::kelola_klasifikasi');
+
+$routes->get('/dokumentasi_surat_lainnya', 'JenisSuratLainnyaController::index');
+
 
 /*
  * --------------------------------------------------------------------

@@ -10,19 +10,13 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <div class="row justify-content-end">
-                <div class="col-md-9"></div>
-                <div class="col-md-3">
-                    <a href="kelola_klasifikasi_surat" class="btn btn-primary btn-icon-split btn-sm ml-3">
+                <div class="col-11"></div>
+                <div class="col-1 mr-3">
+                    <a href="data_klasifikasi_surat" class="btn btn-primary btn-icon-split btn-sm">
                         <span class="icon text-white-50">
-                            <i class="fas fa-edit"></i>
+                            <i class="fas fa-check"></i>
                         </span>
-                        <span class="text">Kelola Data</span>
-                    </a>
-                    <a href="#" class="btn btn-success btn-icon-split btn-sm ml-3">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-plus"></i>
-                        </span>
-                        <span class="text">Tambah Data</span>
+                        <span class="text">Selesai</span>
                     </a>
                 </div>
             </div>
@@ -37,6 +31,7 @@
                             <th>Nomor</th>
                             <th>Kategori</th>
                             <th>Keterangan</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -53,6 +48,12 @@
                                 <td><?= $klasifikasi_surat['NOMOR_KLASIFIKASI'] ?></td>
                                 <td><?= $kategori ?></td>
                                 <td><?= $klasifikasi_surat['KETERANGAN'] ?></td>
+                                <td>
+                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                        <button type="button" class="btn btn-secondary btn-sm">Edit</button>
+                                        <button type="button" class="btn btn-danger btn-sm">Hapus</button>
+                                    </div>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                     </tbody>
