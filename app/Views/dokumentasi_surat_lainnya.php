@@ -9,8 +9,8 @@
     <div class="col-xl-9">
         <form id="formDokumentasiSuratLainnya" method="POST">
             <div class="form-group row">
-                <label for="pilihJenisSurat" class="col-sm-3 col-form-label">Jenis Surat</label>
-                <div class="col-sm-9">
+                <label for="pilihJenisSurat" class="col-sm-2 col-form-label">Jenis Surat</label>
+                <div class="col-sm-10">
                     <select id="pilihJenisSurat" class="form-control">
                         <?php foreach ($jenis_surat_lainnya as $key => $jenis_surat_lainnya) : ?>
                             <option><?= $jenis_surat_lainnya['JENIS_SURAT'] ?></option>
@@ -19,32 +19,32 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="inputNoSurat" class="col-sm-3 col-form-label">Nomor Surat</label>
-                <div class="col-sm-9">
+                <label for="inputNoSurat" class="col-sm-2 col-form-label">Nomor Surat</label>
+                <div class="col-sm-10">
                     <input type="text" class="form-control" id="inputNoSurat" placeholder="">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="inputPihakPertama" class="col-sm-3 col-form-label">Pihak Pertama</label>
-                <div class="col-sm-9">
+                <label for="inputPihakPertama" class="col-sm-2 col-form-label">Pihak Pertama</label>
+                <div class="col-sm-10">
                     <input type="text" class="form-control" id="inputPihakPertama" placeholder="">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="inputPihakKedua" class="col-sm-3 col-form-label">Pihak Kedua</label>
-                <div class="col-sm-9">
+                <label for="inputPihakKedua" class="col-sm-2 col-form-label">Pihak Kedua</label>
+                <div class="col-sm-10">
                     <input type="text" class="form-control" id="inputPihakKedua" placeholder="">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="keteranganSurat" class="col-sm-3 col-form-label">Keterangan</label>
-                <div class="col-sm-9">
+                <label for="keteranganSurat" class="col-sm-2 col-form-label">Keterangan</label>
+                <div class="col-sm-10">
                     <textarea class="form-control" id="keteranganSurat" rows="3"></textarea>
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-sm-3">Dokumen Surat</div>
-                <div class="col-sm-9">
+                <div class="col-sm-2">Dokumen Surat</div>
+                <div class="col-sm-10">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="dokumenSurat">
                         <label class="custom-file-label" for="dokumenSurat" accept="application/pdf">Pilih file</label>
@@ -82,12 +82,6 @@
 <?= $this->endSection() ?>
 <?= $this->section('scripts') ?>
 <script>
-    $(function() {
-        $('#datepicker').datepicker({
-            format: 'dd/mm/yyyy'
-        });
-    });
-
     $(function() {
         $('#submitDokumentasi').on('click', function(e) {
             $('#formDokumentasiSuratLainnya').submit();

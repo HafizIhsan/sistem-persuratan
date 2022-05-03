@@ -40,12 +40,18 @@ $routes->get('/dokumentasi_surat_keluar', 'Home::dokumentasi_surat_keluar');
 $routes->get('/dokumentasi_surat_masuk', 'Home::dokumentasi_surat_masuk');
 
 $routes->get('/data_surat_keluar', 'Home::data_surat_keluar');
+$routes->get('/data_surat_masuk', 'Home::data_surat_masuk');
 
 $routes->get('/data_klasifikasi_surat', 'KlasifikasiSuratController::index');
 $routes->add('/data_klasifikasi_surat', 'KlasifikasiSuratController::create');
 $routes->get('/kelola_klasifikasi_surat', 'KlasifikasiSuratController::kelola_klasifikasi');
+$routes->get('/tambah_klasifikasi', 'KlasifikasiSuratController::form_tambah_klasifikasi');
 
 $routes->get('/dokumentasi_surat_lainnya', 'JenisSuratLainnyaController::index');
+
+$routes->get('/data_admin', 'DataPenggunaController::data_admin');
+$routes->get('/data_pegawai', 'DataPenggunaController::data_pegawai');
+
 
 
 /*

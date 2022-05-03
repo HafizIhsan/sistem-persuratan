@@ -10,26 +10,33 @@
 
         <form id="formDokumentasiSuratMasuk" method="POST">
             <div class="form-group row">
-                <label for="inputNoSurat" class="col-sm-3 col-form-label">Nomor Surat</label>
+                <label for="inputNoSurat" class="col-sm-2 col-form-label">Nomor Surat</label>
                 <div class="col-sm-9">
                     <input type="text" class="form-control" id="inputNoSurat" placeholder="">
                 </div>
+                <div class="mt-1 col-sm-1">
+                    <a href="#" data-toggle="popover" data-trigger="focus" data-placement="right" data-content="Masukkan nomor surat yang tertera dalam surat">
+                        <i class="fas fa-info-circle"></i>
+                    </a>
+                </div>
             </div>
+
+
             <div class="form-group row">
-                <label for="inputInstansiPengirim" class="col-sm-3 col-form-label">Instansi Pengirim</label>
-                <div class="col-sm-9">
+                <label for="inputInstansiPengirim" class="col-sm-2 col-form-label">Instansi Pengirim</label>
+                <div class="col-sm-10">
                     <input type="text" class="form-control" id="inputInstansiPengirim" placeholder="">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="inputPerihal" class="col-sm-3 col-form-label">Perihal</label>
-                <div class="col-sm-9">
+                <label for="inputPerihal" class="col-sm-2 col-form-label">Perihal</label>
+                <div class="col-sm-10">
                     <input type="text" class="form-control" id="inputPerihal" placeholder="">
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-sm-3">Dokumen Surat</div>
-                <div class="col-sm-9">
+                <div class="col-sm-2">Dokumen Surat</div>
+                <div class="col-sm-10">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="dokumenSurat">
                         <label class="custom-file-label" for="dokumenSurat" accept="application/pdf">Pilih file</label>
@@ -38,8 +45,8 @@
             </div>
             <fieldset class="form-group">
                 <div class="row">
-                    <legend class="col-form-label col-sm-3 pt-0">Penugasan</legend>
-                    <div class="col-sm-9">
+                    <legend class="col-form-label col-sm-2 pt-0">Penugasan</legend>
+                    <div class="col-sm-10">
                         <div class="custom-control custom-radio">
                             <input type="radio" id="penugasan1" name="customRadio" class="custom-control-input" onclick="change_active(this,'formPenugasan')">
                             <label class="custom-control-label" for="penugasan1">Ada penugasan</label>
@@ -53,8 +60,8 @@
             </fieldset>
             <div id="formPenugasan" hidden>
                 <div class="form-group row">
-                    <label for="pilihPetugas" class="col-sm-3 col-form-label">Petugas</label>
-                    <div class="col-sm-9">
+                    <label for="pilihPetugas" class="col-sm-2 col-form-label">Petugas</label>
+                    <div class="col-sm-5">
                         <select id="pilihPetugas" class="form-control" placeholder="Pilih petugas">
                             <option selected>Pilih petugas</option>
                             <option>Petugas 1</option>
@@ -64,13 +71,13 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="uraianPenugasan" class="col-sm-3 col-form-label">Uraian Tugas</label>
-                    <div class="col-sm-9">
+                    <label for="uraianPenugasan" class="col-sm-2 col-form-label">Uraian Tugas</label>
+                    <div class="col-sm-10">
                         <textarea class="form-control" id="uraianPenugasan" rows="3"></textarea>
                     </div>
                 </div>
                 <div class="row form-group">
-                    <label for="date" class="col-sm-3 col-form-label">Tenggat Penyelesaian</label>
+                    <label for="date" class="col-sm-2 col-form-label">Tenggat Penyelesaian</label>
                     <div class="col-sm-3">
                         <div class="input-group date" id="datepicker">
                             <input type="text" class="form-control">
@@ -154,5 +161,13 @@
             $('#formDokumentasiSuratMasuk').submit();
         });
     });
+
+    $(function() {
+        $('[data-toggle="popover"]').popover()
+    })
+
+    $('.popover-dismiss').popover({
+        trigger: 'focus'
+    })
 </script>
 <?= $this->endSection() ?>

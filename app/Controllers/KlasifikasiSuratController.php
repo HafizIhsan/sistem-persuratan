@@ -30,4 +30,14 @@ class KlasifikasiSuratController extends BaseController
         $data['kategori_klasifikasi'] = $this->kategori_klasifikasi->findAll();
         return view('kelola_klasifikasi_surat', $data);
     }
+
+    public function form_tambah_klasifikasi()
+    {
+        $data['kategori_klasifikasi'] = $this->kategori_klasifikasi->findAll();
+
+        $kategori  = array_column($data['kategori_klasifikasi'], 'KATEGORI');
+        array_multisort($kategori, SORT_ASC, $data['kategori_klasifikasi']);
+
+        return view('tambah_klasifikasi', $data);
+    }
 }

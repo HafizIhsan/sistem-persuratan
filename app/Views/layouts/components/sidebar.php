@@ -42,21 +42,21 @@
     <!-- Nav Item - Surat Keluar -->
     <li class="nav-item">
         <a class="nav-link" href="dokumentasi_surat_keluar">
-            <i class="fas fa-fw"></i>
+            <i class="fas fa-fw fa-paper-plane"></i>
             <span>Surat Keluar</span></a>
     </li>
 
     <!-- Nav Item - Surat Masuk -->
     <li class="nav-item">
         <a class="nav-link" href="dokumentasi_surat_masuk">
-            <i class="fas fa-fw"></i>
+            <i class="fas fa-fw fa-paper-plane rotate-90"></i>
             <span>Surat Masuk</span></a>
     </li>
 
     <!-- Nav Item - Surat Masuk -->
     <li class="nav-item">
         <a class="nav-link" href="dokumentasi_surat_lainnya">
-            <i class="fas fa-fw"></i>
+            <i class="fas fa-fw fa-file-alt"></i>
             <span>Surat Lainnya</span></a>
     </li>
 
@@ -77,7 +77,7 @@
         <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="data_surat_keluar">Surat Keluar</a>
-                <a class="collapse-item" href="data_surat_keluar">Surat Masuk</a>
+                <a class="collapse-item" href="data_surat_masuk">Surat Masuk</a>
                 <a class="collapse-item" href="data_surat_keluar">Surat Lainnya</a>
             </div>
         </div>
@@ -91,8 +91,8 @@
         </a>
         <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="data_surat_keluar">Admin</a>
-                <a class="collapse-item" href="data_surat_keluar">Pegawai</a>
+                <a class="collapse-item" href="data_admin">Admin</a>
+                <a class="collapse-item" href="data_pegawai">Pegawai</a>
             </div>
         </div>
     </li>

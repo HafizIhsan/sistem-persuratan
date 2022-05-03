@@ -3,42 +3,31 @@
 <div class="container-fluid">
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Dokumentasi Surat Keluar</h1>
+        <h1 class="h3 mb-0 text-gray-800">Tambah Klasifikasi Surat</h1>
     </div>
     <!-- Content Row -->
     <div class="col-xl-9">
         <form id="formDokumentasiSuratKeluar" method="POST">
             <div class="form-group row">
-                <label for="inputNoSurat" class="col-sm-2 col-form-label">Nomor Surat</label>
+                <label for="pilihKategori" class="col-sm-2 col-form-label">Kategori</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputNoSurat" placeholder="">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="pilihStatusSurat" class="col-sm-2 col-form-label">Status Surat</label>
-                <div class="col-sm-10">
-                    <select id="pilihStatusSurat" class="form-control" placeholder="Pilih petugas">
-                        <option>Belum Terkirim</option>
-                        <option>Sudah Terkirim</option>
+                    <select id="pilihKategori" class="form-control" placeholder="Pilih kategori">
+                        <?php foreach ($kategori_klasifikasi as $key => $kategori_klasifikasi) : ?>
+                            <option><?php echo $kategori_klasifikasi['KATEGORI'] . " (" . $kategori_klasifikasi['KODE'] . ")"; ?></option>
+                        <?php endforeach; ?>
                     </select>
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-sm-2">Dokumen Surat</div>
+                <label for="inputNoKlasifikasi" class="col-sm-2 col-form-label">Nomor Klasifikasi</label>
                 <div class="col-sm-10">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="dokumenSurat">
-                        <label class="custom-file-label" for="dokumenSurat" accept="application/pdf">Pilih file</label>
-                    </div>
+                    <input type="text" class="form-control" id="inputNoKlasifikasi" placeholder="">
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-sm-2">Lampiran</div>
+                <label for="uraianKlasifikasi" class="col-sm-2 col-form-label">Keterangan Klasifikasi</label>
                 <div class="col-sm-10">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="lampiran">
-                        <label class="custom-file-label" for="lampiran" accept="application/pdf">Pilih file</label>
-                    </div>
+                    <textarea class="form-control" id="uraianKlasifikasi" rows="3"></textarea>
                 </div>
             </div>
             <div class="form-group row">

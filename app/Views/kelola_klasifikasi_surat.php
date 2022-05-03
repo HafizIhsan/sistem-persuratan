@@ -9,9 +9,8 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <div class="row justify-content-end">
-                <div class="col-11"></div>
-                <div class="col-1 mr-3">
+            <div class="row justify-content-start">
+                <div class="col-1">
                     <a href="data_klasifikasi_surat" class="btn btn-primary btn-icon-split btn-sm">
                         <span class="icon text-white-50">
                             <i class="fas fa-check"></i>

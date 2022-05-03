@@ -9,26 +9,25 @@
     <!-- DataTales Example -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <div class="row justify-content-end">
-                <div class="col-md-9"></div>
-                <div class="col-md-3">
-                    <a href="kelola_klasifikasi_surat" class="btn btn-primary btn-icon-split btn-sm ml-3">
+            <div class="row">
+                <div class="col-md-2">
+                    <a href="kelola_klasifikasi_surat" class="btn btn-primary btn-icon-split btn-sm">
                         <span class="icon text-white-50">
                             <i class="fas fa-edit"></i>
                         </span>
-                        <span class="text">Kelola Data</span>
+                        <span class="text">Edit</span>
                     </a>
-                    <a href="#" class="btn btn-success btn-icon-split btn-sm ml-3">
+                    <a href="tambah_klasifikasi" class="btn btn-success btn-icon-split btn-sm">
                         <span class="icon text-white-50">
                             <i class="fas fa-plus"></i>
                         </span>
-                        <span class="text">Tambah Data</span>
+                        <span class="text">Tambah</span>
                     </a>
                 </div>
             </div>
         </div>
         <div class="card-body">
-            <div class="table-responsive">
+            <div class="table-responsive table-hover">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
