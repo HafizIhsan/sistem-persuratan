@@ -23,9 +23,9 @@
         </div>
         <div class="card-body">
             <div class="form-inline mb-3">
-                <label for="filterTahun" class="mr-2 col-form-label">Year</label>
+                <label for="filterTahun" class="mr-2 col-form-label">Tampilkan surat tahun</label>
                 <select id="filterTahun" class="form-control custom-select-sm">
-                    <option selected>All</option>
+                    <option selected>Semua</option>
                     <option>2020</option>
                     <option>2021</option>
                     <option>2022</option>
@@ -126,7 +126,7 @@
             var table = $('#dataTable').DataTable();
             var tahun = $('#filterTahun').val();
 
-            if (tahun != 'All') {
+            if (tahun != 'Semua') {
                 table.columns(0).search(tahun).draw();
             } else {
                 table.columns(0).search('/').draw();
