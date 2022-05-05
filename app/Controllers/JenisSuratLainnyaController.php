@@ -3,7 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\JenisSuratLainnya;
+use App\Models\M_JenisSuratLainnya;
 
 class JenisSuratLainnyaController extends BaseController
 {
@@ -12,7 +12,7 @@ class JenisSuratLainnyaController extends BaseController
 
     function __construct()
     {
-        $this->jenis_surat_lainnya = new JenisSuratLainnya();
+        $this->jenis_surat_lainnya = new M_JenisSuratLainnya();
     }
 
     public function index()

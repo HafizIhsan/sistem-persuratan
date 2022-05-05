@@ -4,7 +4,7 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class KlasifikasiSurat extends Model
+class M_KlasifikasiSurat extends Model
 {
     protected $table            = 'klasifikasi_surat';
     protected $primaryKey       = 'id_klasifikasi_surat';

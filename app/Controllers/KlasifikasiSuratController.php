@@ -3,8 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
-use App\Models\KlasifikasiSurat;
-use App\Models\KategoriKlasifikasi;
+use App\Models\M_KlasifikasiSurat;
+use App\Models\M_KategoriKlasifikasi;
 
 class KlasifikasiSuratController extends BaseController
 {
@@ -12,8 +12,8 @@ class KlasifikasiSuratController extends BaseController
 
     function __construct()
     {
-        $this->klasifikasi_surat = new KlasifikasiSurat();
-        $this->kategori_klasifikasi = new KategoriKlasifikasi();
+        $this->klasifikasi_surat = new M_KlasifikasiSurat();
+        $this->kategori_klasifikasi = new M_KategoriKlasifikasi();
     }
 
     public function index()
