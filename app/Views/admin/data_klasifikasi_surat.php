@@ -10,6 +10,18 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive table-hover">
+                <?php
+                if (session()->getFlashData('success')) {
+                ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <?= session()->getFlashData('success') ?>
+                        <button id="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php
+                }
+                ?>
                 <a href="kelola_klasifikasi_surat" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-50">
                         <i class="fas fa-edit"></i>
@@ -112,6 +124,12 @@
             searchField: 'text'
         });
     });
+
+    setTimeout("CallButton()", 2000)
+
+    function CallButton() {
+        document.getElementById("closeAlert").click();
+    }
 </script>
 
 <?= $this->endSection() ?>

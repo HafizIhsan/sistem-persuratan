@@ -15,6 +15,9 @@
                         <div class="input-group date">
                             <input type="date" value="<?= date('Y-m-d') ?>" class="form-control" required>
                         </div>
+                        <small id="klasifikasiHelpBlock" class="form-text text-muted">
+                            Format : mm/dd/yyyy
+                        </small>
                     </div>
                     <div class="form-group col-md-9">
                         <label for="pilihKlasifikasi">Klasifikasi Surat</label>
@@ -26,7 +29,7 @@
                             <?php endforeach; ?>
                         </select>
                         <small id="klasifikasiHelpBlock" class="form-text text-muted">
-                            Lihat daftar klasifikasi selengkapnya <a href="data_klasifikasi_surat" class="text-primary" style="text-decoration-line: underline;">disini</a>
+                            Lihat daftar klasifikasi selengkapnya <a href="klasifikasi_surat" class="text-primary" style="text-decoration-line: underline;">disini</a>
                         </small>
                     </div>
                 </div>
@@ -56,12 +59,14 @@
                         Salin nomor surat keluar dan input dalam draft surat keluar yang sudah disiapkan
                     </small>
                 </div>
-                <div class="form-group">
-                    <label>Draft Surat Keluar</label>
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="draftSuratKeluar">
-                            <label class="custom-file-label" for="draftSuratKeluar" required>Pilih file</label>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Draft Surat Keluar</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="draftSuratKeluar">
+                                <label class="custom-file-label" for="draftSuratKeluar" required>Pilih file</label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -90,31 +95,33 @@
                 </div>
             </form>
         </div>
+        <div class="col-12 col-lg-4 d-flex align-items-center">
+            <img src="<?= base_url() ?>/assets/img/writing.svg" alt="">
+        </div>
     </div>
-    <!-- Content Row -->
 </div>
 <?= $this->endSection() ?>
 
 <?= $this->section('scripts') ?>
 <script>
-    $(document).ready(function() {
-        let now = new Date();
-        let today = '';
-        if (now.getDate() <= 9) {
-            if ((now.getMonth() + 1) <= 9) {
-                today = '0' + now.getDate() + '/' + '0' + (now.getMonth() + 1) + '/' + now.getFullYear();
-            } else {
-                today = '0' + now.getDate() + '/' + (now.getMonth() + 1) + '/' + now.getFullYear();
-            }
-        } else {
-            if ((now.getMonth() + 1) <= 9) {
-                today = now.getDate() + '/' + '0' + (now.getMonth() + 1) + '/' + now.getFullYear();
-            } else {
-                today = now.getDate() + '/' + (now.getMonth() + 1) + '/' + now.getFullYear();
-            }
-        }
-        $('#inputDate').val(today);
-    });
+    // $(document).ready(function() {
+    //     let now = new Date();
+    //     let today = '';
+    //     if (now.getDate() <= 9) {
+    //         if ((now.getMonth() + 1) <= 9) {
+    //             today = '0' + now.getDate() + '/' + '0' + (now.getMonth() + 1) + '/' + now.getFullYear();
+    //         } else {
+    //             today = '0' + now.getDate() + '/' + (now.getMonth() + 1) + '/' + now.getFullYear();
+    //         }
+    //     } else {
+    //         if ((now.getMonth() + 1) <= 9) {
+    //             today = now.getDate() + '/' + '0' + (now.getMonth() + 1) + '/' + now.getFullYear();
+    //         } else {
+    //             today = now.getDate() + '/' + (now.getMonth() + 1) + '/' + now.getFullYear();
+    //         }
+    //     }
+    //     $('#inputDate').val(today);
+    // });
 
     $(document).ready(function() {
         $('#klasifikasiSurat').selectize({
@@ -133,5 +140,7 @@
             $('#formBuatSuratKeluar').submit();
         });
     });
+
+    tanggalSurat.max = new Date().toLocaleDateString('en-ca');
 </script>
 <?= $this->endSection() ?>

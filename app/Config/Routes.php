@@ -31,36 +31,46 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
+
+// Home
 $routes->get('/', 'Home::home');
 $routes->get('/home', 'Home::home');
 
-$routes->get('/dashboard_admin', 'Home::dashboard_admin');
-$routes->get('/dashboard_pegawai', 'Home::dashboard_pegawai');
-
 // Login
 $routes->match(['get', 'post'], 'home', 'UserController::login', ["filter" => "noauth"]);
+
 // Admin routes
 $routes->group("admin", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "AdminController::index");
 });
+$routes->get('/admin', 'AdminController::index');
+$routes->get('/dashboard_admin', 'Home::dashboard_admin');
+
 // Pegawai routes
 $routes->group("pegawai", ["filter" => "auth"], function ($routes) {
     $routes->get("/", "PegawaiController::index");
 });
+$routes->get('/pegawai', 'PegawaiController::index');
+$routes->get('/dashboard_pegawai', 'Home::dashboard_pegawai');
+
+// Logout
 $routes->get('logout', 'UserController::logout');
 
-
-$routes->get('/pegawai', 'PegawaiController::index');
-$routes->get('/admin', 'AdminController::index');
-
+// Buat Surat Keluar
 $routes->get('/buat_surat_keluar', 'BuatSuratKeluarController::index');
 $routes->get('/buat_surat_keluar_p', 'BuatSuratKeluarController::index_p');
 
+// Dokumentasi Surat Keluar
 $routes->get('/dokumentasi_surat_keluar', 'Home::dokumentasi_surat_keluar');
 $routes->get('/dokumentasi_surat_keluar_p', 'Home::dokumentasi_surat_keluar_p');
 
+// Dokumentasi Surat Masuk
 $routes->get('/dokumentasi_surat_masuk', 'Home::dokumentasi_surat_masuk');
 
+// Dokumentasi Surat Lainnya
+$routes->get('/dokumentasi_surat_lainnya', 'JenisSuratLainnyaController::index');
+
+// Data Surat
 $routes->get('/data_surat_keluar', 'Home::data_surat_keluar');
 $routes->get('/data_surat_masuk', 'Home::data_surat_masuk');
 
@@ -68,14 +78,19 @@ $routes->get('/data_surat_masuk', 'Home::data_surat_masuk');
 $routes->get('/data_klasifikasi_surat', 'KlasifikasiSuratController::index');
 $routes->add('/data_klasifikasi_surat', 'KlasifikasiSuratController::create');
 
+$routes->get('/klasifikasi_surat', 'KlasifikasiSuratController::klasifikasi_surat');
+
 $routes->get('/kelola_klasifikasi_surat', 'KlasifikasiSuratController::kelola_klasifikasi');
 $routes->add('/kelola_klasifikasi_surat/edit/(:segment)', 'KlasifikasiSuratController::edit/$1');
 $routes->get('/kelola_klasifikasi_surat/delete/(:segment)', 'KlasifikasiSuratController::delete/$1');
 
-$routes->get('/dokumentasi_surat_lainnya', 'JenisSuratLainnyaController::index');
+// Pengguna
+$routes->get('/data_pengguna', 'DataPenggunaController::index');
+$routes->add('/data_pengguna', 'DataPenggunaController::create');
+$routes->add('/data_pengguna/edit/(:segment)', 'DataPenggunaController::edit/$1');
+$routes->get('/data_pengguna/delete/(:segment)', 'DataPenggunaController::delete/$1');
 
-$routes->get('/data_admin', 'DataPenggunaController::data_admin');
-$routes->get('/data_pegawai', 'DataPenggunaController::data_pegawai');
+
 
 
 

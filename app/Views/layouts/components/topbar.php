@@ -3,6 +3,8 @@
     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
         <i class="fa fa-bars"></i>
     </button>
+    <button id="logout" onclick="<?php if (session()->get('nama') == NULL) : ?> $('#logoutButton').trigger('click'); <?php endif; ?>" hidden></button>
+    <a id="logoutButton" href="<?= site_url('logout') ?>" hidden></a>
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
         <div class="topbar-divider d-none d-sm-block"></div>

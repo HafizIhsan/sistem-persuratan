@@ -13,6 +13,7 @@ class PegawaiController extends BaseController
             exit;
         }
     }
+
     public function index()
     {
         return view("pegawai/dashboard_pegawai");

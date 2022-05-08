@@ -10,6 +10,18 @@
     <div class="card shadow mb-4">
         <div class="card-body">
             <div class="table-responsive">
+                <?php
+                if (session()->getFlashData('success')) {
+                ?>
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        <?= session()->getFlashData('success') ?>
+                        <button id="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php
+                }
+                ?>
                 <a href="data_klasifikasi_surat" class="btn btn-primary btn-icon-split btn-sm">
                     <span class="icon text-white-50">
                         <i class="fas fa-check"></i>
@@ -43,7 +55,7 @@
                                 <td><?= $kategori ?></td>
                                 <td><?= $klasifikasi_surat['KETERANGAN'] ?></td>
                                 <td>
-                                    <div class="btn-group" role="group" aria-label="Basic example">
+                                    <div class="btn-group d-flex align-items-sm-center" role="group" aria-label="Basic example">
                                         <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#editModal-<?= $klasifikasi_surat['ID_KLASIFIKASI_SURAT'] ?>">Edit</button>
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapusModal-<?= $klasifikasi_surat['ID_KLASIFIKASI_SURAT'] ?>">Hapus</button>
                                     </div>
@@ -65,7 +77,7 @@
                                             <div class="modal-body">
                                                 <div class="form-row">
                                                     <div class="form-group col-1">
-                                                        <label for="pilihKategori" class="col-form-label">Kode :</label>
+                                                        <label for="kodeKlasifikasi" class="col-form-label">Kode :</label>
                                                         <input name='kode' type="text" class="form-control" id="kodeKlasifikasi" placeholder="Kode klasifikasi" value="<?= $klasifikasi_surat['KODE'] ?>" readonly required>
                                                     </div>
                                                     <div class="form-group col-4">
@@ -116,4 +128,16 @@
     </div>
 </div>
 <!-- /.container-fluid -->
+<?= $this->endSection() ?>
+
+<?= $this->section('scripts') ?>
+
+<script>
+    setTimeout("CallButton()", 2000)
+
+    function CallButton() {
+        document.getElementById("closeAlert").click();
+    }
+</script>
+
 <?= $this->endSection() ?>

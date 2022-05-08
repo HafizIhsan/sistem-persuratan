@@ -33,6 +33,17 @@ class KlasifikasiSuratController extends BaseController
         return view('admin/data_klasifikasi_surat', $data);
     }
 
+    public function klasifikasi_surat()
+    {
+        $data['klasifikasi_surat'] = $this->klasifikasi_surat->findAll();
+        $data['kategori_klasifikasi'] = $this->kategori_klasifikasi->findAll();
+
+        $kategori  = array_column($data['kategori_klasifikasi'], 'KATEGORI');
+        array_multisort($kategori, SORT_ASC, $data['kategori_klasifikasi']);
+
+        return view('pegawai/klasifikasi_surat', $data);
+    }
+
     public function kelola_klasifikasi()
     {
         $data['klasifikasi_surat'] = $this->klasifikasi_surat->findAll();

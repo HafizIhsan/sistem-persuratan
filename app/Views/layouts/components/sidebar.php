@@ -87,7 +87,13 @@
     </li>
 
     <!-- Nav Item - Pages Collapse Menu -->
+    <!-- Nav Item - Surat Masuk -->
     <li class="nav-item">
+        <a class="nav-link" href="data_pengguna">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Data Pengguna</span></a>
+    </li>
+    <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
             <i class="fas fa-fw fa-user"></i>
             <span>Data Pengguna</span>
@@ -98,7 +104,7 @@
                 <a class="collapse-item" href="data_pegawai">Pegawai</a>
             </div>
         </div>
-    </li>
+    </li> -->
 
     <!-- Nav Item - Surat Masuk -->
     <li class="nav-item">

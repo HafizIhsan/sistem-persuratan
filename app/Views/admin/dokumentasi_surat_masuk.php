@@ -62,11 +62,11 @@
                 <div class="form-group row">
                     <label for="pilihPetugas" class="col-sm-2 col-form-label">Petugas</label>
                     <div class="col-sm-5">
-                        <select id="pilihPetugas" class="form-control" placeholder="Pilih petugas">
-                            <option selected>Pilih petugas</option>
-                            <option>Petugas 1</option>
-                            <option>Petugas 2</option>
-                            <option>Petugas 3</option>
+                        <select id="pilihPetugas" class="form-control" placeholder="Pilih petugas" required>
+                            <option value="" selected>Pilih petugas</option>
+                            <?php foreach ($admin as $key => $admin) : ?>
+                                <option value="<?= $admin['ID_PENGGUNA'] ?>"><?php echo $admin['NAMA'] ?></option>
+                            <?php endforeach; ?>
                         </select>
                     </div>
                 </div>
@@ -80,12 +80,12 @@
                     <label for="date" class="col-sm-2 col-form-label">Tenggat Penyelesaian</label>
                     <div class="col-sm-3">
                         <div class="input-group date">
-                            <input type="date" class="form-control">
+                            <input id="tenggatPenugasanDate" type="date" class="form-control">
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="input-group time">
-                            <input type="time" class="form-control" />
+                            <input id="tenggatPenugasanTime" type="time" class="form-control" />
                         </div>
                         <div class=" timepicker">
                         </div>
@@ -154,5 +154,13 @@
     $('.popover-dismiss').popover({
         trigger: 'focus'
     })
+
+    $(document).ready(function() {
+        $('#pilihPetugas').selectize({
+            searchField: 'text'
+        });
+    });
+
+    tenggatPenugasanDate.min = new Date().toLocaleDateString('en-ca');
 </script>
 <?= $this->endSection() ?>

@@ -1,3 +1,8 @@
+<?php
+// if ($this->session->userdata('$data')) {
+//     echo "Session";
+// }
+?>
 <!doctype html>
 <html lang="en">
 
@@ -44,18 +49,6 @@
         .btn-round {
             border-radius: 3rem;
         }
-
-        .delimiter {
-            padding: 1rem;
-        }
-
-        .social-buttons .btn {
-            margin: 0 0.5rem 1rem;
-        }
-
-        .signup-section {
-            padding: 0.3rem 0rem;
-        }
     </style>
 
     <?= $this->renderSection('styles') ?>
@@ -97,12 +90,13 @@
                 <h2>Persuratan</h2>
                 <h5>Biro Humas & Hukum BPS</h5>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur, quidem!</p>
-                <a href="#" data-toggle="modal" data-target="#loginModal">Login &nbsp;<i class="fas fa-arrow-right"></i></a>
+                <a href="#" data-toggle="modal" data-target="#loginModal" id="loginButton">Login &nbsp;<i class="fas fa-arrow-right"></i></a>
             </div>
             <div class="col-12 col-lg-8">
                 <img src="<?= base_url() ?>/assets/vendor/landing-page/assets/images/send-letter.svg" alt="send letter" class="mt-5">
             </div>
         </div>
+        <button id="trigger" onclick="<?php if (isset($validation)) : ?> $('#loginButton').trigger('click'); <?php endif; ?>" hidden>Trigger</button>
     </div>
 
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -151,6 +145,10 @@
         <!-- Popper JS -->
         <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
         <script>
+            $(document).ready(function() {
+                $('#trigger').trigger('click');
+            });
+
             $(function() {
                 $('#submitLogin').on('click', function(e) {
                     $('#formLogin').submit();

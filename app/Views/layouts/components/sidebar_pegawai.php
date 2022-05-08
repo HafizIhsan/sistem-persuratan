@@ -35,7 +35,7 @@
     </li>
 
     <!-- Divider -->
-    <hr class="sidebar-divider">
+    <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
@@ -43,6 +43,16 @@
 
             <i class="fas fa-fw fa-paper-plane"></i>
             <span>Dokumentasi Surat Keluar</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Klasifikasi -->
+    <li class="nav-item active">
+        <a class="nav-link" href="klasifikasi_surat">
+            <i class="fas fa-fw fa-table"></i>
+            <span>Klasifikasi Surat</span></a>
     </li>
 
     <!-- Divider -->

@@ -2,10 +2,24 @@
 
 namespace App\Controllers;
 
+use App\Models\M_Pengguna;
+
 class Home extends BaseController
 {
+    function __construct()
+    {
+        $this->pengguna = new M_Pengguna();
+    }
+
     public function home()
     {
+        if (session()->get('id_role') != NULL) {
+            if (session()->get('id_role') == 1) {
+                return redirect()->to(base_url('admin'));
+            } else {
+                return redirect()->to(base_url('pegawai'));
+            }
+        };
         return view('home');
     }
 
@@ -31,7 +45,13 @@ class Home extends BaseController
 
     public function dokumentasi_surat_masuk()
     {
-        return view('admin/dokumentasi_surat_masuk');
+        $id_role = 1;
+        $pengguna = $this->pengguna->findAll();
+        $data['admin'] = array_filter($pengguna, function ($value) use ($id_role) {
+
+            return ($value["ID_ROLE"] == $id_role);
+        });
+        return view('admin/dokumentasi_surat_masuk', $data);
     }
 
     public function data_surat_keluar()

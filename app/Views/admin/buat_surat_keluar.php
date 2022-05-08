@@ -13,8 +13,11 @@
                     <div class="form-group col-md-3">
                         <label for="date">Tanggal Surat</label>
                         <div class="input-group date">
-                            <input type="date" value="<?= date('Y-m-d') ?>" class="form-control" required>
+                            <input id="tanggalSurat" type="date" value="<?= date('Y-m-d') ?>" class="form-control" required>
                         </div>
+                        <small id="klasifikasiHelpBlock" class="form-text text-muted">
+                            Format : mm/dd/yyyy
+                        </small>
                     </div>
                     <div class="form-group col-md-9">
                         <label for="pilihKlasifikasi">Klasifikasi Surat</label>
@@ -56,12 +59,14 @@
                         Salin nomor surat keluar dan input dalam draft surat keluar yang sudah disiapkan
                     </small>
                 </div>
-                <div class="form-group">
-                    <label>Draft Surat Keluar</label>
-                    <div class="input-group">
-                        <div class="custom-file">
-                            <input type="file" class="custom-file-input" id="draftSuratKeluar">
-                            <label class="custom-file-label" for="draftSuratKeluar" required>Pilih file</label>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Draft Surat Keluar</label>
+                        <div class="input-group">
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="draftSuratKeluar">
+                                <label class="custom-file-label" for="draftSuratKeluar" required>Pilih file</label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -136,5 +141,7 @@
             $('#formBuatSuratKeluar').submit();
         });
     });
+
+    tanggalSurat.max = new Date().toLocaleDateString('en-ca');
 </script>
 <?= $this->endSection() ?>
