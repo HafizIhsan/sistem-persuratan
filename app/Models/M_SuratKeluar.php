@@ -4,14 +4,14 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class M_KlasifikasiSurat extends Model
+class M_SuratKeluar extends Model
 {
-    protected $table            = 'klasifikasi_surat';
-    protected $primaryKey       = 'id_klasifikasi_surat';
+    protected $table            = 'surat_keluar';
+    protected $primaryKey       = 'id_surat_keluar';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['kode', 'nomor_klasifikasi', 'keterangan'];
+    protected $allowedFields    = ['id_pengguna', 'id_klasifikasi_surat', 'nomor_surat_keluar', 'penerima', 'penandatangan', 'perihal', 'keterangan', 'draft_surat_keluar', 'scan_surat_keluar', 'status', 'lampiran', 'created_at'];
 
-    // Dates
+    // // Dates
     // protected $useTimestamps = false;
     // protected $dateFormat    = 'datetime';
     // protected $createdField  = 'created_at';
@@ -34,5 +34,4 @@ class M_KlasifikasiSurat extends Model
     // protected $afterFind      = [];
     // protected $beforeDelete   = [];
     // protected $afterDelete    = [];
-
 }

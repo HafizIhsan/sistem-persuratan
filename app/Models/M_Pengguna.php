@@ -4,12 +4,12 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class M_KlasifikasiSurat extends Model
+class M_Pengguna extends Model
 {
-    protected $table            = 'klasifikasi_surat';
-    protected $primaryKey       = 'id_klasifikasi_surat';
+    protected $table            = 'pengguna';
+    protected $primaryKey       = 'id_pengguna';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['kode', 'nomor_klasifikasi', 'keterangan'];
+    protected $allowedFields    = ['id_role', 'nama', 'password', 'nip', 'email', 'no_hp'];
 
     // Dates
     // protected $useTimestamps = false;
@@ -34,5 +34,4 @@ class M_KlasifikasiSurat extends Model
     // protected $afterFind      = [];
     // protected $beforeDelete   = [];
     // protected $afterDelete    = [];
-
 }

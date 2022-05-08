@@ -11,6 +11,8 @@
     <link href="<?= base_url() ?>/assets/vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?= base_url() ?>/assets/vendor/fontawesome-free/css/v4-shims.css" rel="stylesheet" type="text/css">
 
+    <link rel="shortcut icon" href="<?= base_url() ?>/assets/vendor/landing-page/assets/images/plane.png" />
+
     <!-- Custom styles for this template-->
     <link href="<?= base_url('assets/css/sb-admin-2.min.css') ?>" rel="stylesheet">
 
@@ -78,10 +80,10 @@
                             <a class="nav-link" href="home">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Info</a>
+                            <a class="nav-link" href="home">Info</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-primary" href="#">Hubungi Kami</a>
+                            <a class="nav-link text-primary" href="#" data-toggle="modal" data-target="#loginModal">Login</a>
                         </li>
                     </ul>
                 </div>
@@ -103,34 +105,6 @@
         </div>
     </div>
 
-    <!-- Modal -->
-    <!-- <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Login</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="formLogin" class="user">
-                        <div class="form-group">
-                            <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button id="submitLogin" type="button" class="btn btn-primary">Login</button>
-                </div>
-            </div>
-        </div>
-    </div> -->
-
     <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -144,15 +118,22 @@
                         <h4>Login</h4>
                     </div>
                     <hr class="sidebar-divider pb-3">
+                    <?php if (isset($validation)) : ?>
+                        <div class="col-12">
+                            <div class="alert alert-danger text-left" role="alert">
+                                <?= $validation->listErrors() ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                     <div class="d-flex flex-column text-center">
-                        <form class="user">
+                        <form class="user" method="post" action="<?= base_url('home') ?>">
                             <div class="form-group">
-                                <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email">
+                                <input type="email" name="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Email" required>
                             </div>
                             <div class="form-group">
-                                <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password">
+                                <input type="password" name="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" required>
                             </div>
-                            <button type="button" class="btn btn-primary btn-block btn-round pb-2">Login</button>
+                            <button type="submit" class="btn btn-primary btn-block btn-round pb-2">Login</button>
                         </form>
                     </div>
                 </div>

@@ -19,6 +19,6 @@ class JenisSuratLainnyaController extends BaseController
     {
         $data['jenis_surat_lainnya'] = $this->jenis_surat_lainnya->findAll();
 
-        return view('dokumentasi_surat_lainnya', $data);
+        return view('admin/dokumentasi_surat_lainnya', $data);
     }
 }

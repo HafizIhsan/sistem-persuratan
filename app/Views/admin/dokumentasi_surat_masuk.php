@@ -39,7 +39,7 @@
                 <div class="col-sm-10">
                     <div class="custom-file">
                         <input type="file" class="custom-file-input" id="dokumenSurat">
-                        <label class="custom-file-label" for="dokumenSurat" accept="application/pdf">Pilih file</label>
+                        <label class="custom-file-label" for="dokumenSurat">Pilih dokumen</label>
                     </div>
                 </div>
             </div>
@@ -79,25 +79,16 @@
                 <div class="row form-group">
                     <label for="date" class="col-sm-2 col-form-label">Tenggat Penyelesaian</label>
                     <div class="col-sm-3">
-                        <div class="input-group date" id="datepicker">
-                            <input type="text" class="form-control">
-                            <span class="input-group-append">
-                                <span class="input-group-text bg-grey">
-                                    <i class="fa fa-calendar"></i>
-                                </span>
-                            </span>
+                        <div class="input-group date">
+                            <input type="date" class="form-control">
                         </div>
                     </div>
                     <div class="col-sm-3">
                         <div class="input-group time">
-                            <input type="text" id="timepkr" class="form-control" onclick="showpickers('timepkr',12)" />
-                            <span class="input-group-append">
-                                <span class="input-group-text bg-grey">
-                                    <a onclick="showpickers('timepkr',12)"><i class="fa fa-clock-o"></i></a>
-                                </span>
-                            </span>
+                            <input type="time" class="form-control" />
                         </div>
-                        <div class="timepicker"></div>
+                        <div class=" timepicker">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -149,12 +140,6 @@
             penugasan.hidden = false;
         }
     }
-
-    $(function() {
-        $('#datepicker').datepicker({
-            format: 'dd/mm/yyyy'
-        });
-    });
 
     $(function() {
         $('#submitDokumentasi').on('click', function(e) {

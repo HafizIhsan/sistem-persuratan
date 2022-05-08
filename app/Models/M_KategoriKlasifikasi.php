@@ -8,5 +8,5 @@ class M_KategoriKlasifikasi extends Model
 {
     protected $table            = 'kategori_klasifikasi';
     protected $primaryKey       = 'kode';
-    protected $allowedFields    = ['kode', 'kategori'];
+    protected $allowedFields    = ['kategori'];
 }

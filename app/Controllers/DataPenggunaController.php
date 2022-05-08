@@ -8,11 +8,11 @@ class DataPenggunaController extends BaseController
 {
     public function data_admin()
     {
-        return view('data_admin');
+        return view('admin/data_admin');
     }
 
     public function data_pegawai()
     {
-        return view('data_pegawai');
+        return view('admin/data_pegawai');
     }
 }

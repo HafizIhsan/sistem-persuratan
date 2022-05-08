@@ -2,11 +2,14 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard_admin">
         <div class="sidebar-brand-icon rotate-n-15">
             <i class="fas fa-envelope"></i>
         </div>
-        <div class="sidebar-brand-text mx-3">Sistem Persuratan</sup></div>
+        <div class="sidebar-brand-text mx-3 text-left mt-3">
+            <p class="mb-0" style="font-size:15px;">Sistem Persuratan</p>
+            <p style="font-size:10px;">Humas & Hukum BPS</p>
+        </div>
     </a>
 
     <!-- Divider -->
@@ -14,7 +17,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="dashboard">
+        <a class="nav-link" href="dashboard_admin">
 
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>

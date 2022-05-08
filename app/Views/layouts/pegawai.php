@@ -35,7 +35,7 @@
     <!-- Page Wrapper -->
     <div id="wrapper">
         <!-- Sidebar -->
-        <?= $this->include('layouts/components/sidebar') ?>
+        <?= $this->include('layouts/components/sidebar_pegawai') ?>
         <!-- End of Sidebar -->
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
