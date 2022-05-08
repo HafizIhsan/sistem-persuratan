@@ -45,15 +45,17 @@
     <!-- Nav Item - Surat Keluar -->
     <li class="nav-item">
         <a class="nav-link" href="dokumentasi_surat_keluar">
-            <i class="fas fa-fw fa-paper-plane"></i>
-            <span>Surat Keluar</span></a>
+            <i class="fas fa-fw ri-mail-send-fill"></i>
+            <span>Surat Keluar</span>
+        </a>
     </li>
 
     <!-- Nav Item - Surat Masuk -->
     <li class="nav-item">
         <a class="nav-link" href="dokumentasi_surat_masuk">
-            <i class="fas fa-fw fa-paper-plane rotate-90"></i>
-            <span>Surat Masuk</span></a>
+            <i class="fas fa-fw ri-mail-download-fill"></i>
+            <span>Surat Masuk</span>
+        </a>
     </li>
 
     <!-- Nav Item - Surat Masuk -->

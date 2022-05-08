@@ -14,6 +14,8 @@
     <link href="<?= base_url() ?>/assets/vendor/fontawesome-free/css/fontawesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?= base_url() ?>/assets/vendor/fontawesome-free/css/v4-shims.css" rel="stylesheet" type="text/css">
 
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@2.5.0/fonts/remixicon.css" rel="stylesheet">
+
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="<?= base_url() ?>/assets/vendor/selectize/selectize.bootstrap4.css" />

@@ -41,7 +41,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="dokumentasi_surat_keluar_p">
 
-            <i class="fa-solid fa-inbox-out"></i>
+            <i class="fas fa-fw ri-mail-send-fill"></i>
             <span>Dokumentasi Surat Keluar</span></a>
     </li>
 
