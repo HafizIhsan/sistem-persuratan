@@ -30,7 +30,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="buat_surat_keluar">
 
-            <i class="fas fa-fw fa-envelope"></i>
+            <i class="fas fa-fw  fa-pencil-alt"></i>
             <span>Membuat Surat Keluar</span></a>
     </li>
 

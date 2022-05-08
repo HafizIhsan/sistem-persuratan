@@ -30,7 +30,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="buat_surat_keluar_p">
 
-            <i class="fas fa-fw fa-envelope"></i>
+            <i class="fas fa-fw  fa-pencil-alt"></i>
             <span>Membuat Surat Keluar</span></a>
     </li>
 
@@ -41,7 +41,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="dokumentasi_surat_keluar_p">
 
-            <i class="fas fa-fw fa-paper-plane"></i>
+            <i class="fa-solid fa-inbox-out"></i>
             <span>Dokumentasi Surat Keluar</span></a>
     </li>
 
