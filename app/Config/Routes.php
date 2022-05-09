@@ -72,7 +72,9 @@ $routes->get('/dokumentasi_surat_lainnya', 'JenisSuratLainnyaController::index')
 
 // Data Surat
 $routes->get('/data_surat_keluar', 'Home::data_surat_keluar');
-$routes->get('/data_surat_masuk', 'Home::data_surat_masuk');
+$routes->get('/data_surat_masuk', 'SuratMasukController::index');
+
+$routes->add('/data_surat_masuk', 'SuratMasukController::store');
 
 // Klasifikasi Surat
 $routes->get('/data_klasifikasi_surat', 'KlasifikasiSuratController::index');

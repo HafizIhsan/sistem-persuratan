@@ -26,30 +26,8 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>/assets/vendor/landing-page/css/style.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/css/home.css">
 
-    <style>
-        @media (min-width: 576px) {
-            .modal-dialog {
-                max-width: 400px;
-            }
-
-            .modal-dialog .modal-content {
-                padding: 1rem;
-            }
-        }
-
-        .modal-header .close {
-            margin-top: -1.5rem;
-        }
-
-        .form-title {
-            margin: -2rem 0rem 2rem;
-        }
-
-        .btn-round {
-            border-radius: 3rem;
-        }
-    </style>
 
     <?= $this->renderSection('styles') ?>
 
@@ -83,6 +61,25 @@
             </nav>
         </header>
     </div>
+
+    <!-- Toast -->
+    <!-- <div id="toast-alert-container" class="toast-top-center example">
+        <div id="alert" class="toast-alert alert-danger hide" role="alert" data-delay="3000" data-autohide="true" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header-alert">
+                <i class="fas fa-2x fa-exclamation-circle mr-2"></i>
+
+                <strong class="mr-auto">Session Timeout</strong>
+
+                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="toast-body">
+                Your Session has expired. Please login again
+            </div>
+        </div>
+    </div> -->
+
     <div class="container">
         <div class="row custom-section d-flex align-items-center">
             <div class="col-12 col-lg-4">
@@ -138,12 +135,11 @@
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
         </script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
-        </script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
         </script>
         <!-- Popper JS -->
         <script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
         <script>
             $(document).ready(function() {
                 $('#trigger').trigger('click');

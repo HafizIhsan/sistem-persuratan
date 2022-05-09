@@ -56,9 +56,17 @@
                                 <td><?= $pengguna['EMAIL'] ?></td>
                                 <td><?= $pengguna['NO_HP'] ?></td>
                                 <td>
-                                    <div class="btn-group d-flex align-items-sm-center" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#editModal-<?= $pengguna['ID_PENGGUNA'] ?>">Edit</button>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapusModal-<?= $pengguna['ID_PENGGUNA'] ?>">Hapus</button>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="#" class="btn btn-secondary btn-icon-split btn-sm" data-toggle="modal" data-target="#editModal-<?= $pengguna['ID_PENGGUNA'] ?>">
+                                            <span class="icon">
+                                                <i class="fas fa-edit"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="btn btn-danger btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#hapusModal-<?= $pengguna['ID_PENGGUNA'] ?>">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>

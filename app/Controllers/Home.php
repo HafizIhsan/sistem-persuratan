@@ -58,9 +58,4 @@ class Home extends BaseController
     {
         return view('admin/data_surat_keluar');
     }
-
-    public function data_surat_masuk()
-    {
-        return view('admin/data_surat_masuk');
-    }
 }
