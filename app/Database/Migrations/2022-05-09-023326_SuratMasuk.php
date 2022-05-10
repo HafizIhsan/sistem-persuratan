@@ -29,7 +29,7 @@ class SuratMasuk extends Migration
                 'type'           => 'VARCHAR',
                 'constraint'     => 30
             ],
-            'keterangan' => [
+            'perihal' => [
                 'type'           => 'VARCHAR',
                 'constraint'     => 255
             ],

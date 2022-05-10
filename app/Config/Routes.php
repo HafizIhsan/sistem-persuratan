@@ -76,6 +76,7 @@ $routes->get('/data_surat_keluar', 'Home::data_surat_keluar');
 $routes->get('/data_surat_masuk', 'SuratMasukController::index');
 $routes->add('/data_surat_masuk', 'SuratMasukController::store');
 $routes->get('/data_surat_masuk/delete/(:segment)', 'SuratMasukController::delete/$1');
+$routes->add('/data_surat_masuk/edit/(:segment)', 'SuratMasukController::edit/$1');
 
 // Klasifikasi Surat
 $routes->get('/data_klasifikasi_surat', 'KlasifikasiSuratController::index');

@@ -43,7 +43,7 @@
                     </div>
                 </div>
             </div>
-            <fieldset class="form-group">
+            <!-- <fieldset class="form-group">
                 <div class="row">
                     <legend class="col-form-label col-sm-2 pt-0">Penugasan</legend>
                     <div class="col-sm-10">
@@ -57,8 +57,8 @@
                         </div>
                     </div>
                 </div>
-            </fieldset>
-            <div id="formPenugasan" hidden>
+            </fieldset> -->
+            <div id="formPenugasan">
                 <div class="form-group row">
                     <label for="pilihPetugas" class="col-sm-2 col-form-label">Petugas</label>
                     <div class="col-sm-5">

@@ -9,7 +9,7 @@ class M_SuratMasuk extends Model
     protected $table            = 'surat_masuk';
     protected $primaryKey       = 'id_surat_masuk';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['id_pengguna', 'nomor_surat_masuk', 'tanggal_terima', 'instansi_pengirim', 'keterangan', 'scan_surat_masuk', 'uraian_penugasan', 'petugas', 'status', 'tenggat_penugasan', 'created_at'];
+    protected $allowedFields    = ['id_pengguna', 'nomor_surat_masuk', 'tanggal_terima', 'instansi_pengirim', 'perihal', 'scan_surat_masuk', 'uraian_penugasan', 'petugas', 'status', 'tenggat_penugasan', 'created_at'];
 
     // // Dates
     // protected $useTimestamps = false;

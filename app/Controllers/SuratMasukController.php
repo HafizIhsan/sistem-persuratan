@@ -57,4 +57,17 @@ class SuratMasukController extends BaseController
 
         return redirect()->to(base_url('data_surat_masuk'))->with('success', 'Data surat berhasil dihapus');
     }
+
+    public function edit($id)
+    {
+        $this->surat_masuk->update($id, [
+            'tanggal_terima' => $this->request->getPost('tanggal_terima'),
+            'nomor_surat' => $this->request->getPost('nomor_surat'),
+            'pengirim' => $this->request->getPost('pengirim'),
+            'status' => $this->request->getPost('status'),
+            'perihal' => $this->request->getPost('perihal')
+        ]);
+
+        return redirect()->to(base_url('data_surat_masuk'))->with('success', 'Data berhasil diubah');
+    }
 }
