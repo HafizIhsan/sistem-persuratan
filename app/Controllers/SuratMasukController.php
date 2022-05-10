@@ -50,4 +50,11 @@ class SuratMasukController extends BaseController
             redirect()->to(base_url('dokumentasi_surat_masuk'))->with('success', 'Dokumentasi surat masuk berhasil dilakukan');
         }
     }
+
+    public function delete($id)
+    {
+        $this->surat_masuk->delete($id);
+
+        return redirect()->to(base_url('data_surat_masuk'))->with('success', 'Data surat berhasil dihapus');
+    }
 }

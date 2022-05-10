@@ -55,9 +55,17 @@
                                 <td><?= $kategori ?></td>
                                 <td><?= $klasifikasi_surat['KETERANGAN'] ?></td>
                                 <td>
-                                    <div class="btn-group d-flex align-items-sm-center" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-secondary btn-sm" data-toggle="modal" data-target="#editModal-<?= $klasifikasi_surat['ID_KLASIFIKASI_SURAT'] ?>">Edit</button>
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapusModal-<?= $klasifikasi_surat['ID_KLASIFIKASI_SURAT'] ?>">Hapus</button>
+                                    <div class="d-flex justify-content-center">
+                                        <a href="#" class="btn btn-secondary btn-icon-split btn-sm" data-toggle="modal" data-target="#editModal-<?= $klasifikasi_surat['ID_KLASIFIKASI_SURAT'] ?>">
+                                            <span class="icon">
+                                                <i class="fas fa-edit"></i>
+                                            </span>
+                                        </a>
+                                        <a href="#" class="btn btn-danger btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#hapusModal-<?= $klasifikasi_surat['ID_KLASIFIKASI_SURAT'] ?>">
+                                            <span class="icon">
+                                                <i class="fas fa-trash"></i>
+                                            </span>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>
