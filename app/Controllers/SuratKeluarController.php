@@ -27,6 +27,24 @@ class SuratKeluarController extends BaseController
         return view('admin/data_surat_keluar', $data);
     }
 
+    public function delete($id)
+    {
+        $this->surat_keluar->delete($id);
+
+        return redirect()->to(base_url('data_surat_keluar'))->with('success', 'Data surat berhasil dihapus');
+    }
+
+    public function edit($id)
+    {
+        $this->surat_keluar->update($id, [
+            'penerima' => $this->request->getPost('penerima'),
+            'ttd' => $this->request->getPost('ttd'),
+            'perihal' => $this->request->getPost('perihal')
+        ]);
+
+        return redirect()->to(base_url('data_surat_keluar'))->with('success', 'Data berhasil diubah');
+    }
+
     public function surat_keluar_excel()
     {
         $dataSuratKeluar = $this->surat_keluar->findAll();

@@ -37,7 +37,7 @@
                 </div>
             </div>
             <div class="form-group row">
-                <label for="keteranganSurat" class="col-sm-2 col-form-label">Keterangan</label>
+                <label for="keteranganSurat" class="col-sm-2 col-form-label">Tentang</label>
                 <div class="col-sm-10">
                     <textarea class="form-control" id="keteranganSurat" rows="3"></textarea>
                 </div>
