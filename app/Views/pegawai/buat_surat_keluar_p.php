@@ -13,7 +13,7 @@
                     <div class="form-group col-md-3">
                         <label for="date">Tanggal Surat</label>
                         <div class="input-group date">
-                            <input type="date" value="<?= date('Y-m-d') ?>" class="form-control" required>
+                            <input id="tanggalSurat" type="date" value="<?= date('Y-m-d') ?>" class="form-control" required>
                         </div>
                         <small id="klasifikasiHelpBlock" class="form-text text-muted">
                             Format : mm/dd/yyyy
@@ -29,7 +29,7 @@
                             <?php endforeach; ?>
                         </select>
                         <small id="klasifikasiHelpBlock" class="form-text text-muted">
-                            Lihat daftar klasifikasi selengkapnya <a href="klasifikasi_surat" class="text-primary" style="text-decoration-line: underline;">disini</a>
+                            Lihat daftar klasifikasi selengkapnya <a href="data_klasifikasi_surat" class="text-primary" style="text-decoration-line: underline;">disini</a>
                         </small>
                     </div>
                 </div>

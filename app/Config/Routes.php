@@ -71,22 +71,28 @@ $routes->get('/dokumentasi_surat_masuk', 'Home::dokumentasi_surat_masuk');
 $routes->get('/dokumentasi_surat_lainnya', 'JenisSuratLainnyaController::index');
 
 // Data Surat
-$routes->get('/data_surat_keluar', 'Home::data_surat_keluar');
+$routes->get('/data_surat_keluar', 'SuratKeluarController::index');
+$routes->add('/data_surat_keluar', 'SuratKeluarController::store');
+$routes->get('/data_surat_keluar/delete/(:segment)', 'SuratKeluarController::delete/$1');
+$routes->add('/data_surat_keluar/edit/(:segment)', 'SuratKeluarController::edit/$1');
 
 $routes->get('/data_surat_masuk', 'SuratMasukController::index');
 $routes->add('/data_surat_masuk', 'SuratMasukController::store');
 $routes->get('/data_surat_masuk/delete/(:segment)', 'SuratMasukController::delete/$1');
 $routes->add('/data_surat_masuk/edit/(:segment)', 'SuratMasukController::edit/$1');
 
+$routes->get('/data_surat_lainnya', 'SuratLainnyaController::index');
+$routes->add('/data_surat_lainnya', 'SuratLainnyaController::store');
+$routes->get('/data_surat_lainnya/delete/(:segment)', 'SuratLainnyaController::delete/$1');
+$routes->add('/data_surat_lainnya/edit/(:segment)', 'SuratLainnyaController::edit/$1');
+
 // Klasifikasi Surat
 $routes->get('/data_klasifikasi_surat', 'KlasifikasiSuratController::index');
 $routes->add('/data_klasifikasi_surat', 'KlasifikasiSuratController::create');
+$routes->add('/data_klasifikasi_surat/edit/(:segment)', 'KlasifikasiSuratController::edit/$1');
+$routes->get('/data_klasifikasi_surat/delete/(:segment)', 'KlasifikasiSuratController::delete/$1');
 
 $routes->get('/klasifikasi_surat', 'KlasifikasiSuratController::klasifikasi_surat');
-
-$routes->get('/kelola_klasifikasi_surat', 'KlasifikasiSuratController::kelola_klasifikasi');
-$routes->add('/kelola_klasifikasi_surat/edit/(:segment)', 'KlasifikasiSuratController::edit/$1');
-$routes->get('/kelola_klasifikasi_surat/delete/(:segment)', 'KlasifikasiSuratController::delete/$1');
 
 // Pengguna
 $routes->get('/data_pengguna', 'DataPenggunaController::index');

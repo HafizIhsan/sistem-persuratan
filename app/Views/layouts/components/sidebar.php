@@ -83,7 +83,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="data_surat_keluar">Surat Keluar</a>
                 <a class="collapse-item" href="data_surat_masuk">Surat Masuk</a>
-                <a class="collapse-item" href="data_surat_keluar">Surat Lainnya</a>
+                <a class="collapse-item" href="data_surat_lainnya">Surat Lainnya</a>
             </div>
         </div>
     </li>

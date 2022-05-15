@@ -62,12 +62,22 @@
                     <?php
                     }
                     ?>
-                    <a href="dokumentasi_surat_masuk" class="btn btn-success btn-icon-split btn-sm">
-                        <span class="icon text-white-50">
-                            <i class="fas fa-plus"></i>
-                        </span>
-                        <span class="text">Tambah</span>
-                    </a>
+                    <div class="form-inline">
+                        <a href="dokumentasi_surat_masuk" class="btn btn-success btn-icon-split btn-sm">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-plus"></i>
+                            </span>
+                            <span class="text">Tambah</span>
+                        </a>
+                        <form action="<?= base_url('SuratMasukController/surat_masuk_excel') ?>" method="POST">
+                            <button type="submit" class="btn btn-success btn-icon-split btn-sm ml-1">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-file-excel"></i>
+                                </span>
+                                <span class="text">Export</span>
+                            </button>
+                        </form>
+                    </div>
                     <hr>
                     <div class="table-responsive table-hover">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -86,7 +96,7 @@
                                 <?php
                                 foreach ($surat_masuk as $key => $surat_masuk) : ?>
                                     <?php for ($i = 0; $i <= count($pengguna); $i++) {
-                                        if ($surat_masuk['ID_PENGGUNA'] === $pengguna[$i]['ID_PENGGUNA']) {
+                                        if ($surat_masuk['PETUGAS'] === $pengguna[$i]['ID_PENGGUNA']) {
                                             $nama = $pengguna[$i]['NAMA'];
                                         }
                                     } ?>
@@ -95,11 +105,20 @@
                                         <td><?= date('d-m-Y', strtotime($surat_masuk['TANGGAL_TERIMA'])) ?></td>
                                         <td><?= $surat_masuk['INSTANSI_PENGIRIM'] ?></td>
                                         <td><?= $surat_masuk['PERIHAL'] ?></td>
-                                        <td><?= $surat_masuk['STATUS'] ?></td>
+                                        <td>
+                                            <?php
+                                            if ($surat_masuk['STATUS'] == 'Selesai') {
+                                                echo "<span class='badge badge-pill badge-success'>" . $surat_masuk['STATUS'] . "</span>";
+                                            } else if ($surat_masuk['STATUS'] == 'Dalam proses') {
+                                                echo "<span class=' badge badge-pill badge-warning'>" . $surat_masuk['STATUS'] . "</span>";
+                                            } else if ($surat_masuk['STATUS'] == 'Belum ditugaskan') {
+                                                echo "<span class='badge badge-pill badge-danger'>" . $surat_masuk['STATUS'] . "</span>";
+                                            } ?>
+                                        </td>
                                         <td><?= $nama  ?></td>
                                         <td>
                                             <div class="d-flex justify-content-between">
-                                                <a href="<?= base_url('uploads/' . $surat_masuk['SCAN_SURAT_MASUK']) ?>" class="btn btn-success btn-icon-split btn-sm" target="_blank">
+                                                <a href="<?= base_url('uploads/dokumentasi/' . $surat_masuk['SCAN_SURAT_MASUK']) ?>" class="btn btn-success btn-icon-split btn-sm" target="_blank">
                                                     <span class="icon">
                                                         <i class="fas fa-eye"></i>
                                                     </span>
@@ -129,7 +148,7 @@
                                                 <div class="modal-dialog modal-xl">
                                                     <div class="modal-content">
                                                         <div class="modal-body">
-                                                            <iframe src="<?= base_url('uploads/' . $surat_masuk['SCAN_SURAT_MASUK']) ?>" frameBorder="0" scrolling="auto" height="600px" width="100%"></iframe>
+                                                            <iframe src="<?= base_url('uploads/dokumentasi/' . $surat_masuk['SCAN_SURAT_MASUK']) ?>" frameBorder="0" scrolling="auto" height="600px" width="100%"></iframe>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                                             </div>
@@ -172,7 +191,7 @@
                                                                 <div class="form-row">
                                                                     <div class="form-group col-2">
                                                                         <label for="detailStatus" class="col-form-label">Dokumentasi :</label>
-                                                                        <a href="<?= base_url('uploads/' . $surat_masuk['SCAN_SURAT_MASUK']) ?>" class="btn btn-success btn-icon-split" target="_blank">
+                                                                        <a href="<?= base_url('uploads/dokumentasi/' . $surat_masuk['SCAN_SURAT_MASUK']) ?>" class="btn btn-success btn-icon-split" target="_blank">
                                                                             <span class="icon text-white-50">
                                                                                 <i class="fas fa-eye"></i>
                                                                             </span>
@@ -191,7 +210,7 @@
                                                                 <div class="form-row">
                                                                     <div class="form-group col-9">
                                                                         <label for="detailPengirim" class="col-form-label">Pengirim :</label>
-                                                                        <input name='detailPengirim' type="text" class="form-control" id="detailPengirim" value="<?= $surat_masuk['INSTANSI_PENGIRIM'] ?>" required>
+                                                                        <input name='detailPengirim' type="text" class="form-control" id="detailPengirim" value="<?= $surat_masuk['INSTANSI_PENGIRIM'] ?>" readonly>
                                                                     </div>
                                                                     <div class="form-group col-3">
                                                                         <label for="detailStatus" class="col-form-label">Status Surat :</label>
@@ -219,7 +238,7 @@
                                                                         </div>
                                                                         <div class="form-group col-4">
                                                                             <label for="detailTenggatPenugasan" class="col-form-label">Tenggat Penugasan :</label>
-                                                                            <input name='detailTenggatPenugasan' type="text" class="form-control" id="detailTenggatPenugasan" value="<?= date('d-m-Y H:i', strtotime($surat_masuk['TENGGAT_PENUGASAN'])) ?>" readonly>
+                                                                            <input name='detailTenggatPenugasan' type="text" class="form-control" id="detailTenggatPenugasan" value="<?= date('d-m-Y H:i', strtotime($surat_masuk['TENGGAT_PENUGASAN'])) ?> WIB" readonly>
                                                                         </div>
                                                                     </div>
                                                                     <div class="form-group">

@@ -3,12 +3,18 @@
 namespace App\Controllers;
 
 use App\Models\M_Pengguna;
+use App\Models\M_SuratKeluar;
+use App\Models\M_SuratLainnya;
+use App\Models\M_SuratMasuk;
 
 class Home extends BaseController
 {
     function __construct()
     {
         $this->pengguna = new M_Pengguna();
+        $this->surat_keluar = new M_SuratKeluar();
+        $this->surat_masuk = new M_SuratMasuk();
+        $this->surat_lainnya = new M_SuratLainnya();
     }
 
     public function home()
@@ -25,7 +31,12 @@ class Home extends BaseController
 
     public function dashboard_admin()
     {
-        return view('admin/dashboard_admin');
+        $data['surat_keluar'] = $this->surat_keluar->findAll();
+        $data['surat_masuk'] = $this->surat_masuk->findAll();
+        $data['surat_lainnya'] = $this->surat_lainnya->findAll();
+        $data['pengguna'] = $this->pengguna->findAll();
+
+        return view('admin/dashboard_admin', $data);
     }
 
     public function dashboard_pegawai()

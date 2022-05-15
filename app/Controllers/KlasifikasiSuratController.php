@@ -44,12 +44,12 @@ class KlasifikasiSuratController extends BaseController
         return view('pegawai/klasifikasi_surat', $data);
     }
 
-    public function kelola_klasifikasi()
-    {
-        $data['klasifikasi_surat'] = $this->klasifikasi_surat->findAll();
-        $data['kategori_klasifikasi'] = $this->kategori_klasifikasi->findAll();
-        return view('admin/kelola_klasifikasi_surat', $data);
-    }
+    // public function kelola_klasifikasi()
+    // {
+    //     $data['klasifikasi_surat'] = $this->klasifikasi_surat->findAll();
+    //     $data['kategori_klasifikasi'] = $this->kategori_klasifikasi->findAll();
+    //     return view('admin/kelola_klasifikasi_surat', $data);
+    // }
 
     public function create()
     {
@@ -71,13 +71,13 @@ class KlasifikasiSuratController extends BaseController
             'keterangan' => $this->request->getPost('keterangan'),
         ]);
 
-        return redirect('kelola_klasifikasi_surat')->with('success', 'Data berhasil diubah');
+        return redirect('data_klasifikasi_surat')->with('success', 'Data berhasil diubah');
     }
 
     public function delete($id)
     {
         $this->klasifikasi_surat->delete($id);
 
-        return redirect('admin/kelola_klasifikasi_surat')->with('success', 'Data berhasis dihapus');
+        return redirect('admin/data_klasifikasi_surat')->with('success', 'Data berhasis dihapus');
     }
 }

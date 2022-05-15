@@ -4,12 +4,12 @@ namespace App\Models;
 
 use CodeIgniter\Model;
 
-class M_SuratKeluar extends Model
+class M_SuratLainnya extends Model
 {
-    protected $table            = 'surat_keluar';
-    protected $primaryKey       = 'id_surat_keluar';
+    protected $table            = 'surat_lainnya';
+    protected $primaryKey       = 'id_surat_lainnya';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['id_pengguna', 'id_klasifikasi_surat', 'no_urut', 'tanggal_surat', 'nomor_surat_keluar', 'penerima', 'ttd', 'perihal', 'keterangan', 'draft_surat_keluar', 'scan_surat_keluar', 'status', 'lampiran', 'created_at'];
+    protected $allowedFields    = ['id_pengguna', 'id_jenis_surat_lainnya', 'nomor_surat', 'pihak_1', 'pihak_2', 'tentang', 'scan_surat', 'created_at'];
 
     // // Dates
     // protected $useTimestamps = false;
