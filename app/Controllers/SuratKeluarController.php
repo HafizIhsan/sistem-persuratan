@@ -23,7 +23,6 @@ class SuratKeluarController extends BaseController
     {
         $data['surat_keluar'] = $this->surat_keluar->findAll();
         $data['pengguna'] = $this->pengguna->findAll();
-
         return view('admin/data_surat_keluar', $data);
     }
 
@@ -94,5 +93,61 @@ class SuratKeluarController extends BaseController
         header('Cache-Control: max-age=0');
 
         $writer->save('php://output');
+    }
+
+    public function check_nomor_surat_availability()
+    {
+        $requestBody = json_decode($this->request->getBody());
+
+        $nomor_surat = $requestBody->nomor_surat;
+
+        if ('post' === $this->request->getMethod() && $nomor_surat) {
+            $model = new M_SuratKeluar();
+
+            $data = $model->getSuratKeluar($nomor_surat);
+
+            $result = $model->get_nomor_surat_keluar($nomor_surat);
+
+            if ($result === true) {
+                echo '<span style="color:green;">Nomor surat ditemukan</span>';
+                echo "<input type='text' class='form-control' name='id_surat_keluar' id='id_surat_keluar' value=" . $data[0]['ID_SURAT_KELUAR'] . " hidden>";
+            } else {
+                echo '<span style="color:red;">Nomor surat tidak ditemukan</span>';
+            }
+        } else {
+            echo '<span style="color:red;">Isi nomor surat</span>';
+        }
+    }
+
+    public function update_dokumentasi()
+    {
+        helper(['form', 'url']);
+        $rules = [
+            'nomor_surat_keluar' => 'required|min_length[5]|max_length[30]',
+            'file' => 'uploaded[file]|mime_in[file,application/pdf]|max_size[file,2048]',
+        ];
+
+        $error = [
+            'file' => [
+                'max_size' => "Ukuran file terlalu besar (Max 2MB)",
+            ],
+        ];
+
+        $input = $this->validate($rules, $error);
+
+        if (!$input) {
+            $msg = $this->validator;
+            return redirect()->to(base_url('dokumentasi_surat_keluar'))->with('error', $msg->listErrors());
+        } else {
+            $dokumentasi_surat_keluar = $this->request->getFile('file');
+            $dokumentasi_surat_keluar->move('uploads/dokumentasi');
+
+            $id = $this->request->getPost('id_surat_keluar');
+            $this->surat_keluar->update($id, [
+                'status' => $this->request->getPost('status'),
+                'scan_surat_keluar' => $dokumentasi_surat_keluar->getName()
+            ]);
+        }
+        return redirect()->to(base_url('dokumentasi_surat_keluar'))->with('success', 'Dokumentasi surat keluar berhasil ditambah');
     }
 }

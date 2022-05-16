@@ -26,7 +26,11 @@ class SuratKeluar extends Migration
                 'type'           => 'INT',
                 'constraint'     => 4
             ],
-            'created_at' => [
+            'sub_no_urut' => [
+                'type'           => 'INT',
+                'constraint'     => 4
+            ],
+            'tanggal_surat' => [
                 'type'           => 'DATE'
             ],
             'nomor_surat_keluar' => [
@@ -61,13 +65,7 @@ class SuratKeluar extends Migration
                 'type'           => 'VARCHAR',
                 'constraint'     => 50
             ],
-            'lampiran' => [
-                'type'           => 'VARCHAR',
-                'constraint'     => 255
-            ],
-            'created_at' => [
-                'type'           => 'TIMESTAMP'
-            ]
+            'created_at datetime default current_timestamp'
         ]);
 
         $this->forge->addKey('id_surat_keluar', TRUE);

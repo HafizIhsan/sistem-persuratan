@@ -120,16 +120,20 @@
                                         </td>
                                         <td>
                                             <div class="d-flex justify-content-between">
-                                                <a href="<?= base_url('uploads/dokumentasi/' . $surat_keluar['SCAN_SURAT_KELUAR']) ?>" class="btn btn-success btn-icon-split btn-sm" target="_blank">
-                                                    <span class="icon">
-                                                        <i class="fas fa-eye"></i>
-                                                    </span>
-                                                </a>
-                                                <!-- <a href="#" class="btn btn-success btn-icon-split btn-sm" data-toggle="modal" data-target="#viewModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
-                                                    <span class="icon">
-                                                        <i class="fas fa-eye"></i>
-                                                    </span>
-                                                </a> -->
+                                                <?php if ($surat_keluar['SCAN_SURAT_KELUAR'] == NULL) { ?>
+                                                    <a href="<?= base_url('uploads/dokumentasi/' . $surat_keluar['SCAN_SURAT_KELUAR']) ?>" class="btn btn-success btn-icon-split btn-sm disabled" target="_blank">
+                                                        <span class="icon">
+                                                            <i class="fas fa-eye"></i>
+                                                        </span>
+                                                    </a>
+                                                <?php } else { ?>
+                                                    <a href="<?= base_url('uploads/dokumentasi/' . $surat_keluar['SCAN_SURAT_KELUAR']) ?>" class="btn btn-success btn-icon-split btn-sm disable" target="_blank">
+                                                        <span class="icon">
+                                                            <i class="fas fa-eye"></i>
+                                                        </span>
+                                                    </a>
+                                                <?php } ?>
+
                                                 <a href="#" class="btn btn-secondary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#editModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
                                                     <span class="icon">
                                                         <i class="fas fa-edit"></i>
@@ -181,12 +185,16 @@
                                                         <div class="form-row">
                                                             <div class="form-group col-2">
                                                                 <label for="detailDokumentasi" class="col-form-label">Dokumentasi :</label>
-                                                                <a href="<?= base_url('uploads/dokumentasi/' . $surat_keluar['SCAN_SURAT_KELUAR']) ?>" class="btn btn-success btn-icon-split" target="_blank">
-                                                                    <span class="icon text-white-50">
-                                                                        <i class="fas fa-eye"></i>
-                                                                    </span>
-                                                                    <span class="text">Lihat</span>
-                                                                </a>
+                                                                <?php if ($surat_keluar['SCAN_SURAT_KELUAR'] == NULL) { ?>
+                                                                    <span class='badge badge-danger'>Belum Ada</span>
+                                                                <?php } else { ?>
+                                                                    <a href="<?= base_url('uploads/dokumentasi/' . $surat_keluar['SCAN_SURAT_KELUAR']) ?>" class="btn btn-success btn-icon-split" target="_blank">
+                                                                        <span class="icon text-white-50">
+                                                                            <i class="fas fa-eye"></i>
+                                                                        </span>
+                                                                        <span class="text">Lihat</span>
+                                                                    </a>
+                                                                <?php } ?>
                                                             </div>
                                                             <div class="form-group col-2">
                                                                 <label for="detailDraft" class="col-form-label">Draft :</label>
@@ -345,5 +353,13 @@
     function CallButton() {
         document.getElementById("closeAlert").click();
     }
+
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            bDestroy: true,
+            scrollY: '47vh',
+            scrollCollapse: true
+        });
+    });
 </script>
 <?= $this->endSection() ?>

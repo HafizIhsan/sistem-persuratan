@@ -143,19 +143,7 @@
                                                 </a>
                                             </div>
 
-                                            <!-- View Modal
-                                            <div id="viewModal-<?= $surat_masuk['ID_SURAT_MASUK'] ?>" class="modal fade" role="dialog">
-                                                <div class="modal-dialog modal-xl">
-                                                    <div class="modal-content">
-                                                        <div class="modal-body">
-                                                            <iframe src="<?= base_url('uploads/dokumentasi/' . $surat_masuk['SCAN_SURAT_MASUK']) ?>" frameBorder="0" scrolling="auto" height="600px" width="100%"></iframe>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div> -->
+                                            <p hidden><?= $surat_masuk['NOMOR_SURAT_MASUK'] ?></p>
                                         </td>
                                     </tr>
 
@@ -360,5 +348,13 @@
     function CallButton() {
         document.getElementById("closeAlert").click();
     }
+
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            bDestroy: true,
+            scrollY: '47vh',
+            scrollCollapse: true
+        });
+    });
 </script>
 <?= $this->endSection() ?>

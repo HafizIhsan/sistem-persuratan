@@ -58,10 +58,15 @@ $routes->get('logout', 'UserController::logout');
 
 // Buat Surat Keluar
 $routes->get('/buat_surat_keluar', 'BuatSuratKeluarController::index');
+$routes->get('/buat_surat_keluar/get', 'BuatSuratKeluarController::getSuratKeluar');
+$routes->add('/buat_surat_keluar', 'BuatSuratKeluarController::create');
 $routes->get('/buat_surat_keluar_p', 'BuatSuratKeluarController::index_p');
 
 // Dokumentasi Surat Keluar
 $routes->get('/dokumentasi_surat_keluar', 'Home::dokumentasi_surat_keluar');
+$routes->post('/check-nomor-surat-availability', 'SuratKeluarController::check_nomor_surat_availability');
+$routes->add('/dokumentasi_surat_keluar/update_dokumentasi', 'SuratKeluarController::update_dokumentasi');
+
 $routes->get('/dokumentasi_surat_keluar_p', 'Home::dokumentasi_surat_keluar_p');
 
 // Dokumentasi Surat Masuk
@@ -69,6 +74,7 @@ $routes->get('/dokumentasi_surat_masuk', 'Home::dokumentasi_surat_masuk');
 
 // Dokumentasi Surat Lainnya
 $routes->get('/dokumentasi_surat_lainnya', 'JenisSuratLainnyaController::index');
+$routes->add('/dokumentasi_surat_lainnya', 'SuratLainnyaController::create');
 
 // Data Surat
 $routes->get('/data_surat_keluar', 'SuratKeluarController::index');
@@ -96,6 +102,7 @@ $routes->get('/klasifikasi_surat', 'KlasifikasiSuratController::klasifikasi_sura
 
 // Pengguna
 $routes->get('/data_pengguna', 'DataPenggunaController::index');
+// $routes->get('/data_pengguna/get-records', 'DataPenggunaController::getRecords');
 $routes->add('/data_pengguna', 'DataPenggunaController::create');
 $routes->add('/data_pengguna/edit/(:segment)', 'DataPenggunaController::edit/$1');
 $routes->get('/data_pengguna/delete/(:segment)', 'DataPenggunaController::delete/$1');

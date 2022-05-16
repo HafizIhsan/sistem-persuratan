@@ -31,10 +31,17 @@ class Home extends BaseController
 
     public function dashboard_admin()
     {
+        $surat_m = new M_SuratMasuk();
+        $surat_k = new M_SuratKeluar();
+
+        $id = session()->get('id_pengguna');
+
         $data['surat_keluar'] = $this->surat_keluar->findAll();
         $data['surat_masuk'] = $this->surat_masuk->findAll();
         $data['surat_lainnya'] = $this->surat_lainnya->findAll();
         $data['pengguna'] = $this->pengguna->findAll();
+        $data['tugas_saya'] = $surat_m->get_surat_masuk_by_petugas($id);
+        $data['surat_keluar_saya'] = $surat_k->getSuratKeluarTanpaDokumentasi();
 
         return view('admin/dashboard_admin', $data);
     }

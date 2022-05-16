@@ -187,6 +187,14 @@
 
 <script>
     $(document).ready(function() {
+        $('#dataTable').DataTable({
+            bDestroy: true,
+            scrollY: '47vh',
+            scrollCollapse: true
+        });
+    });
+
+    $(document).ready(function() {
         $('#pilihKategori').selectize({
             searchField: 'text'
         });

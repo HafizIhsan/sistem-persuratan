@@ -91,4 +91,45 @@ class SuratLainnyaController extends BaseController
 
         $writer->save('php://output');
     }
+
+    function create()
+    {
+        helper(['form', 'url']);
+        $rules = [
+            'nomor_surat' => 'required|min_length[5]|max_length[30]',
+            'pihak_1' => 'required|min_length[5]|max_length[50]',
+            'pihak_2' => 'required|min_length[5]|max_length[50]',
+            'tentang' => 'required|min_length[5]',
+            'file' => 'uploaded[file]|mime_in[file,application/pdf]|max_size[file,2048]',
+        ];
+
+        $error = [
+            'file' => [
+                'max_size' => "Ukuran file terlalu besar (Max 2MB)",
+            ],
+        ];
+
+        $input = $this->validate($rules, $error);
+
+        if (!$input) {
+            $msg = $this->validator;
+            return redirect()->to(base_url('dokumentasi_surat_lainnya'))->with('error', $msg->listErrors());
+        } else {
+            $scan_surat_lainnya = $this->request->getFile('file');
+            $scan_surat_lainnya->move('uploads/dokumentasi', $this->request->getPost('nomor_surat'));
+
+            $this->surat_lainnya->insert([
+                'id_pengguna' => session()->get('id_pengguna'),
+                'id_jenis_surat_lainnya' => $this->request->getPost('id_jenis_surat_lainnya'),
+                'nomor_surat' => $this->request->getPost('nomor_surat'),
+                'pihak_1' => $this->request->getPost('pihak_1'),
+                'pihak_2' => $this->request->getPost('pihak_2'),
+                'tentang' => $this->request->getPost('tentang'),
+                'scan_surat_lainnya' =>  $scan_surat_lainnya->getName(),
+                'created_at' => date('Y-m-d H:i:s')
+            ]);
+
+            return redirect()->to(base_url('dokumentasi_surat_lainnya'))->with('success', 'Dokumentasi surat lainnya berhasil dilakukan');
+        }
+    }
 }

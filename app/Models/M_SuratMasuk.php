@@ -11,6 +11,15 @@ class M_SuratMasuk extends Model
     protected $useAutoIncrement = true;
     protected $allowedFields    = ['id_pengguna', 'nomor_surat_masuk', 'tanggal_terima', 'instansi_pengirim', 'perihal', 'scan_surat_masuk', 'uraian_penugasan', 'petugas', 'status', 'tenggat_penugasan', 'created_at'];
 
+    public function get_surat_masuk_by_petugas($id = false)
+    {
+        if ($id === false) {
+            return $this->findAll();
+        } else {
+            return $this->getWhere(['PETUGAS' => $id])->getResultArray();
+        }
+    }
+
     // // Dates
     // protected $useTimestamps = false;
     // protected $dateFormat    = 'datetime';

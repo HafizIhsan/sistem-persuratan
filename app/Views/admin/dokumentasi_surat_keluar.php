@@ -7,19 +7,43 @@
     </div>
     <!-- Content Row -->
     <div class="col-xl-9">
-        <form id="formDokumentasiSuratKeluar" method="POST">
+        <?php
+        if (session()->getFlashData('error')) {
+        ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <?= session()->getFlashData('error') ?>
+                <button id="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php
+        }
+
+        if (session()->getFlashData('success')) {
+        ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <?= session()->getFlashData('success') ?>
+                <button id="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <?php
+        }
+        ?>
+        <form id="formDokumentasiSuratKeluar" action="<?= base_url('dokumentasi_surat_keluar/update_dokumentasi') ?>" method="post" enctype="multipart/form-data">
             <div class="form-group row">
                 <label for="inputNoSurat" class="col-sm-2 col-form-label">Nomor Surat</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="inputNoSurat" placeholder="">
+                    <input type="text" class="form-control" id="nomor_surat" name="nomor_surat_keluar" placeholder="">
                 </div>
+                <div id="msg"></div>
             </div>
             <div class="form-group row">
                 <label for="pilihStatusSurat" class="col-sm-2 col-form-label">Status Surat</label>
                 <div class="col-sm-10">
-                    <select id="pilihStatusSurat" class="form-control" placeholder="Pilih petugas">
-                        <option>Belum Terkirim</option>
-                        <option>Sudah Terkirim</option>
+                    <select id="pilihStatusSurat" class="form-control" name="status" placeholder="Pilih petugas">
+                        <option value="Belum terkirim">Belum Terkirim</option>
+                        <option value="Sudah terkirim">Sudah Terkirim</option>
                     </select>
                 </div>
             </div>
@@ -27,17 +51,8 @@
                 <div class="col-sm-2">Dokumen Surat</div>
                 <div class="col-sm-10">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="dokumenSurat">
+                        <input type="file" class="custom-file-input" id="dokumenSurat" name="file">
                         <label class="custom-file-label" for="dokumenSurat" accept="application/pdf">Pilih file</label>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group row">
-                <div class="col-sm-2">Lampiran</div>
-                <div class="col-sm-10">
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="lampiran">
-                        <label class="custom-file-label" for="lampiran" accept="application/pdf">Pilih file</label>
                     </div>
                 </div>
             </div>
@@ -75,6 +90,39 @@
     $(function() {
         $('#submitDokumentasi').on('click', function(e) {
             $('#formDokumentasiSuratKeluar').submit();
+        });
+    });
+
+    $(document).ready(function() {
+        $("#nomor_surat").on("input", function(e) {
+            $('#msg').hide();
+            if ($('#nomor_surat').val() == null || $('#nomor_surat').val() == "") {
+                $('#msg').show();
+                $("#msg").html("Nomor surat harus diisi.").css("color", "red");
+            } else {
+                $.ajax({
+                    type: 'post',
+                    url: "<?= site_url('check-nomor-surat-availability') ?>",
+                    data: JSON.stringify({
+                        nomor_surat: $('#nomor_surat').val()
+                    }),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'html',
+                    cache: false,
+                    beforeSend: function(f) {
+                        $('#msg').show();
+                        $('#msg').html('Mencari...');
+                    },
+                    success: function(msg) {
+                        $('#msg').show();
+                        $("#msg").html(msg);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        $('#msg').show();
+                        $("#msg").html(textStatus + " " + errorThrown);
+                    }
+                });
+            }
         });
     });
 </script>

@@ -52,9 +52,7 @@ class SuratMasuk extends Migration
             'tenggat_penugasan' => [
                 'type'           => 'TIMESTAMP'
             ],
-            'created_at' => [
-                'type'           => 'TIMESTAMP'
-            ]
+            'created_at datetime default current_timestamp'
         ]);
 
         $this->forge->addKey('id_surat_masuk', TRUE);

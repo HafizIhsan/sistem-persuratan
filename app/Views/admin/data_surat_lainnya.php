@@ -113,6 +113,7 @@
                                                     <span class="text">Detail</span>
                                                 </a>
                                             </div>
+                                            <p hidden><?= $surat_lainnya['NOMOR_SURAT'] ?></p>
                                         </td>
                                     </tr>
 
@@ -248,6 +249,14 @@
 <?= $this->endSection() ?>
 <?= $this->section('scripts') ?>
 <script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            bDestroy: true,
+            scrollY: '47vh',
+            scrollCollapse: true
+        });
+    });
+
     $(document).ready(function() {
         var table = $('#dataTable').DataTable();
         $('#filterJenisSurat').change(function() {

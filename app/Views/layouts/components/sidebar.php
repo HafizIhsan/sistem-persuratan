@@ -35,6 +35,17 @@
     </li>
 
     <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item active">
+        <a class="nav-link" href="penugasan_surat_masuk">
+
+            <i class="fas fa-fw ri-briefcase-fill"></i>
+            <span>Penugasan Surat Masuk</span></a>
+    </li>
+
+    <!-- Divider -->
     <hr class="sidebar-divider">
 
     <!-- Heading -->
@@ -95,18 +106,6 @@
             <i class="fas fa-fw fa-user"></i>
             <span>Data Pengguna</span></a>
     </li>
-    <!-- <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-            <i class="fas fa-fw fa-user"></i>
-            <span>Data Pengguna</span>
-        </a>
-        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordionSidebar">
-            <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="data_admin">Admin</a>
-                <a class="collapse-item" href="data_pegawai">Pegawai</a>
-            </div>
-        </div>
-    </li> -->
 
     <!-- Nav Item - Surat Masuk -->
     <li class="nav-item">
