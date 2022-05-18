@@ -35,11 +35,11 @@
                     ?>
                     <form id="formBuatSuratKeluar" method="post" onchange="validate();" enctype="multipart/form-data">
                         <div class="form-row">
-                            <input type="text" value="<?= $max_no_urut['NO_URUT'] + 1 ?>" id="no_urut" name="no_urut" hidden>
+                            <div id="msg"></div>
                             <div class="form-group col-md-3">
                                 <label for="date">Tanggal Surat</label>
                                 <div class="input-group date">
-                                    <input id="tanggalSurat" type="date" value="<?= date('Y-m-d') ?>" class="form-control" name="tanggal_surat" required>
+                                    <input onkeydown="return event.key != 'Enter';" id="tanggalSurat" type="date" value="<?= date('Y-m-d') ?>" class="form-control" name="tanggal_surat" min="2019-01-01" max="<?= date('Y-m-d') ?>" required>
                                 </div>
                                 <small id="klasifikasiHelpBlock" class="form-text text-muted">
                                     Format : mm/dd/yyyy
@@ -47,8 +47,8 @@
                             </div>
                             <div class="form-group col-md-9">
                                 <label for="pilihKlasifikasi">Klasifikasi Surat</label>
-                                <select id="klasifikasiSurat" class="form-control" placeholder="Pilih klasifikasi surat..." name="klasifikasi_surat" required>
-                                    <option value="" selected>Pilih klasifikasi surat...</option>
+                                <select onkeydown="return event.key != 'Enter';" id="klasifikasiSurat" class="form-control" placeholder="Pilih klasifikasi surat..." name="klasifikasi_surat" required>
+                                    <option value="" selected>Pilih klasifikasi surat ...</option>
                                     <?php
                                     foreach ($klasifikasi_surat as $key => $klasifikasi_surat) : ?>
                                         <option value="<?php echo $klasifikasi_surat['KODE'] . '.' . $klasifikasi_surat['NOMOR_KLASIFIKASI'] ?>"><?php echo $klasifikasi_surat['KODE'] . ' ' . $klasifikasi_surat['NOMOR_KLASIFIKASI'] . ' ' . $klasifikasi_surat['KETERANGAN'] ?></option>
@@ -62,23 +62,23 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputPenerima">Penerima</label>
-                                <input type="text" class="form-control" id="inputPenerima" placeholder="" name="penerima" required>
+                                <input onkeydown="return event.key != 'Enter';" type="text" class="form-control" id="inputPenerima" placeholder="Penerima" name="penerima" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPenandatangan">TTD</label>
-                                <input type="text" class="form-control" id="inputTTD" name="ttd" placeholder="" required>
+                                <input onkeydown="return event.key != 'Enter';" type="text" class="form-control" id="inputTTD" name="ttd" placeholder="Penandatangan" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPerihal">Perihal</label>
-                            <textarea class="form-control" id="inputPerihal" name="perihal" rows="2" required></textarea>
+                            <textarea class="form-control" id="inputPerihal" name="perihal" placeholder="Perihal" rows="2" required></textarea>
                         </div>
                         <hr>
                         <div class="form-group">
                             <label for="inputNomorSurat">Nomor Surat</label>
                             <div class="input-group">
                                 <button type="button" class="btn btn-primary btn-clipboard mr-1 shadow btn-sm" id="generate">Generate</button>
-                                <input type="text" class="form-control" id="inputNomorSurat" placeholder="" name="nomor_surat_keluar" required readonly>
+                                <input type="text" class="form-control" id="inputNomorSurat" placeholder="" name="nomor_surat_keluar" placeholder="Nomor surat" required readonly>
                                 <button type="button" class="copyClipboard btn btn-info btn-clipboard ml-1 shadow btn-sm" id="copyClipboard" data-clipboard-action="copy" data-clipboard-target="#inputNomorSurat">Copy</button>
                             </div>
                             <small id="passwordHelpBlock" class="form-text text-muted">
@@ -90,8 +90,8 @@
                                 <label>Draft Surat Keluar</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="draftSuratKeluar" name="file">
-                                        <label class="custom-file-label" for="draftSuratKeluar" required>Pilih file</label>
+                                        <input type="file" class="custom-file-input" id="draftSuratKeluar" name="file" type="application/msword">
+                                        <label class="custom-file-label" for="draftSuratKeluar" required>Pilih file ...</label>
                                     </div>
                                 </div>
                             </div>
@@ -133,25 +133,6 @@
 
 <?= $this->section('scripts') ?>
 <script>
-    // $(document).ready(function() {
-    //     let now = new Date();
-    //     let today = '';
-    //     if (now.getDate() <= 9) {
-    //         if ((now.getMonth() + 1) <= 9) {
-    //             today = '0' + now.getDate() + '/' + '0' + (now.getMonth() + 1) + '/' + now.getFullYear();
-    //         } else {
-    //             today = '0' + now.getDate() + '/' + (now.getMonth() + 1) + '/' + now.getFullYear();
-    //         }
-    //     } else {
-    //         if ((now.getMonth() + 1) <= 9) {
-    //             today = now.getDate() + '/' + '0' + (now.getMonth() + 1) + '/' + now.getFullYear();
-    //         } else {
-    //             today = now.getDate() + '/' + (now.getMonth() + 1) + '/' + now.getFullYear();
-    //         }
-    //     }
-    //     $('#inputDate').val(today);
-    // });
-
     $(document).ready(function() {
         $('#klasifikasiSurat').selectize({
             sortField: 'text'
@@ -173,18 +154,30 @@
     $('#generate').on('click', function(e) {
         let tanggal = new Date(document.getElementById('tanggalSurat').value);
         let klasifikasi_surat = document.getElementById('klasifikasiSurat').value;
-        let no_urut = parseInt(document.getElementById('no_urut').value);
+        let no_urut = document.getElementById('no_urut').value;
+        let sub_no_urut = document.getElementById('sub_no_urut').value;
         let bulan = tanggal.getMonth() + 1;
         let tahun = tanggal.getFullYear();
         let no = '';
 
-        if (no_urut < 10) {
-            no = "00" + no_urut;
-        } else if (no_urut > 9 && no_urut < 100) {
-            no = "0" + no_urut;
-        } else if (no_urut > 99) {
-            no = no_urut;
-        };
+        if (sub_no_urut != "") {
+            if (no_urut < 10) {
+                no = "00" + no_urut + "." + sub_no_urut;
+            } else if (no_urut > 9 && no_urut < 100) {
+                no = "0" + no_urut + "." + sub_no_urut;
+            } else if (no_urut > 99) {
+                no = no_urut + "." + sub_no_urut;
+            }
+        } else {
+            if (no_urut < 10) {
+                no = "00" + no_urut;
+            } else if (no_urut > 9 && no_urut < 100) {
+                no = "0" + no_urut;
+            } else if (no_urut > 99) {
+                no = no_urut;
+            };
+        }
+
 
         let val = '';
 
@@ -210,8 +203,6 @@
         document.getElementById('generate').disabled = false;
     });
 
-    tanggalSurat.max = new Date().toLocaleDateString('en-ca');
-
     function validate() {
         var submit = document.getElementById('submitButton');
         var nomor_surat = document.getElementById("inputNomorSurat").value == "" ? false : true;
@@ -225,5 +216,68 @@
         var filled = (nomor_surat && tanggal_surat && klasifikasi_surat && penerima && file && ttd && perihal);
         filled ? submit.disabled = false : submit.disabled = true;
     }
+
+    $(document).ready(function() {
+        $.ajax({
+            type: 'post',
+            url: "<?= site_url('check-tanggal-surat-availability') ?>",
+            data: JSON.stringify({
+                tanggal_surat: $('#tanggalSurat').val()
+            }),
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'html',
+            cache: false,
+            success: function(msg) {
+                $('#msg').show();
+                $("#msg").html(msg);
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                $('#msg').show();
+                $("#msg").html(textStatus + " " + errorThrown);
+            }
+        });
+
+        $("#tanggalSurat").on("input", function(e) {
+            $('#msg').hide();
+            if ($('#tanggalSurat').val() == null || $('#tanggalSurat').val() == "") {
+                // $('#msg').show();
+                // $("#msg").html("Tanggal surat harus diisi.").css("color", "red");
+            } else {
+                $.ajax({
+                    type: 'post',
+                    url: "<?= site_url('check-tanggal-surat-availability') ?>",
+                    data: JSON.stringify({
+                        tanggal_surat: $('#tanggalSurat').val()
+                    }),
+                    contentType: 'application/json; charset=utf-8',
+                    dataType: 'html',
+                    cache: false,
+                    success: function(msg) {
+                        $('#msg').show();
+                        $("#msg").html(msg);
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        $('#msg').show();
+                        $("#msg").html(textStatus + " " + errorThrown);
+                    }
+                });
+            }
+        });
+    });
+
+    var dateControler = {
+        currentDate: null
+    }
+
+    $(document).on("change", "#tanggalSurat", function(event, ui) {
+        var now = new Date();
+        var selectedDate = new Date($(this).val());
+
+        if (selectedDate > now) {
+            $(this).val(dateControler.currentDate)
+        } else {
+            dateControler.currentDate = $(this).val();
+        }
+    });
 </script>
 <?= $this->endSection() ?>

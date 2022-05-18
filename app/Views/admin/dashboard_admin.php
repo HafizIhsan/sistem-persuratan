@@ -15,7 +15,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                 Total Surat Keluar (<?= date("Y") ?>)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= count($surat_keluar) ?></div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $surat_keluar ?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas ri-mail-send-fill fa-2x text-gray-300"></i>
@@ -32,7 +32,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Total Surat Masuk (<?= date("Y") ?>)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= count($surat_masuk) ?></div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $surat_masuk ?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas ri-mail-download-fill fa-2x text-gray-300"></i>
@@ -49,7 +49,7 @@
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                 Total Surat Lainnya (<?= date("Y") ?>)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= count($surat_lainnya) ?></div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $surat_lainnya ?></div>
                         </div>
                         <div class="col-auto">
                             <i class="fas fa-file-alt fa-2x text-gray-300"></i>

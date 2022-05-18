@@ -45,3 +45,17 @@
 </div>
 <!-- /.container-fluid -->
 <?= $this->endSection() ?>
+
+<?= $this->section('scripts') ?>
+
+<script>
+    $(document).ready(function() {
+        $('#dataTable').DataTable({
+            bDestroy: true,
+            scrollY: '47vh',
+            scrollCollapse: true
+        });
+    });
+</script>
+
+<?= $this->endSection() ?>

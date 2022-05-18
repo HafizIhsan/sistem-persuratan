@@ -58,16 +58,21 @@ $routes->get('logout', 'UserController::logout');
 
 // Buat Surat Keluar
 $routes->get('/buat_surat_keluar', 'BuatSuratKeluarController::index');
-$routes->get('/buat_surat_keluar/get', 'BuatSuratKeluarController::getSuratKeluar');
+// $routes->get('/buat_surat_keluar/get', 'BuatSuratKeluarController::getSuratKeluar');
+
 $routes->add('/buat_surat_keluar', 'BuatSuratKeluarController::create');
+$routes->add('/buat_surat_keluar_p', 'BuatSuratKeluarController::create');
+
 $routes->get('/buat_surat_keluar_p', 'BuatSuratKeluarController::index_p');
 
 // Dokumentasi Surat Keluar
 $routes->get('/dokumentasi_surat_keluar', 'Home::dokumentasi_surat_keluar');
 $routes->post('/check-nomor-surat-availability', 'SuratKeluarController::check_nomor_surat_availability');
+$routes->post('/check-tanggal-surat-availability', 'SuratKeluarController::check_tanggal_surat_availability');
 $routes->add('/dokumentasi_surat_keluar/update_dokumentasi', 'SuratKeluarController::update_dokumentasi');
 
 $routes->get('/dokumentasi_surat_keluar_p', 'Home::dokumentasi_surat_keluar_p');
+$routes->add('/dokumentasi_surat_keluar_p/update_dokumentasi', 'SuratKeluarController::update_dokumentasi');
 
 // Dokumentasi Surat Masuk
 $routes->get('/dokumentasi_surat_masuk', 'Home::dokumentasi_surat_masuk');

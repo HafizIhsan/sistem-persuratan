@@ -150,4 +150,47 @@ class SuratKeluarController extends BaseController
         }
         return redirect()->to(base_url('dokumentasi_surat_keluar'))->with('success', 'Dokumentasi surat keluar berhasil ditambah');
     }
+
+    public function check_tanggal_surat_availability()
+    {
+        $requestBody = json_decode($this->request->getBody());
+
+        $tanggal_surat = $requestBody->tanggal_surat;
+
+        if ('post' === $this->request->getMethod() && $tanggal_surat) {
+            $model = new M_SuratKeluar();
+
+            $data = $model->get_no_urut_akhir($tanggal_surat);
+
+            $now = date('Y-m-d');
+            $tgl = date('Y-m-d', strtotime($tanggal_surat));
+
+            $result = $model->get_tanggal_surat_keluar($tanggal_surat);
+
+            if ($data['max_no_urut'] != NULL) {
+                if ($result === true) {
+                    if ($tgl == $now) {
+                        echo "<input type='text' value='" . ($data['max_no_urut'] + 1) . "' id='no_urut' name='no_urut' hidden>";
+                        echo "<input type='text' value='' id='sub_no_urut' name='sub_no_urut' hidden>";
+                    } else {
+                        echo "<input type='text' value='" . ($data['max_no_urut']) . "' id='no_urut' name='no_urut' hidden>";
+                        echo "<input type='text' value='" . ($data['max_sub_no_urut'] + 1) . "' id='sub_no_urut' name='sub_no_urut' hidden>";
+                    }
+                } else {
+                    if ($now == $tgl) {
+                        echo "<input type='text' value='" . ($data['max_no_urut'] + 1) . "' id='no_urut' name='no_urut' hidden>";
+                        echo "<input type='text' value='' id='sub_no_urut' name='sub_no_urut' hidden>";
+                    } else {
+                        echo "<input type='text' value='" . ($data['max_no_urut']) . "' id='no_urut' name='no_urut' hidden>";
+                        echo "<input type='text' value='" . ($data['max_sub_no_urut'] + 1) . "' id='sub_no_urut' name='sub_no_urut' hidden>";
+                    }
+                }
+            } else {
+                echo "<input type='text' value='" . (($data['max_no_urut']) + 1) . "' id='no_urut' name='no_urut' hidden>";
+                echo "<input type='text' value='' id='sub_no_urut' name='sub_no_urut' hidden>";
+            }
+        } else {
+            echo '<span style="color:red;">Isi tanggal surat</span>';
+        }
+    }
 }

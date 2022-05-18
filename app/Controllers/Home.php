@@ -36,9 +36,13 @@ class Home extends BaseController
 
         $id = session()->get('id_pengguna');
 
-        $data['surat_keluar'] = $this->surat_keluar->findAll();
-        $data['surat_masuk'] = $this->surat_masuk->findAll();
-        $data['surat_lainnya'] = $this->surat_lainnya->findAll();
+        $data_sk = $this->surat_keluar->findAll();
+        $data_sm = $this->surat_masuk->findAll();
+        $data_sl = $this->surat_lainnya->findAll();
+
+        $data['surat_keluar'] = count($data_sk);
+        $data['surat_masuk'] = count($data_sm);
+        $data['surat_lainnya'] = count($data_sl);
         $data['pengguna'] = $this->pengguna->findAll();
         $data['tugas_saya'] = $surat_m->get_surat_masuk_by_petugas($id);
         $data['surat_keluar_saya'] = $surat_k->getSuratKeluarTanpaDokumentasi();

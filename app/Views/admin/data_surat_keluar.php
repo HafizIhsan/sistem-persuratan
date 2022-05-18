@@ -148,6 +148,7 @@
                                                     <span class="text">Detail</span>
                                                 </a>
                                             </div>
+                                            <p hidden><?= $surat_keluar['NOMOR_SURAT_KELUAR'] ?></p>
                                         </td>
                                     </tr>
 

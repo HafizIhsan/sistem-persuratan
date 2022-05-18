@@ -1,8 +1,3 @@
-<?php
-// if ($this->session->userdata('$data')) {
-//     echo "Session";
-// }
-?>
 <!doctype html>
 <html lang="en">
 
@@ -38,7 +33,7 @@
     <div class="container">
         <header class="head my-3">
             <nav class="navbar navbar-expand-lg navbar-light head__custom-nav">
-                <a class="navbar-brand d-flex align-items-center" href="#">
+                <a class="navbar-brand d-flex align-items-center" href="home">
                     <img src="<?= base_url() ?>/assets/vendor/landing-page/assets/images/plane.png" alt="website logo">
                     <span>Sistem Persuratan</span>
                 </a>
@@ -61,24 +56,6 @@
             </nav>
         </header>
     </div>
-
-    <!-- Toast -->
-    <!-- <div id="toast-alert-container" class="toast-top-center example">
-        <div id="alert" class="toast-alert alert-danger hide" role="alert" data-delay="3000" data-autohide="true" aria-live="assertive" aria-atomic="true">
-            <div class="toast-header-alert">
-                <i class="fas fa-2x fa-exclamation-circle mr-2"></i>
-
-                <strong class="mr-auto">Session Timeout</strong>
-
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="toast-body">
-                Your Session has expired. Please login again
-            </div>
-        </div>
-    </div> -->
 
     <div class="container">
         <div class="row custom-section d-flex align-items-center">
