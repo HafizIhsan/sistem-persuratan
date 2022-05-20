@@ -62,47 +62,59 @@
     </div>
 
     <!-- Content Row -->
-    <div class="row">
+    <div class="row" style="min-height:30vh;">
         <div class="col-12 col-lg-6">
             <div class="card shadow h-100">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Penugasan Surat Masuk</h6>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Pengirim</th>
-                                    <th>Uraian Penugasan</th>
-                                    <th>Tenggat Penugasan</th>
-                                    <th>Status Penugasan</th>
-                                    <th>Dokumen Surat</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($tugas_saya as $key => $tugas_saya) :
-                                    if ($tugas_saya['STATUS'] != 'Selesai') { ?>
-                                        <tr>
-                                            <td><?= ++$key ?></td>
-                                            <td><?= $tugas_saya['INSTANSI_PENGIRIM'] ?></td>
-                                            <td><?= $tugas_saya['URAIAN_PENUGASAN'] ?></td>
-                                            <td><?= date('d-m-y H:i:s', strtotime($tugas_saya['TENGGAT_PENUGASAN'])) ?></td>
-                                            <td><?= $tugas_saya['STATUS'] ?></td>
-                                            <td>
-                                                <a href="<?= base_url('uploads/dokumentasi/' . $tugas_saya['SCAN_SURAT_MASUK']) ?>" class="btn btn-success btn-icon-split btn-sm disable" target="_blank">
-                                                    <span class="icon">
-                                                        <i class="fas fa-eye"></i>
-                                                    </span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                <?php }
-                                endforeach; ?>
-                            </tbody>
-                        </table>
-                    </div>
+                    <?php
+                    $tgs = 0;
+                    foreach ($tugas_saya as $key => $tugas) {
+                        if ($tugas['STATUS'] != 'Selesai') {
+                            $tgs++;
+                        }
+                    }
+                    if ($tgs != 0) {
+                    ?>
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Perihal</th>
+                                        <th>Uraian Penugasan</th>
+                                        <th>Tenggat Penugasan</th>
+                                        <th>Dokumen Surat</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($tugas_saya as $key => $tugas_saya) :
+                                        if ($tugas_saya['STATUS'] != 'Selesai') { ?>
+                                            <tr>
+                                                <td><?= ++$key ?></td>
+                                                <td><?= $tugas_saya['PERIHAL'] ?></td>
+                                                <td><?= $tugas_saya['URAIAN_PENUGASAN'] ?></td>
+                                                <td><?= date('d-m-y H:i:s', strtotime($tugas_saya['TENGGAT_PENUGASAN'])) ?></td>
+                                                <td>
+                                                    <a href="<?= base_url('uploads/dokumentasi/' . $tugas_saya['SCAN_SURAT_MASUK']) ?>" class="btn btn-success btn-icon-split btn-sm disable" target="_blank">
+                                                        <span class="icon">
+                                                            <i class="fas fa-eye"></i>
+                                                        </span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                    <?php }
+                                    endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    <?php } else { ?>
+                        <div class="d-flex justify-content-center">
+                            <h4>Tidak ada penugasan surat masuk</h4>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>
@@ -112,44 +124,41 @@
                     <h6 class="m-0 font-weight-bold text-primary">Surat Keluar Saya (Belum di Dokumentasi)</h6>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>Tanggal Surat</th>
-                                    <th>Nomor Surat</th>
-                                    <th>Perihal</th>
-                                    <th>Status</th>
-                                    <th>Dokumentasi</th>
-                                    <th>Detail Surat</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>15/04/2002</td>
-                                    <td>B-001/02410/HM.300/04/2022</td>
-                                    <td>Permintaan data untuk kegiatan statistik</td>
-                                    <td>Sudah dikirim</td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-icon-split">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-flag"></i>
-                                            </span>
-                                            <span class="text">Unduh</span>
-                                        </a>
-                                    </td>
-                                    <td>
-                                        <a href="#" class="btn btn-primary btn-icon-split">
-                                            <span class="icon text-white-50">
-                                                <i class="fas fa-flag"></i>
-                                            </span>
-                                            <span class="text">Lihat</span>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <?php
+                    if (count($surat_keluar_saya) != 0) {
+                    ?>
+                        <div class="table-responsive">
+                            <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Perihal</th>
+                                        <th>Aksi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($surat_keluar_saya as $key => $surat_keluar_saya) : ?>
+                                        <tr>
+                                            <td><?= ++$key ?></td>
+                                            <td><?= $surat_keluar_saya['PERIHAL'] ?></td>
+                                            <td>
+                                                <a href="#" class="btn btn-success btn-icon-split btn-sm">
+                                                    <span class="icon text-white-50">
+                                                        <i class="fas fa-plus"></i>
+                                                    </span>
+                                                    <span class="text">Tambah Dokumentasi</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    <?php } else { ?>
+                        <div class="d-flex justify-content-center">
+                            <h4>Semua surat keluar sudah terdokumentasi</h4>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

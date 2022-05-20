@@ -109,13 +109,11 @@ class SuratKeluarController extends BaseController
             $result = $model->get_nomor_surat_keluar($nomor_surat);
 
             if ($result === true) {
-                echo '<span style="color:green;">Nomor surat ditemukan</span>';
+                echo '<small id="klasifikasiHelpBlock" class="form-text text-success">Nomor surat ditemukan</small>';
                 echo "<input type='text' class='form-control' name='id_surat_keluar' id='id_surat_keluar' value=" . $data[0]['ID_SURAT_KELUAR'] . " hidden>";
             } else {
-                echo '<span style="color:red;">Nomor surat tidak ditemukan</span>';
+                echo '<small id="klasifikasiHelpBlock" class="form-text text-danger">Nomor surat tidak ditemukan</small>';
             }
-        } else {
-            echo '<span style="color:red;">Isi nomor surat</span>';
         }
     }
 

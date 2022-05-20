@@ -66,22 +66,23 @@ class M_SuratKeluar extends Model
         if ($tgl == $now) {
             $tmp = $this->db->query("SELECT max(NO_URUT) as max_no_urut, SUB_NO_URUT as max_sub_no_urut FROM surat_keluar WHERE TANGGAL_SURAT LIKE '$yearNow%'")->getResultArray();
             $data = end($tmp);
-
             if (count($data) == 0) {
                 $data['max_no_urut'] = 1;
                 $data['max_sub_no_urut'] = NULL;
             }
-
             return $data;
         } else if ($tgl != $now) {
             if (count($row) != 0) {
                 $last_row = end($row);
+                $data['max_no_urut'] = $last_row['NO_URUT'];
+                $data['max_sub_no_urut'] = $last_row['SUB_NO_URUT'];
             } else {
-                $newRow = $this->db->query("SELECT * FROM surat_keluar WHERE TANGGAL_SURAT < '$tgl'")->getResultArray();
-                $last_row = end($newRow);
+                $tmp1 = end($this->db->query("SELECT max(NO_URUT) as max_no_urut FROM surat_keluar WHERE TANGGAL_SURAT < '$tgl'")->getResultArray());
+                $data['max_no_urut'] = $tmp1['max_no_urut'];
+                $q = "SELECT max(SUB_NO_URUT) as max_sub_no_urut FROM surat_keluar WHERE NO_URUT = ? ";
+                $tmp2 = end($this->db->query($q, [$data['max_no_urut']])->getResultArray());
+                $data['max_sub_no_urut'] = $tmp2['max_sub_no_urut'];
             }
-            $data['max_no_urut'] = $last_row['NO_URUT'];
-            $data['max_sub_no_urut'] = $last_row['SUB_NO_URUT'];
             return $data;
         }
 
