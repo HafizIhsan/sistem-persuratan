@@ -7,7 +7,7 @@
     </div>
     <!-- Content Row -->
     <div class="row">
-        <div class="col-12 col-lg-8 mb-3">
+        <div class="col-12 col-lg-7 mb-3">
             <div class="card shadow">
                 <div class="card-body">
                     <?php
@@ -33,7 +33,7 @@
                     <?php
                     }
                     ?>
-                    <form id="formBuatSuratKeluar" method="post" onchange="validate();" enctype="multipart/form-data">
+                    <form id="formBuatSuratKeluar" method="post" onchange="validate(); generate();" enctype="multipart/form-data">
                         <div class="form-row">
                             <div id="msg"></div>
                             <div class="form-group col-md-3">
@@ -77,8 +77,8 @@
                         <div class="form-group">
                             <label for="inputNomorSurat">Nomor Surat</label>
                             <div class="input-group">
-                                <button type="button" class="btn btn-primary btn-clipboard mr-1 shadow btn-sm" id="generate">Generate</button>
-                                <input type="text" class="form-control" id="inputNomorSurat" placeholder="" name="nomor_surat_keluar" placeholder="Nomor surat" required readonly>
+                                <button type="button" class="btn btn-primary btn-clipboard mr-1 shadow btn-sm" id="generate" disabled="true">Generate</button>
+                                <input type=" text" class="form-control" id="inputNomorSurat" placeholder="" name="nomor_surat_keluar" placeholder="Nomor surat" required readonly>
                                 <button type="button" class="copyClipboard btn btn-info btn-clipboard ml-1 shadow btn-sm" id="copyClipboard" data-clipboard-action="copy" data-clipboard-target="#inputNomorSurat">Copy</button>
                             </div>
                             <small id="passwordHelpBlock" class="form-text text-muted">
@@ -94,6 +94,9 @@
                                         <label class="custom-file-label" for="draftSuratKeluar" required>Pilih file ...</label>
                                     </div>
                                 </div>
+                                <small id="fileHelpBlock" class="form-text text-muted">
+                                    Tipe file doc atau docx dan ukuran maksimum 2mb
+                                </small>
                             </div>
                         </div>
                         <hr>
@@ -123,7 +126,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-4 d-flex align-items-center">
+        <div class="col-12 col-lg-5 d-flex align-items-center">
             <img src="<?= base_url() ?>/assets/img/writing.svg" alt="">
         </div>
     </div>
@@ -138,6 +141,15 @@
             sortField: 'text'
         });
     });
+
+    function generate() {
+        var generate = document.getElementById('generate');
+        var tanggal_surat = document.getElementById("tanggalSurat").value == "" ? false : true;
+        var klasifikasi_surat = document.getElementById("klasifikasiSurat").value == "" ? false : true;
+
+        var filled = (tanggal_surat && klasifikasi_surat);
+        filled ? submit.disabled = false : submit.disabled = true;
+    }
 
     $(document).ready(function() {
 
@@ -204,17 +216,12 @@
     });
 
     function validate() {
-        var submit = document.getElementById('submitButton');
-        var nomor_surat = document.getElementById("inputNomorSurat").value == "" ? false : true;
+        var generate = document.getElementById('generate');
         var tanggal_surat = document.getElementById("tanggalSurat").value == "" ? false : true;
         var klasifikasi_surat = document.getElementById("klasifikasiSurat").value == "" ? false : true;
-        var penerima = document.getElementById("inputPenerima").value == "" ? false : true;
-        var file = document.getElementById("draftSuratKeluar").value == "" ? false : true;
-        var perihal = document.getElementById("inputPerihal").value == "" ? false : true;
-        var ttd = document.getElementById("inputTTD").value == "" ? false : true;
 
-        var filled = (nomor_surat && tanggal_surat && klasifikasi_surat && penerima && file && ttd && perihal);
-        filled ? submit.disabled = false : submit.disabled = true;
+        var filled = (tanggal_surat && klasifikasi_surat);
+        filled ? generate.disabled = false : generate.disabled = true;
     }
 
     $(document).ready(function() {

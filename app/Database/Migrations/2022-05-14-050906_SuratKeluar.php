@@ -49,10 +49,6 @@ class SuratKeluar extends Migration
                 'type'           => 'VARCHAR',
                 'constraint'     => 255
             ],
-            'keterangan' => [
-                'type'           => 'VARCHAR',
-                'constraint'     => 255
-            ],
             'draft_surat_keluar' => [
                 'type'           => 'VARCHAR',
                 'constraint'     => 255

@@ -7,7 +7,7 @@
     </div>
     <!-- Content Row -->
     <div class="row">
-        <div class="col-12 col-lg-8 mb-3">
+        <div class="col-12 col-lg-7 mb-3">
             <div class="card shadow">
                 <div class="card-body">
                     <?php
@@ -103,7 +103,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-4 d-flex align-items-center">
+        <div class="col-12 col-lg-5 d-flex align-items-center">
             <img src="<?= base_url() ?>/assets/img/boy-work.svg" alt="">
         </div>
     </div>

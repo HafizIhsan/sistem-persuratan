@@ -33,7 +33,6 @@
                             ?>
                         </select>
                     </div>
-                    <?php $optionStat = array('Belum ditugaskan', 'Dalam proses', 'Selesai'); ?>
                     <div class="form-group">
                         <label for="filterStatus" class="col-form-label">Status Penugasan</label>
                         <select id="filterStatus" class="form-control custom-select-sm">
@@ -105,7 +104,7 @@
                                         <td><?= date('d-m-Y', strtotime($surat_masuk['TANGGAL_TERIMA'])) ?></td>
                                         <td><?= $surat_masuk['INSTANSI_PENGIRIM'] ?></td>
                                         <td><?= $surat_masuk['PERIHAL'] ?></td>
-                                        <td>
+                                        <td class="d-flex justify-content-center">
                                             <?php
                                             if ($surat_masuk['STATUS'] == 'Selesai') {
                                                 echo "<span class='badge badge-pill badge-success'>" . $surat_masuk['STATUS'] . "</span>";
@@ -115,7 +114,67 @@
                                                 echo "<span class='badge badge-pill badge-danger'>" . $surat_masuk['STATUS'] . "</span>";
                                             } ?>
                                         </td>
-                                        <td><?= $nama  ?></td>
+                                        <td>
+                                            <?php if ($surat_masuk['STATUS'] != 'Belum ditugaskan') { ?>
+                                                <?= $nama  ?>
+                                            <?php } else { ?>
+                                                <a href="#" class="btn btn-primary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#penugasanModal-<?= $surat_masuk['ID_SURAT_MASUK'] ?>">
+                                                    <span class="text">Tambah Penugasan</span>
+                                                </a>
+                                                <!-- Penugasan Modal -->
+                                                <div class="modal fade" id="penugasanModal-<?= $surat_masuk['ID_SURAT_MASUK'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog modal-lg" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header bg-gradient-secondary">
+                                                                <h5 class="modal-title text-white" id="exampleModalLabel">Tambah Penugasan Surat Masuk</h5>
+                                                                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <form action="<?= base_url('data_surat_masuk/tambah_penugasan/' . $surat_masuk['ID_SURAT_MASUK']) ?>" method="post">
+                                                                <?= csrf_field(); ?>
+                                                                <div class="modal-body">
+                                                                    <div class="form-group row">
+                                                                        <label for="pilihPetugas" class="col-sm-2 col-form-label">Petugas</label>
+                                                                        <div class="col-sm-5">
+                                                                            <select id="pilihPetugas" class="form-control" placeholder="Pilih petugas" name="petugas" onkeydown="return event.key != 'Enter';" required>
+                                                                                <option value="" selected>Pilih petugas</option>
+                                                                                <?php foreach ($admin as $key => $admin) : ?>
+                                                                                    <option value="<?= $admin['ID_PENGGUNA'] ?>"><?php echo $admin['NAMA'] ?></option>
+                                                                                <?php endforeach; ?>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="form-group row">
+                                                                        <label for="uraianPenugasan" class="col-sm-2 col-form-label">Uraian Tugas</label>
+                                                                        <div class="col-sm-10">
+                                                                            <textarea class="form-control" id="uraianPenugasan" rows="3" placeholder="Uraian penugasan" name="uraian_penugasan" required></textarea>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row form-group">
+                                                                        <label for="date" class="col-sm-2 col-form-label">Tenggat Penyelesaian</label>
+                                                                        <div class="col-sm-3">
+                                                                            <div class="input-group date">
+                                                                                <input id="tenggatPenugasanDate" type="date" class="form-control" name="tenggat_d" onkeydown="return event.key != 'Enter';" required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-sm-3">
+                                                                            <div class="input-group time">
+                                                                                <input id="tenggatPenugasanTime" type="time" class="form-control" name="tenggat_t" onkeydown="return event.key != 'Enter';" required>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                                    <button type="submit" class="btn btn-primary">Simpan</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php } ?>
+                                        </td>
                                         <td>
                                             <div class="d-flex justify-content-between">
                                                 <a href="<?= base_url('uploads/dokumentasi/' . $surat_masuk['SCAN_SURAT_MASUK']) ?>" class="btn btn-success btn-icon-split btn-sm" target="_blank">
@@ -272,25 +331,9 @@
                                                             </div>
                                                         </div>
                                                         <div class="form-row">
-                                                            <div class="form-group col-9">
+                                                            <div class="form-group col-12">
                                                                 <label for="detailPengirim" class="col-form-label">Pengirim :</label>
                                                                 <input name="pengirim" type="text" class="form-control" id="detailPengirim" value="<?= $surat_masuk['INSTANSI_PENGIRIM'] ?>" required>
-                                                            </div>
-                                                            <div class="form-group col-3">
-                                                                <label for="detailStatus" class="col-form-label">Status Surat :</label>
-                                                                <select name="status" id="pilihStatus" class="form-control">
-                                                                    <option value="<?= $surat_masuk['STATUS'] ?>"><?= $surat_masuk['STATUS'] ?> </option>
-                                                                    <?php
-                                                                    if (($key = array_search($surat_masuk['STATUS'], $optionStat)) !== false) {
-                                                                        unset($optionStat[$key]);
-                                                                    }
-                                                                    for ($x = 0; $x <= count($optionStat); $x++) {
-                                                                        if ($optionStat[$x] != NULL) {
-                                                                            echo "<option value='$optionStat[$x]'>$optionStat[$x]</option>";
-                                                                        }
-                                                                    }
-                                                                    ?>
-                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -356,5 +399,13 @@
             scrollCollapse: true
         });
     });
+
+    $(document).ready(function() {
+        $('#pilihPetugas').selectize({
+            searchField: 'text'
+        });
+    });
+
+    tenggatPenugasanDate.min = new Date().toLocaleDateString('en-ca');
 </script>
 <?= $this->endSection() ?>

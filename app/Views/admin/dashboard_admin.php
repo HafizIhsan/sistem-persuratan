@@ -2,7 +2,7 @@
 <?= $this->section('content') ?>
 <div class="container-fluid">
     <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <div class="d-sm-flex align-items-center justify-content-center mb-4">
         <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
     </div>
 
@@ -43,7 +43,7 @@
         </div>
 
         <div class="col-xl-4 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
+            <div class="card border-left-warning shadow h-100 py-2">
                 <div class="card-body">
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
@@ -66,7 +66,10 @@
         <div class="col-12 col-lg-6">
             <div class="card shadow h-100">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Penugasan Surat Masuk</h6>
+                    <div class="d-flex justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Penugasan Surat Masuk</h6>
+                        <a href="penugasan_surat_masuk" style="text-decoration-line: underline;" class="text-gray-600">Lihat selengkapnya</a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <?php
@@ -96,8 +99,8 @@
                                                 <td><?= ++$key ?></td>
                                                 <td><?= $tugas_saya['PERIHAL'] ?></td>
                                                 <td><?= $tugas_saya['URAIAN_PENUGASAN'] ?></td>
-                                                <td><?= date('d-m-y H:i:s', strtotime($tugas_saya['TENGGAT_PENUGASAN'])) ?></td>
-                                                <td>
+                                                <td><?= date('d-m-y H:i', strtotime($tugas_saya['TENGGAT_PENUGASAN'])) . " WIB" ?></td>
+                                                <td class="d-flex justify-content-center">
                                                     <a href="<?= base_url('uploads/dokumentasi/' . $tugas_saya['SCAN_SURAT_MASUK']) ?>" class="btn btn-success btn-icon-split btn-sm disable" target="_blank">
                                                         <span class="icon">
                                                             <i class="fas fa-eye"></i>
@@ -121,7 +124,10 @@
         <div class="col-12 col-lg-6">
             <div class="card shadow h-100">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Surat Keluar Saya (Belum di Dokumentasi)</h6>
+                    <div class="d-flex justify-content-between">
+                        <h6 class="m-0 font-weight-bold text-primary">Surat Keluar Anda (Belum di Dokumentasi)</h6>
+                        <a href="surat_keluar_anda" style="text-decoration-line: underline;" class="text-gray-600">Lihat selengkapnya</a>
+                    </div>
                 </div>
                 <div class="card-body">
                     <?php
@@ -132,23 +138,16 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Nomor Surat</th>
                                         <th>Perihal</th>
-                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($surat_keluar_saya as $key => $surat_keluar_saya) : ?>
                                         <tr>
                                             <td><?= ++$key ?></td>
+                                            <td><?= $surat_keluar_saya['NOMOR_SURAT_KELUAR'] ?></td>
                                             <td><?= $surat_keluar_saya['PERIHAL'] ?></td>
-                                            <td>
-                                                <a href="#" class="btn btn-success btn-icon-split btn-sm">
-                                                    <span class="icon text-white-50">
-                                                        <i class="fas fa-plus"></i>
-                                                    </span>
-                                                    <span class="text">Tambah Dokumentasi</span>
-                                                </a>
-                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -163,6 +162,8 @@
             </div>
         </div>
     </div>
+
+    <!-- <div><a href="send_email">send email</a></div> -->
 
     <!-- Content Row -->
     <div class="row">
@@ -179,7 +180,9 @@
         info: false,
         "language": {
             "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/id.json"
-        }
+        },
+        scrollY: '47vh',
+        scrollCollapse: true
     });
     $('#dataTable2').dataTable({
         bDestroy: true,
@@ -188,7 +191,9 @@
         info: false,
         "language": {
             "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/id.json"
-        }
+        },
+        scrollY: '47vh',
+        scrollCollapse: true
     });
 </script>
 

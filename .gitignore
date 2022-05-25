@@ -138,3 +138,6 @@ public/uploads/dokumentasi/Contoh Surat Keluar_2.pdf
 public/uploads/dokumentasi/Contoh Surat Keluar_3.pdf
 public/uploads/draft/Contoh Surat Keluar_2.docx
 public/uploads/draft/Contoh Surat Keluar_3.docx
+.gitignore
+public/uploads/dokumentasi/Contoh Surat Keluar_1.pdf
+public/uploads/dokumentasi/[BIDANG EXCELSIOR] Surat Keterangan Pengajuan IPKM (005).pdf

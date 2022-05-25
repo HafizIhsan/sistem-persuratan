@@ -16,7 +16,11 @@ class M_SuratMasuk extends Model
         if ($id === false) {
             return $this->findAll();
         } else {
-            return $this->getWhere(['PETUGAS' => $id])->getResultArray();
+            if ($status === false) {
+                return $this->getWhere(['PETUGAS' => $id])->getResultArray();
+            } else {
+                return $this->getWhere(['PETUGAS' => $id, 'STATUS' => $status])->getResultArray();
+            }
         }
     }
 

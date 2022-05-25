@@ -3,8 +3,8 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard_pegawai">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-envelope"></i>
+        <div class="sidebar-brand-icon">
+            <i class="fas fa-paper-plane"></i>
         </div>
         <div class="sidebar-brand-text mx-3 text-left mt-3">
             <p class="mb-0" style="font-size:15px;">Sistem Persuratan</p>
@@ -46,10 +46,23 @@
     </li>
 
     <!-- Divider -->
-    <hr class="sidebar-divider my-0">
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Data
+    </div>
+
+    <!-- Nav Item - Surat Keluar -->
+    <li class="nav-item">
+        <a class="nav-link" href="surat_keluar_anda">
+            <i class="fas fa-fw ri-mail-send-fill"></i>
+            <span>Surat Keluar Anda</span>
+        </a>
+    </li>
 
     <!-- Nav Item - Klasifikasi -->
-    <li class="nav-item active">
+    <li class="nav-item">
         <a class="nav-link" href="klasifikasi_surat">
             <i class="fas fa-fw fa-table"></i>
             <span>Klasifikasi Surat</span></a>

@@ -33,7 +33,7 @@
                     <?php
                     }
                     ?>
-                    <form id="formDokumentasiSuratKeluar" action="<?= base_url('dokumentasi_surat_keluar/update_dokumentasi') ?>" method="post" enctype="multipart/form-data">
+                    <form id="formDokumentasiSuratKeluar" action="<?= base_url('dokumentasi_surat_keluar/update_dokumentasi') ?>" method="post" enctype="multipart/form-data" onkeydown="return event.key != 'Enter';" onchange="validate();">
                         <div class="form-group">
                             <label for="inputNoSurat" class="col-form-label">Nomor Surat :</label>
                             <input type="text" class="form-control" id="nomor_surat" name="nomor_surat_keluar" placeholder="Nomor surat">
@@ -43,6 +43,7 @@
                             <div class="form-group col-md-6">
                                 <label for="pilihStatusSurat" class="col-form-label">Status Surat :</label>
                                 <select id="pilihStatusSurat" class="form-control" name="status" placeholder="Pilih petugas">
+                                    <option value="">Pilih status...</option>
                                     <option value="Belum terkirim">Belum Terkirim</option>
                                     <option value="Sudah terkirim">Sudah Terkirim</option>
                                 </select>
@@ -50,15 +51,18 @@
                             <div class="form-group col-md-6">
                                 <label class="col-form-label">Dokumentasi Surat:</label>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="dokumenSurat" name="file">
-                                    <label class="custom-file-label" for="dokumenSurat" accept="application/pdf">Pilih file</label>
+                                    <input type="file" class="custom-file-input" id="dokumenSurat" name="file" accept="application/pdf">
+                                    <label class="custom-file-label" for="dokumenSurat">Pilih file</label>
+                                    <small id="fileHelpBlock" class="form-text text-muted">
+                                        Tipe file pdf dan ukuran maksimum 2mb
+                                    </small>
                                 </div>
                             </div>
                         </div>
                         <hr>
                         <div class="form-group row">
                             <div class="col-sm-10">
-                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#submitModal">Submit</button>
+                                <button id="submitButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#submitModal" disabled="true">Submit</button>
                             </div>
                         </div>
 
@@ -90,6 +94,21 @@
 <?= $this->endSection() ?>
 <?= $this->section('scripts') ?>
 <script>
+    function validate() {
+        var pesan = document.getElementById('klasifikasiHelpBlock').textContent;
+        var submit = document.getElementById('submitButton');
+        var nomor_surat = document.getElementById("nomor_surat").value == "" ? false : true;
+        var file = document.getElementById("dokumenSurat").value == "" ? false : true;
+        var status_surat = document.getElementById("pilihStatusSurat").value == "" ? false : true;
+
+        var filled = (nomor_surat && file && status_surat);
+        if (pesan != 'Nomor surat tidak ditemukan') {
+            filled ? submit.disabled = false : submit.disabled = true;
+        } else {
+            submit.disabled = true;
+        }
+    }
+
     $(function() {
         $('#submitDokumentasi').on('click', function(e) {
             $('#formDokumentasiSuratKeluar').submit();
@@ -97,6 +116,10 @@
     });
 
     $(document).ready(function() {
+        $('#pilihStatusSurat').selectize({
+            searchField: 'text'
+        });
+
         $("#nomor_surat").on("input", function(e) {
             $('#msg').hide();
             if ($('#nomor_surat').val() != null || $('#nomor_surat').val() != "") {
@@ -116,12 +139,15 @@
                     success: function(msg) {
                         $('#msg').show();
                         $("#msg").html(msg);
+                        validate();
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         $('#msg').show();
                         $("#msg").html(textStatus + " " + errorThrown);
                     }
                 });
+            } else {
+                validate();
             }
         });
     });

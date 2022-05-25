@@ -70,12 +70,15 @@ $routes->get('/dokumentasi_surat_keluar', 'Home::dokumentasi_surat_keluar');
 $routes->post('/check-nomor-surat-availability', 'SuratKeluarController::check_nomor_surat_availability');
 $routes->post('/check-tanggal-surat-availability', 'SuratKeluarController::check_tanggal_surat_availability');
 $routes->add('/dokumentasi_surat_keluar/update_dokumentasi', 'SuratKeluarController::update_dokumentasi');
+// $routes->add('/dokumentasi_surat_keluar/(:segment)', 'SuratKeluarController::to_update_dokumentasi/$1');
 
 $routes->get('/dokumentasi_surat_keluar_p', 'Home::dokumentasi_surat_keluar_p');
 $routes->add('/dokumentasi_surat_keluar_p/update_dokumentasi', 'SuratKeluarController::update_dokumentasi');
+// $routes->add('/dokumentasi_surat_keluar_p/(:segment)', 'SuratKeluarController::to_update_dokumentasi/$1');
 
 // Dokumentasi Surat Masuk
 $routes->get('/dokumentasi_surat_masuk', 'Home::dokumentasi_surat_masuk');
+$routes->add('/dokumentasi_surat_masuk', 'SuratMasukController::create');
 
 // Dokumentasi Surat Lainnya
 $routes->get('/dokumentasi_surat_lainnya', 'JenisSuratLainnyaController::index');
@@ -91,6 +94,7 @@ $routes->get('/data_surat_masuk', 'SuratMasukController::index');
 $routes->add('/data_surat_masuk', 'SuratMasukController::store');
 $routes->get('/data_surat_masuk/delete/(:segment)', 'SuratMasukController::delete/$1');
 $routes->add('/data_surat_masuk/edit/(:segment)', 'SuratMasukController::edit/$1');
+$routes->add('/data_surat_masuk/tambah_penugasan/(:segment)', 'SuratMasukController::tambah_penugasan/$1');
 
 $routes->get('/data_surat_lainnya', 'SuratLainnyaController::index');
 $routes->add('/data_surat_lainnya', 'SuratLainnyaController::store');
@@ -111,6 +115,23 @@ $routes->get('/data_pengguna', 'DataPenggunaController::index');
 $routes->add('/data_pengguna', 'DataPenggunaController::create');
 $routes->add('/data_pengguna/edit/(:segment)', 'DataPenggunaController::edit/$1');
 $routes->get('/data_pengguna/delete/(:segment)', 'DataPenggunaController::delete/$1');
+
+
+$routes->get('/surat_keluar_anda', 'SuratKeluarController::surat_keluar_anda');
+$routes->add('/surat_keluar_anda/edit/(:segment)', 'SuratKeluarController::edit_2/$1');
+$routes->add('/surat_keluar_anda_p/edit/(:segment)', 'SuratKeluarController::edit_2/$1');
+
+$routes->get('/profile', 'Home::profile');
+$routes->add('/profile/ubah_password/(:segment)', 'UserController::ubah_password/$1');
+
+$routes->get('/penugasan_surat_masuk', 'SuratMasukController::penugasan');
+$routes->add('/penugasan_surat_masuk/update_status/(:segment)', 'SuratMasukController::update_status/$1');
+
+
+
+// $routes->get('/send_email', 'EmailController::send_email');
+
+
 
 
 

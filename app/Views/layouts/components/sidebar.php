@@ -3,8 +3,8 @@
 
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="dashboard_admin">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fas fa-envelope"></i>
+        <div class="sidebar-brand-icon">
+            <i class="fas fa-paper-plane"></i>
         </div>
         <div class="sidebar-brand-text mx-3 text-left mt-3">
             <p class="mb-0" style="font-size:15px;">Sistem Persuratan</p>
@@ -32,6 +32,17 @@
 
             <i class="fas fa-fw  fa-pencil-alt"></i>
             <span>Membuat Surat Keluar</span></a>
+    </li>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Surat Keluar -->
+    <li class="nav-item active">
+        <a class="nav-link" href="surat_keluar_anda">
+            <i class="fas fa-fw ri-mail-send-fill"></i>
+            <span>Surat Keluar Anda</span>
+        </a>
     </li>
 
     <!-- Divider -->

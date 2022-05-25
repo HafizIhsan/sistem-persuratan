@@ -119,6 +119,7 @@ class SuratKeluarController extends BaseController
 
     public function update_dokumentasi()
     {
+        $role = session()->get('id_role');
         helper(['form', 'url']);
         $rules = [
             'nomor_surat_keluar' => 'required|min_length[5]|max_length[30]',
@@ -135,7 +136,11 @@ class SuratKeluarController extends BaseController
 
         if (!$input) {
             $msg = $this->validator;
-            return redirect()->to(base_url('dokumentasi_surat_keluar'))->with('error', $msg->listErrors());
+            if ($role == 1) {
+                return redirect()->to(base_url('dokumentasi_surat_keluar'))->with('error', $msg->listErrors());
+            } else if ($role == 2) {
+                return redirect()->to(base_url('dokumentasi_surat_keluar_p'))->with('error', $msg->listErrors());
+            }
         } else {
             $dokumentasi_surat_keluar = $this->request->getFile('file');
             $dokumentasi_surat_keluar->move('uploads/dokumentasi');
@@ -146,8 +151,23 @@ class SuratKeluarController extends BaseController
                 'scan_surat_keluar' => $dokumentasi_surat_keluar->getName()
             ]);
         }
-        return redirect()->to(base_url('dokumentasi_surat_keluar'))->with('success', 'Dokumentasi surat keluar berhasil ditambah');
+        if ($role == 1) {
+            return redirect()->to(base_url('dokumentasi_surat_keluar'))->with('success', 'Dokumentasi surat keluar berhasil ditambah');
+        } else if ($role == 2) {
+            return redirect()->to(base_url('dokumentasi_surat_keluar_p'))->with('success', 'Dokumentasi surat keluar berhasil ditambah');
+        }
     }
+
+    // public function to_update_dokumentasi($id)
+    // {
+    //     $role = session()->get('id_role');
+    //     $data['surat_keluar'] = $this->surat_keluar->getSuratKeluar($id);
+    //     if ($role == 1) {
+    //         return view('admin/dokumentasi_surat_keluar', $data);
+    //     } else if ($role == 2) {
+    //         return view('pegawai/dokumentasi_surat_keluar_p', $data);
+    //     }
+    // }
 
     public function check_tanggal_surat_availability()
     {
@@ -190,5 +210,29 @@ class SuratKeluarController extends BaseController
         } else {
             echo '<span style="color:red;">Isi tanggal surat</span>';
         }
+    }
+
+    public function surat_keluar_anda()
+    {
+        $role = session()->get('id_role');
+        $id = session()->get('id_pengguna');
+        $data['surat_keluar'] = $this->surat_keluar->get_surat_keluar_by_pengguna($id);
+        if ($role == 1) {
+            return view('admin/surat_keluar_anda', $data);
+        } else if ($role == 2) {
+            return view('pegawai/surat_keluar_anda_p', $data);
+        }
+    }
+
+    public function edit_2($id)
+    {
+        $this->surat_keluar->update($id, [
+            'status' => $this->request->getPost('status'),
+            'penerima' => $this->request->getPost('penerima'),
+            'ttd' => $this->request->getPost('ttd'),
+            'perihal' => $this->request->getPost('perihal')
+        ]);
+
+        return redirect()->to(base_url('surat_keluar_anda'))->with('success', 'Data berhasil diubah');
     }
 }

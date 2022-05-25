@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\M_SuratKeluar;
 
 class PegawaiController extends BaseController
 {
@@ -16,6 +17,15 @@ class PegawaiController extends BaseController
 
     public function index()
     {
-        return view("pegawai/dashboard_pegawai");
+        $surat_k = new M_SuratKeluar();
+
+        $id = session()->get('id_pengguna');
+
+        $data_sk = $surat_k->get_surat_keluar_by_pengguna($id);
+
+        $data['surat_keluar'] = count($data_sk);
+        $data['surat_keluar_saya'] = $surat_k->getSuratKeluarTanpaDokumentasi($id);
+
+        return view('pegawai/dashboard_pegawai', $data);
     }
 }

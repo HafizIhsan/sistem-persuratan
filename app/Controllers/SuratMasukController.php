@@ -22,24 +22,39 @@ class SuratMasukController extends BaseController
     {
         $data['surat_masuk'] = $this->surat_masuk->findAll();
         $data['pengguna'] = $this->pengguna->findAll();
+        $id_role = 1;
+        $data['admin'] = array_filter($this->pengguna->findAll(), function ($value) use ($id_role) {
+            return ($value["ID_ROLE"] == $id_role);
+        });
 
         return view('admin/data_surat_masuk', $data);
     }
 
-    function upload()
+    function create()
     {
+        $petugas = $this->request->getPost('petugas');
         helper(['form', 'url']);
-        $rules = [
-            'nomor_surat' => 'required|min_length[5]|max_length[30]',
-            'pihak_1' => 'required|min_length[5]|max_length[50]',
-            'pihak_2' => 'required|min_length[5]|max_length[50]',
-            'tentang' => 'required|min_length[5]',
-            'file' => 'uploaded[file]|mime_in[file,application/pdf]|max_size[file,2048]',
-        ];
+        if ($petugas == "") {
+            $rules = [
+                'nomor_surat' => 'required|min_length[5]|max_length[30]',
+                'instansi_pengirim' => 'required|min_length[5]|max_length[100]',
+                'perihal' => 'required|min_length[5]',
+                'file' => 'uploaded[file]|mime_in[file,application/pdf]|max_size[file,2048]',
+            ];
+        } else {
+            $rules = [
+                'nomor_surat' => 'required|min_length[5]|max_length[30]',
+                'instansi_pengirim' => 'required|min_length[5]|max_length[100]',
+                'perihal' => 'required|min_length[5]',
+                'file' => 'uploaded[file]|mime_in[file,application/pdf]|max_size[file,2048]',
+                'uraian_penugasan' => 'min_length[5]|max_length[100]'
+            ];
+        }
 
         $error = [
             'file' => [
                 'max_size' => "Ukuran file terlalu besar (Max 2MB)",
+                'mime_in' => "Tipe file dokuemntasi surat salah"
             ],
         ];
 
@@ -47,23 +62,40 @@ class SuratMasukController extends BaseController
 
         if (!$input) {
             $msg = $this->validator;
-            return redirect()->to(base_url('dokumentasi_surat_lainnya'))->with('error', $msg->listErrors());
+            return redirect()->to(base_url('dokumentasi_surat_masuk'))->with('error', $msg->listErrors());
         } else {
-            $scan_surat_lainnya = $this->request->getFile('file');
-            $scan_surat_lainnya->move('uploads/dokumentasi');
+            $scan_surat_masuk = $this->request->getFile('file');
+            $scan_surat_masuk->move('uploads/dokumentasi');
+            $tenggat_penugasan = date('Y-m-d', strtotime($this->request->getPost('tenggat_d'))) . " " . date('H:i:s', strtotime($this->request->getPost('tenggat_t')));
 
-            $this->surat_lainnya->insert([
-                'id_pengguna' => session()->get('id_pengguna'),
-                'id_jenis_surat_lainnya' => $this->request->getPost('id_jenis_surat_lainnya'),
-                'nomor_surat' => $this->request->getPost('nomor_surat'),
-                'pihak_1' => $this->request->getPost('pihak_1'),
-                'pihak_2' => $this->request->getPost('pihak_2'),
-                'tentang' => $this->request->getPost('tentang'),
-                'scan_surat_lainnya' =>  $scan_surat_lainnya->getName(),
-                'created_at' => date('Y-m-d H:i:s')
-            ]);
+            if ($petugas != "") {
+                $this->surat_masuk->insert([
+                    'id_pengguna' => session()->get('id_pengguna'),
+                    'nomor_surat_masuk' => $this->request->getPost('nomor_surat'),
+                    'tanggal_terima' => date('Y-m-d', strtotime($this->request->getPost('tanggal_terima'))),
+                    'instansi_pengirim' => $this->request->getPost('instansi_pengirim'),
+                    'perihal' => $this->request->getPost('perihal'),
+                    'scan_surat_masuk' =>  $scan_surat_masuk->getName(),
+                    'uraian_penugasan' => $this->request->getPost('uraian_penugasan'),
+                    'petugas' => $this->request->getPost('petugas'),
+                    'status' => 'Dalam proses',
+                    'tenggat_penugasan' => $tenggat_penugasan,
+                    'created_at' => date('Y-m-d H:i:s')
+                ]);
+            } else {
+                $this->surat_masuk->insert([
+                    'id_pengguna' => session()->get('id_pengguna'),
+                    'nomor_surat_masuk' => $this->request->getPost('nomor_surat'),
+                    'tanggal_terima' => date('Y-m-d', strtotime($this->request->getPost('tanggal_terima'))),
+                    'instansi_pengirim' => $this->request->getPost('instansi_pengirim'),
+                    'perihal' => $this->request->getPost('perihal'),
+                    'scan_surat_masuk' =>  $scan_surat_masuk->getName(),
+                    'status' => 'Belum ditugaskan',
+                    'created_at' => date('Y-m-d H:i:s')
+                ]);
+            }
 
-            return redirect()->to(base_url('dokumentasi_surat_lainnya'))->with('success', 'Dokumentasi surat lainnya berhasil dilakukan');
+            return redirect()->to(base_url('dokumentasi_surat_masuk'))->with('success', 'Dokumentasi surat masuk berhasil dilakukan');
         }
     }
 
@@ -85,6 +117,19 @@ class SuratMasukController extends BaseController
         ]);
 
         return redirect()->to(base_url('data_surat_masuk'))->with('success', 'Data berhasil diubah');
+    }
+
+    public function tambah_penugasan($id)
+    {
+        $tenggat_penugasan = date('Y-m-d', strtotime($this->request->getPost('tenggat_d'))) . " " . date('H:i:s', strtotime($this->request->getPost('tenggat_t')));
+        $this->surat_masuk->update($id, [
+            'uraian_penugasan' => $this->request->getPost('uraian_penugasan'),
+            'petugas' => $this->request->getPost('petugas'),
+            'status' => 'Dalam proses',
+            'tenggat_penugasan' => $tenggat_penugasan
+        ]);
+
+        return redirect()->to(base_url('data_surat_masuk'))->with('success', 'Penugasan berhasil dilakukan');
     }
 
     public function surat_masuk_excel()
@@ -136,5 +181,21 @@ class SuratMasukController extends BaseController
         header('Cache-Control: max-age=0');
 
         $writer->save('php://output');
+    }
+
+    function penugasan()
+    {
+        $id = session()->get('id_pengguna');
+        $data['surat_masuk'] = $this->surat_masuk->get_surat_masuk_by_petugas($id, 'Dalam proses');
+        return view('admin/penugasan_surat_masuk', $data);
+    }
+
+    function update_status($id)
+    {
+        $this->surat_masuk->update($id, [
+            'status' => 'Selesai'
+        ]);
+
+        return redirect()->to(base_url('penugasan_surat_masuk'))->with('success', 'Status penugasan berhasil diubah');
     }
 }

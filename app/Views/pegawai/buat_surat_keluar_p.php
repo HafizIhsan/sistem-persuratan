@@ -33,7 +33,7 @@
                     <?php
                     }
                     ?>
-                    <form id="formBuatSuratKeluar" method="post" onchange="validate();" enctype="multipart/form-data">
+                    <form id="formBuatSuratKeluar" method="post" onchange="validate(); generate();" enctype="multipart/form-data">
                         <div class="form-row">
                             <div id="msg"></div>
                             <div class="form-group col-md-3">
@@ -77,7 +77,7 @@
                         <div class="form-group">
                             <label for="inputNomorSurat">Nomor Surat</label>
                             <div class="input-group">
-                                <button type="button" class="btn btn-primary btn-clipboard mr-1 shadow btn-sm" id="generate">Generate</button>
+                                <button type="button" class="btn btn-primary btn-clipboard mr-1 shadow btn-sm" id="generate" disabled="true">Generate</button>
                                 <input type="text" class="form-control" id="inputNomorSurat" placeholder="" name="nomor_surat_keluar" required readonly>
                                 <button type="button" class="copyClipboard btn btn-info btn-clipboard ml-1 shadow btn-sm" id="copyClipboard" data-clipboard-action="copy" data-clipboard-target="#inputNomorSurat">Copy</button>
                             </div>
@@ -94,6 +94,9 @@
                                         <label class="custom-file-label" for="draftSuratKeluar" required>Pilih file</label>
                                     </div>
                                 </div>
+                                <small id="fileHelpBlock" class="form-text text-muted">
+                                    Tipe file doc atau docx dan ukuran maksimum 2mb
+                                </small>
                             </div>
                         </div>
                         <hr>
@@ -133,35 +136,20 @@
 
 <?= $this->section('scripts') ?>
 <script>
-    // $(document).ready(function() {
-    //     let now = new Date();
-    //     let today = '';
-    //     if (now.getDate() <= 9) {
-    //         if ((now.getMonth() + 1) <= 9) {
-    //             today = '0' + now.getDate() + '/' + '0' + (now.getMonth() + 1) + '/' + now.getFullYear();
-    //         } else {
-    //             today = '0' + now.getDate() + '/' + (now.getMonth() + 1) + '/' + now.getFullYear();
-    //         }
-    //     } else {
-    //         if ((now.getMonth() + 1) <= 9) {
-    //             today = now.getDate() + '/' + '0' + (now.getMonth() + 1) + '/' + now.getFullYear();
-    //         } else {
-    //             today = now.getDate() + '/' + (now.getMonth() + 1) + '/' + now.getFullYear();
-    //         }
-    //     }
-    //     $('#inputDate').val(today);
-    // });
-
     $(document).ready(function() {
         $('#klasifikasiSurat').selectize({
             sortField: 'text'
         });
-        // document.getElementById('tanggal_surat').setAttribute('value', document.getElementById('tanggalSurat1').value);
     });
 
-    // $('#tanggalSurat1').on('change', function(e) {
-    //     document.getElementById('tanggal_surat').setAttribute('value', document.getElementById('tanggalSurat1').value);
-    // });
+    function generate() {
+        var generate = document.getElementById('generate');
+        var tanggal_surat = document.getElementById("tanggalSurat").value == "" ? false : true;
+        var klasifikasi_surat = document.getElementById("klasifikasiSurat").value == "" ? false : true;
+
+        var filled = (tanggal_surat && klasifikasi_surat);
+        filled ? submit.disabled = false : submit.disabled = true;
+    }
 
     $(document).ready(function() {
 

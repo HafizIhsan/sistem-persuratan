@@ -35,7 +35,7 @@ class AdminController extends BaseController
         $data['surat_lainnya'] = count($data_sl);
         $data['pengguna'] = $this->pengguna->findAll();
         $data['tugas_saya'] = $this->surat_masuk->get_surat_masuk_by_petugas($id);
-        $data['surat_keluar_saya'] = $this->surat_keluar->getSuratKeluarTanpaDokumentasi();
+        $data['surat_keluar_saya'] = $this->surat_keluar->getSuratKeluarTanpaDokumentasi($id);
 
         return view("admin/dashboard_admin", $data);
     }

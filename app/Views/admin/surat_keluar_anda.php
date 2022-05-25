@@ -4,7 +4,7 @@
 <div class="container-fluid">
 
     <!-- Page Heading -->
-    <h1 class="h3 mb-2 text-gray-800">Surat Keluar</h1>
+    <h1 class="h3 mb-2 text-gray-800">Surat Keluar Anda</h1>
 
     <!-- DataTales Example -->
     <div class="row">
@@ -33,7 +33,6 @@
                             ?>
                         </select>
                     </div>
-                    <?php $optionStat = array('Pengajuan', 'Belum terkirim', 'Sudah terkirim'); ?>
                     <div class="form-group">
                         <label for="filterStatus" class="col-form-label">Status</label>
                         <select id="filterStatus" class="form-control custom-select-sm">
@@ -62,23 +61,6 @@
                     <?php
                     }
                     ?>
-                    <div class="form-inline">
-                        <!-- <a href="dokumentasi_surat_keluar" class="btn btn-success btn-icon-split btn-sm">
-                            <span class="icon text-white-50">
-                                <i class="fas fa-plus"></i>
-                            </span>
-                            <span class="text">Tambah</span>
-                        </a> -->
-                        <form action="<?= base_url('SuratKeluarController/surat_keluar_excel') ?>" method="POST">
-                            <button type="submit" class="btn btn-success btn-icon-split btn-sm ml-1">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-file-excel"></i>
-                                </span>
-                                <span class="text">Export</span>
-                            </button>
-                        </form>
-                    </div>
-                    <hr>
                     <div class="table-responsive table-hover">
                         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                             <thead>
@@ -96,15 +78,10 @@
                             <tbody>
                                 <?php
                                 foreach ($surat_keluar as $key => $surat_keluar) : ?>
-                                    <?php for ($i = 0; $i <= count($pengguna); $i++) {
-                                        if ($surat_keluar['ID_PENGGUNA'] === $pengguna[$i]['ID_PENGGUNA']) {
-                                            $nama = $pengguna[$i]['NAMA'];
-                                        }
-                                    } ?>
                                     <tr>
                                         <td><?= ++$key ?></td>
                                         <td><?= date('d-m-Y', strtotime($surat_keluar['CREATED_AT'])) ?></td>
-                                        <td><?= $nama ?></td>
+                                        <td><?= session()->get('nama') ?></td>
                                         <td><?= $surat_keluar['PENERIMA'] ?></td>
                                         <td><?= $surat_keluar['TTD'] ?></td>
                                         <td><?= $surat_keluar['PERIHAL'] ?></td>
@@ -139,11 +116,11 @@
                                                         <i class="fas fa-edit"></i>
                                                     </span>
                                                 </a>
-                                                <a href="#" class="btn btn-danger btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#hapusModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
+                                                <!-- <a href="#" class="btn btn-danger btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#hapusModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
                                                     <span class="icon">
                                                         <i class="fas fa-trash"></i>
                                                     </span>
-                                                </a>
+                                                </a> -->
                                                 <a href="#" class="btn btn-primary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#detailModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
                                                     <span class="text">Detail</span>
                                                 </a>
@@ -153,7 +130,7 @@
                                     </tr>
 
                                     <!-- Hapus Modal -->
-                                    <div class="modal fade" id="hapusModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <!-- <div class="modal fade" id="hapusModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered" role="document">
                                             <div class="modal-content">
                                                 <div class="modal-header">
@@ -168,7 +145,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <!-- Detail Modal -->
                                     <div class="modal fade" id="detailModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -218,7 +195,7 @@
                                                             </div>
                                                             <div class="form-group col-5">
                                                                 <label for="detailPengirim" class="col-form-label">Pembuat Surat :</label>
-                                                                <input name='detailPengirim' type="text" class="form-control" id="detailPengirim" value="<?= $nama ?>" readonly>
+                                                                <input name='detailPengirim' type="text" class="form-control" id="detailPengirim" value="<?= session()->get('nama') ?>" readonly>
                                                             </div>
                                                             <div class="form-group col-3">
                                                                 <label for="detailStatus" class="col-form-label">Status Surat :</label>
@@ -267,7 +244,7 @@
                                                         <span aria-hidden="true">&times;</span>
                                                     </button>
                                                 </div>
-                                                <form action="<?= base_url('data_surat_keluar/edit/' . $surat_keluar['ID_SURAT_KELUAR']) ?>" method="post">
+                                                <form action="<?= base_url('surat_keluar_anda/edit/' . $surat_keluar['ID_SURAT_KELUAR']) ?>" method="post">
                                                     <?= csrf_field(); ?>
                                                     <div class="modal-body">
                                                         <div class="form-row">
@@ -281,17 +258,34 @@
                                                             </div>
                                                             <div class="form-group col-3">
                                                                 <label for="detailPembuat" class="col-form-label">Pembuat Surat :</label>
-                                                                <input name='pengirim' type="text" class="form-control" id="detailPembuat" value="<?= $nama ?>" readonly>
+                                                                <input name='pengirim' type="text" class="form-control" id="detailPembuat" value="<?= session()->get('nama') ?>" readonly>
                                                             </div>
                                                         </div>
                                                         <div class="form-row">
-                                                            <div class="form-group col-6">
+                                                            <div class="form-group col-4">
                                                                 <label for="detailPenerima" class="col-form-label">Penerima :</label>
                                                                 <input name='penerima' type="text" class="form-control" id="detailPenerima" value="<?= $surat_keluar['PENERIMA'] ?>" required>
                                                             </div>
-                                                            <div class="form-group col-6">
+                                                            <div class="form-group col-4">
                                                                 <label for="detailTTD" class="col-form-label">TTD :</label>
                                                                 <input name='ttd' type="text" class="form-control" id="detailTTD" value="<?= $surat_keluar['TTD'] ?>" required>
+                                                            </div>
+                                                            <div class="form-group col-4">
+                                                                <label for="detailTTD" class="col-form-label">Status Surat :</label>
+                                                                <select name="status" id="pilihStatus" class="form-control">
+                                                                    <option value="<?= $surat_keluar['STATUS'] ?>"><?= $surat_keluar['STATUS'] ?> </option>
+                                                                    <?php
+                                                                    $optionStat = array('Belum terkirim', 'Sudah terkirim');
+                                                                    if (($key = array_search($surat_keluar['STATUS'], $optionStat)) !== false) {
+                                                                        unset($optionStat[$key]);
+                                                                    }
+                                                                    for ($x = 0; $x <= count($optionStat); $x++) {
+                                                                        if ($optionStat[$x] != NULL) {
+                                                                            echo "<option value='$optionStat[$x]'>$optionStat[$x]</option>";
+                                                                        }
+                                                                    }
+                                                                    ?>
+                                                                </select>
                                                             </div>
                                                         </div>
                                                         <div class="form-row">

@@ -9,7 +9,7 @@ class M_SuratKeluar extends Model
     protected $table            = 'surat_keluar';
     protected $primaryKey       = 'id_surat_keluar';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['id_pengguna', 'id_klasifikasi_surat', 'no_urut', 'sub_no_urut', 'tanggal_surat', 'nomor_surat_keluar', 'penerima', 'ttd', 'perihal', 'keterangan', 'draft_surat_keluar', 'scan_surat_keluar', 'status', 'created_at'];
+    protected $allowedFields    = ['id_pengguna', 'id_klasifikasi_surat', 'no_urut', 'sub_no_urut', 'tanggal_surat', 'nomor_surat_keluar', 'penerima', 'ttd', 'perihal', 'draft_surat_keluar', 'scan_surat_keluar', 'status', 'created_at'];
 
     function get_nomor_surat_keluar($nomor_surat_keluar)
     {
@@ -34,9 +34,18 @@ class M_SuratKeluar extends Model
         }
     }
 
-    public function getSuratKeluarTanpaDokumentasi()
+    public function getSuratKeluarTanpaDokumentasi($id)
     {
-        return $this->getWhere(['SCAN_SURAT_KELUAR' => NULL])->getResultArray();
+        return $this->getWhere(['SCAN_SURAT_KELUAR' => NULL, 'ID_PENGGUNA' => $id])->getResultArray();
+    }
+
+    public function get_surat_keluar_by_pengguna($id)
+    {
+        if ($id != NULL) {
+            return $this->getWhere(['ID_PENGGUNA' => $id])->getResultArray();
+        }
+
+        return false;
     }
 
     function get_tanggal_surat_keluar($tanggal_surat)

@@ -44,15 +44,24 @@ class Home extends BaseController
         $data['surat_masuk'] = count($data_sm);
         $data['surat_lainnya'] = count($data_sl);
         $data['pengguna'] = $this->pengguna->findAll();
-        $data['tugas_saya'] = $surat_m->get_surat_masuk_by_petugas($id);
-        $data['surat_keluar_saya'] = $surat_k->getSuratKeluarTanpaDokumentasi();
+        $data['tugas_saya'] = $surat_m->get_surat_masuk_by_petugas($id, 'Dalam proses');
+        $data['surat_keluar_saya'] = $surat_k->getSuratKeluarTanpaDokumentasi($id);
 
         return view('admin/dashboard_admin', $data);
     }
 
     public function dashboard_pegawai()
     {
-        return view('pegawai/dashboard_pegawai');
+        $surat_k = new M_SuratKeluar();
+
+        $id = session()->get('id_pengguna');
+
+        $data_sk = $this->surat_keluar->get_surat_keluar_by_pengguna($id);
+
+        $data['surat_keluar'] = count($data_sk);
+        $data['surat_keluar_saya'] = $surat_k->getSuratKeluarTanpaDokumentasi($id);
+
+        return view('pegawai/dashboard_pegawai', $data);
     }
 
     public function dokumentasi_surat_keluar()
@@ -79,5 +88,10 @@ class Home extends BaseController
     public function data_surat_keluar()
     {
         return view('admin/data_surat_keluar');
+    }
+
+    public function profile()
+    {
+        return view('profile');
     }
 }
