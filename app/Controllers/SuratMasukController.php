@@ -120,6 +120,10 @@ class SuratMasukController extends BaseController
         ];
 
         $error = [
+            'nomor_surat' => [
+                'min_length' => "Nomor surat setidaknya terdiri dari 5 karakter",
+                'max_length' => "Nomor surat terlalu panjang",
+            ],
             'pengirim' => [
                 'min_length' => "Input pengirim setidaknya terdiri dari 5 karakter",
                 'max_length' => "Input pengirim terlalu panjang",

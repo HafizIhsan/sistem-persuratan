@@ -49,19 +49,19 @@ class SuratLainnyaController extends BaseController
 
         $error = [
             'nomor_surat' => [
-                'min_length' => "Input nomor surat setidaknya terdiri dari 5 karakter",
-                'max_length' => "Input nomor surat terlalu panjang",
+                'min_length' => "Nomor surat setidaknya terdiri dari 5 karakter",
+                'max_length' => "Nomor surat terlalu panjang",
             ],
             'pihak_1' => [
-                'min_length' => "Input pihak pertama setidaknya terdiri dari 5 karakter",
-                'max_length' => "Input pihak pertama terlalu panjang",
+                'min_length' => "Nama pihak pertama setidaknya terdiri dari 5 karakter",
+                'max_length' => "Nama pihak pertama terlalu panjang",
             ],
             'pihak_2' => [
-                'min_length' => "Input pihak kedua setidaknya terdiri dari 5 karakter",
-                'max_length' => "Input pihak kedua terlalu panjang",
+                'min_length' => "Nama pihak kedua setidaknya terdiri dari 5 karakter",
+                'max_length' => "Nama pihak kedua terlalu panjang",
             ],
             'tentang' => [
-                'min_length' => "Input tentang setidaknya terdiri dari 5 karakter"
+                'min_length' => "Tentang setidaknya terdiri dari 5 karakter"
             ],
         ];
 
@@ -145,6 +145,21 @@ class SuratLainnyaController extends BaseController
         ];
 
         $error = [
+            'nomor_surat' => [
+                'min_length' => "Nomor surat setidaknya terdiri dari 5 karakter",
+                'max_length' => "Nomor surat terlalu panjang",
+            ],
+            'pihak_1' => [
+                'min_length' => "Nama pihak pertama setidaknya terdiri dari 5 karakter",
+                'max_length' => "Nama pihak pertama terlalu panjang",
+            ],
+            'pihak_2' => [
+                'min_length' => "Nama pihak kedua setidaknya terdiri dari 5 karakter",
+                'max_length' => "Nama pihak kedua terlalu panjang",
+            ],
+            'tentang' => [
+                'min_length' => "Tentang setidaknya terdiri dari 5 karakter"
+            ],
             'file' => [
                 'max_size' => "Ukuran file terlalu besar (Max 2MB)",
                 'mime_in' => "Format file harus pdf"
