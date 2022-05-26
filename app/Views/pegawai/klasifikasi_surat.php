@@ -53,7 +53,10 @@
         $('#dataTable').DataTable({
             bDestroy: true,
             scrollY: '47vh',
-            scrollCollapse: true
+            scrollCollapse: true,
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/id.json"
+            }
         });
     });
 </script>

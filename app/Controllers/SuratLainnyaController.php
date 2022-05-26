@@ -38,19 +38,57 @@ class SuratLainnyaController extends BaseController
 
     public function edit($id)
     {
-        $this->surat_lainnya->update($id, [
-            'pihak_1' => $this->request->getPost('pihak_1'),
-            'pihak_2' => $this->request->getPost('pihak_2'),
-            'tentang' => $this->request->getPost('tentang')
-        ]);
+        helper(['form', 'url']);
 
-        return redirect()->to(base_url('data_surat_lainnya'))->with('success', 'Data berhasil diubah');
+        $rules = [
+            'nomor_surat' => 'required|min_length[5]|max_length[50]',
+            'pihak_1' => 'required|string|min_length[5]|max_length[100]',
+            'pihak_2' => 'required|min_length[5]|max_length[100]',
+            'tentang' => 'required|min_length[5]',
+        ];
+
+        $error = [
+            'nomor_surat' => [
+                'min_length' => "Input nomor surat setidaknya terdiri dari 5 karakter",
+                'max_length' => "Input nomor surat terlalu panjang",
+            ],
+            'pihak_1' => [
+                'min_length' => "Input pihak pertama setidaknya terdiri dari 5 karakter",
+                'max_length' => "Input pihak pertama terlalu panjang",
+            ],
+            'pihak_2' => [
+                'min_length' => "Input pihak kedua setidaknya terdiri dari 5 karakter",
+                'max_length' => "Input pihak kedua terlalu panjang",
+            ],
+            'tentang' => [
+                'min_length' => "Input tentang setidaknya terdiri dari 5 karakter"
+            ],
+        ];
+
+        $input = $this->validate($rules, $error);
+        if (!$input) {
+            $msg = $this->validator;
+            return redirect()->to(base_url('data_surat_lainnya'))->with('error', ['error' => $msg->listErrors(), 'id' => $id]);
+        } else {
+            $this->surat_lainnya->update($id, [
+                'nomor_surat' => $this->request->getPost('nomor_surat'),
+                'pihak_1' => $this->request->getPost('pihak_1'),
+                'pihak_2' => $this->request->getPost('pihak_2'),
+                'tentang' => $this->request->getPost('tentang')
+            ]);
+
+            return redirect()->to(base_url('data_surat_lainnya'))->with('success', 'Data berhasil diubah');
+        }
     }
 
     public function surat_lainnya_excel()
     {
         $dataSuratLainnya = $this->surat_lainnya->findAll();
         $dataJenisSuratLainnya = $this->jenis_surat_lainnya->findAll();
+
+        if (count($dataSuratLainnya) == 0) {
+            return redirect()->to(base_url('data_surat_lainnya'))->with('error', 'Tidak ada data surat');
+        }
 
         $spreadsheet = new Spreadsheet();
         // tulis header/nama kolom 
@@ -106,6 +144,7 @@ class SuratLainnyaController extends BaseController
         $error = [
             'file' => [
                 'max_size' => "Ukuran file terlalu besar (Max 2MB)",
+                'mime_in' => "Format file harus pdf"
             ],
         ];
 

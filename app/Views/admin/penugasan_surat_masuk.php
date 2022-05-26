@@ -50,6 +50,17 @@
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <?php
+                    if (session()->getFlashData('error')) {
+                    ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <?= session()->getFlashData('error') ?>
+                            <button id="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php
+                    }
+
                     if (session()->getFlashData('success')) {
                     ?>
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -94,16 +105,6 @@
                                                             <i class="fas fa-eye"></i>
                                                         </span>
                                                     </a>
-                                                    <!-- <a href="#" class="btn btn-success btn-icon-split btn-sm" data-toggle="modal" data-target="#viewModal-<?= $surat_masuk['ID_SURAT_MASUK'] ?>">
-                                                    <span class="icon">
-                                                        <i class="fas fa-eye"></i>
-                                                    </span>
-                                                </a> -->
-                                                    <!-- <a href="#" class="btn btn-secondary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#editModal-<?= $surat_masuk['ID_SURAT_MASUK'] ?>">
-                                                        <span class="icon">
-                                                            <i class="fas fa-edit"></i>
-                                                        </span>
-                                                    </a> -->
                                                     <a href="#" class="btn btn-info btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#detailModal-<?= $surat_masuk['ID_SURAT_MASUK'] ?>">
                                                         <span class="text">Detail</span>
                                                     </a>
@@ -210,55 +211,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        <!-- Edit Modal -->
-                                        <div class="modal fade" id="editModal-<?= $surat_masuk['ID_SURAT_MASUK'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header bg-gradient-secondary">
-                                                        <h5 class="modal-title text-white" id="exampleModalLabel">Update Status Surat Masuk</h5>
-                                                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <form action="<?= base_url('data_surat_masuk/edit/' . $surat_masuk['ID_SURAT_MASUK']) ?>" method="post">
-                                                        <?= csrf_field(); ?>
-                                                        <div class="modal-body">
-                                                            <div class="form-group">
-                                                                <label for="detailNomorSurat" class="col-form-label">Nomor Surat :</label>
-                                                                <input name='nomor_surat' type="text" class="form-control" id="detailNomorSurat" value="<?= $surat_masuk['NOMOR_SURAT_MASUK'] ?>" readonly>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label for="detailPengirim" class="col-form-label">Pengirim :</label>
-                                                                <input name="pengirim" type="text" class="form-control" id="detailPengirim" value="<?= $surat_masuk['INSTANSI_PENGIRIM'] ?>" readonly>
-                                                            </div>
-
-                                                            <div class="form-group">
-                                                                <label for="detailStatus" class="col-form-label">Status Penugasan :</label>
-                                                                <select name="status" id="pilihStatus" class="form-control">
-                                                                    <option value="<?= $surat_masuk['STATUS'] ?>"><?= $surat_masuk['STATUS'] ?> </option>
-                                                                    <?php
-                                                                    $optionStat = array('Dalam proses', 'Selesai');
-                                                                    if (($key = array_search($surat_masuk['STATUS'], $optionStat)) !== false) {
-                                                                        unset($optionStat[$key]);
-                                                                    }
-                                                                    for ($x = 0; $x <= count($optionStat); $x++) {
-                                                                        if ($optionStat[$x] != NULL) {
-                                                                            echo "<option value='$optionStat[$x]'>$optionStat[$x]</option>";
-                                                                        }
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="modal-footer">
-                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                                            <button type="submit" class="btn btn-primary">Simpan</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div>
-                                        </div>
                                     <?php endforeach;
                                     ?>
                                 </tbody>
@@ -311,7 +263,10 @@
         $('#dataTable').DataTable({
             bDestroy: true,
             scrollY: '47vh',
-            scrollCollapse: true
+            scrollCollapse: true,
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/id.json"
+            }
         });
     });
 </script>

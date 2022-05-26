@@ -25,7 +25,7 @@ class UserController extends BaseController
 
             $errors = [
                 'password' => [
-                    'validateUser' => "Email atau Password didn't match",
+                    'validateUser' => "Email atau Password salah",
                 ],
             ];
 
@@ -89,13 +89,23 @@ class UserController extends BaseController
     {
         helper(['form', 'url']);
         $rules = [
-            'password_baru' => 'required|min_length[5]|max_length[30]',
-            'verif_password' => 'required|matches[password_baru]|min_length[5]|max_length[30]',
+            'email' => 'valid_email',
+            'password_lama' => 'required|min_length[6]|max_length[255]|validateUser[email,password_lama]',
+            'password_baru' => 'required|min_length[6]|max_length[255]',
+            'verif_password' => 'required|matches[password_baru]|min_length[6]|max_length[255]',
         ];
 
         $error = [
+            'password_lama' => [
+                'validateUser' => "Pasword lama salah",
+                'min_length' => "Password lama setidaknya terdiri dari 6 karakter"
+            ],
+            'password_baru' => [
+                'min_length' => "Password baru setidaknya terdiri dari 6 karakter"
+            ],
             'verif_password' => [
                 'matches' => "Verifikasi password salah",
+                'min_length' => "Verifikasi password setidaknya terdiri dari 6 karakter"
             ],
         ];
 

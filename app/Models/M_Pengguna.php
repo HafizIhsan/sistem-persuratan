@@ -11,14 +11,14 @@ class M_Pengguna extends Model
     protected $useAutoIncrement = true;
     protected $allowedFields    = ['id_role', 'nama', 'password', 'nip', 'email', 'no_hp'];
 
-    // public function getPengguna($id = false)
-    // {
-    //     if ($id === false) {
-    //         return $this->findAll();
-    //     } else {
-    //         return $this->getWhere(['id_pengguna' => $id]);
-    //     }
-    // }
+    public function getPengguna($id = false)
+    {
+        if ($id === false) {
+            return $this->findAll();
+        } else {
+            return $this->getWhere(['id_pengguna' => $id])->getResultArray();
+        }
+    }
 
     // Dates
     // protected $useTimestamps = false;

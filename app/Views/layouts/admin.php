@@ -114,13 +114,6 @@
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script> -->
 
     <script>
-        $('#dataTable').dataTable({
-            bDestroy: true,
-            "language": {
-                "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/id.json"
-            }
-        });
-
         $(document).ready(function() {
             $('#logout').trigger('click');
         });

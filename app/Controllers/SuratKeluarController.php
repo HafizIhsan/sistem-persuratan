@@ -35,19 +35,51 @@ class SuratKeluarController extends BaseController
 
     public function edit($id)
     {
-        $this->surat_keluar->update($id, [
-            'penerima' => $this->request->getPost('penerima'),
-            'ttd' => $this->request->getPost('ttd'),
-            'perihal' => $this->request->getPost('perihal')
-        ]);
+        helper(['form', 'url']);
 
-        return redirect()->to(base_url('data_surat_keluar'))->with('success', 'Data berhasil diubah');
+        $rules = [
+            'ttd' => 'required|min_length[5]|max_length[100]',
+            'penerima' => 'required|min_length[5]|max_length[100]',
+            'perihal' => 'required|min_length[5]'
+        ];
+
+        $error = [
+            'penerima' => [
+                'min_length' => "Input penerima setidaknya terdiri dari 5 karakter",
+                'max_length' => "Input penerima terlalu panjang",
+            ],
+            'ttd' => [
+                'min_length' => "Input ttd setidaknya terdiri dari 5 karakter",
+                'max_length' => "Input ttd terlalu panjang",
+            ],
+            'perihal' => [
+                'min_length' => "Input perihal setidaknya terdiri dari 5 karakter"
+            ],
+        ];
+
+        $input = $this->validate($rules, $error);
+
+        if (!$input) {
+            $msg = $this->validator;
+            return redirect()->to(base_url('data_surat_keluar'))->with('error', ['error' => $msg->listErrors(), 'id' => $id]);
+        } else {
+            $this->surat_keluar->update($id, [
+                'penerima' => $this->request->getPost('penerima'),
+                'ttd' => $this->request->getPost('ttd'),
+                'perihal' => $this->request->getPost('perihal')
+            ]);
+            return redirect()->to(base_url('data_surat_keluar'))->with('success', 'Data berhasil diubah');
+        }
     }
 
     public function surat_keluar_excel()
     {
         $dataSuratKeluar = $this->surat_keluar->findAll();
         $dataPengguna = $this->pengguna->findAll();
+
+        if (count($dataSuratKeluar) == 0) {
+            return redirect()->to(base_url('data_surat_keluar'))->with('error', 'Tidak ada data surat');
+        }
 
         $spreadsheet = new Spreadsheet();
         // tulis header/nama kolom 
@@ -129,6 +161,7 @@ class SuratKeluarController extends BaseController
         $error = [
             'file' => [
                 'max_size' => "Ukuran file terlalu besar (Max 2MB)",
+                'mime_in' => "Format file harus pdf"
             ],
         ];
 
@@ -157,17 +190,6 @@ class SuratKeluarController extends BaseController
             return redirect()->to(base_url('dokumentasi_surat_keluar_p'))->with('success', 'Dokumentasi surat keluar berhasil ditambah');
         }
     }
-
-    // public function to_update_dokumentasi($id)
-    // {
-    //     $role = session()->get('id_role');
-    //     $data['surat_keluar'] = $this->surat_keluar->getSuratKeluar($id);
-    //     if ($role == 1) {
-    //         return view('admin/dokumentasi_surat_keluar', $data);
-    //     } else if ($role == 2) {
-    //         return view('pegawai/dokumentasi_surat_keluar_p', $data);
-    //     }
-    // }
 
     public function check_tanggal_surat_availability()
     {
@@ -226,13 +248,42 @@ class SuratKeluarController extends BaseController
 
     public function edit_2($id)
     {
-        $this->surat_keluar->update($id, [
-            'status' => $this->request->getPost('status'),
-            'penerima' => $this->request->getPost('penerima'),
-            'ttd' => $this->request->getPost('ttd'),
-            'perihal' => $this->request->getPost('perihal')
-        ]);
+        helper(['form', 'url']);
 
-        return redirect()->to(base_url('surat_keluar_anda'))->with('success', 'Data berhasil diubah');
+        $rules = [
+            'ttd' => 'required|min_length[5]|max_length[100]',
+            'penerima' => 'required|min_length[5]|max_length[100]',
+            'perihal' => 'required|min_length[5]'
+        ];
+
+        $error = [
+            'penerima' => [
+                'min_length' => "Input penerima setidaknya terdiri dari 5 karakter",
+                'max_length' => "Input penerima terlalu panjang",
+            ],
+            'ttd' => [
+                'min_length' => "Input ttd setidaknya terdiri dari 5 karakter",
+                'max_length' => "Input ttd terlalu panjang",
+            ],
+            'perihal' => [
+                'min_length' => "Input perihal setidaknya terdiri dari 5 karakter"
+            ],
+        ];
+
+        $input = $this->validate($rules, $error);
+
+        if (!$input) {
+            $msg = $this->validator;
+            return redirect()->to(base_url('surat_keluar_anda'))->with('error', ['error' => $msg->listErrors(), 'id' => $id]);
+        } else {
+            $this->surat_keluar->update($id, [
+                'status' => $this->request->getPost('status'),
+                'penerima' => $this->request->getPost('penerima'),
+                'ttd' => $this->request->getPost('ttd'),
+                'perihal' => $this->request->getPost('perihal')
+            ]);
+
+            return redirect()->to(base_url('surat_keluar_anda'))->with('success', 'Data berhasil diubah');
+        }
     }
 }

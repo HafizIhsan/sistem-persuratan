@@ -90,7 +90,7 @@
                                 <label>Draft Surat Keluar</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="draftSuratKeluar" name="file" type="application/msword">
+                                        <input type="file" class="custom-file-input" id="draftSuratKeluar" name="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword">
                                         <label class="custom-file-label" for="draftSuratKeluar" required>Pilih file ...</label>
                                     </div>
                                 </div>
@@ -215,14 +215,6 @@
         document.getElementById('generate').disabled = false;
     });
 
-    function validate() {
-        var generate = document.getElementById('generate');
-        var tanggal_surat = document.getElementById("tanggalSurat").value == "" ? false : true;
-        var klasifikasi_surat = document.getElementById("klasifikasiSurat").value == "" ? false : true;
-
-        var filled = (tanggal_surat && klasifikasi_surat);
-        filled ? generate.disabled = false : generate.disabled = true;
-    }
 
     $(document).ready(function() {
         $.ajax({
@@ -286,5 +278,25 @@
             dateControler.currentDate = $(this).val();
         }
     });
+
+    function validate() {
+        var submit = document.getElementById('submitButton');
+        var nomor_surat = document.getElementById("inputNomorSurat").value == "" ? false : true;
+        var tanggal_surat = document.getElementById("tanggalSurat").value == "" ? false : true;
+        var klasifikasi_surat = document.getElementById("klasifikasiSurat").value == "" ? false : true;
+        var penerima = document.getElementById("inputPenerima").value == "" ? false : true;
+        var file = document.getElementById("draftSuratKeluar").value == "" ? false : true;
+        var perihal = document.getElementById("inputPerihal").value == "" ? false : true;
+        var ttd = document.getElementById("inputTTD").value == "" ? false : true;
+
+        var filled = (nomor_surat && tanggal_surat && klasifikasi_surat && penerima && file && ttd && perihal);
+        filled ? submit.disabled = false : submit.disabled = true;
+    }
+
+    setTimeout("CallButton()", 2000);
+
+    function CallButton() {
+        document.getElementById("closeAlert").click();
+    }
 </script>
 <?= $this->endSection() ?>

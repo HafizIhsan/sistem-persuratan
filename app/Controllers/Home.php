@@ -92,6 +92,8 @@ class Home extends BaseController
 
     public function profile()
     {
-        return view('profile');
+        $id = session()->get('id_pengguna');
+        $data['pengguna'] = $this->pengguna->getPengguna($id);
+        return view('profile', $data);
     }
 }

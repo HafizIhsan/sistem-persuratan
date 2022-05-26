@@ -112,7 +112,7 @@
                                                     </a>
                                                 <?php } ?>
 
-                                                <a href="#" class="btn btn-secondary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#editModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
+                                                <a href="#" class="btn btn-secondary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#editModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>" id="edit-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
                                                     <span class="icon">
                                                         <i class="fas fa-edit"></i>
                                                     </span>
@@ -248,6 +248,21 @@
                                                 <form action="<?= base_url('surat_keluar_anda_p/edit/' . $surat_keluar['ID_SURAT_KELUAR']) ?>" method="post">
                                                     <?= csrf_field(); ?>
                                                     <div class="modal-body">
+                                                        <?php
+                                                        if (session()->getFlashData('error')) {
+                                                            $error = session()->getFlashData('error');
+                                                            if ($surat_keluar['ID_SURAT_KELUAR'] == $error['id']) {
+                                                        ?>
+                                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                    <?= $error['error'] ?>
+                                                                    <button id="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                        <?php
+                                                            }
+                                                        }
+                                                        ?>
                                                         <div class="form-row">
                                                             <div class="form-group col-6">
                                                                 <label for="detailNomorSurat" class="col-form-label">Nomor Surat :</label>
@@ -342,19 +357,31 @@
                 table.columns(6).search('').draw();
             }
         })
+
+        <?php
+        if (session()->getFlashData('error')) {
+            $error = session()->getFlashData('error');
+        ?>
+            $('#edit-<?= $error['id'] ?>').trigger('click');
+        <?php
+        }
+        ?>
     });
 
-    setTimeout("CallButton()", 2000);
+    // setTimeout("CallButton()", 2000);
 
-    function CallButton() {
-        document.getElementById("closeAlert").click();
-    }
+    // function CallButton() {
+    //     document.getElementById("closeAlert").click();
+    // }
 
     $(document).ready(function() {
         $('#dataTable').DataTable({
             bDestroy: true,
             scrollY: '47vh',
-            scrollCollapse: true
+            scrollCollapse: true,
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/id.json"
+            }
         });
     });
 </script>

@@ -151,5 +151,11 @@
             }
         });
     });
+
+    setTimeout("CallButton()", 2000);
+
+    function CallButton() {
+        document.getElementById("closeAlert").click();
+    }
 </script>
 <?= $this->endSection() ?>

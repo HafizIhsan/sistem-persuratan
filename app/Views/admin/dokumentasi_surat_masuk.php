@@ -184,5 +184,11 @@
         var filled = (nomor_surat && pengirim && perihal && file && date);
         filled ? submit.disabled = false : submit.disabled = true;
     }
+
+    setTimeout("CallButton()", 2000);
+
+    function CallButton() {
+        document.getElementById("closeAlert").click();
+    }
 </script>
 <?= $this->endSection() ?>

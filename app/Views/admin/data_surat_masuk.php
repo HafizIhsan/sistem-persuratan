@@ -187,7 +187,7 @@
                                                         <i class="fas fa-eye"></i>
                                                     </span>
                                                 </a> -->
-                                                <a href="#" class="btn btn-secondary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#editModal-<?= $surat_masuk['ID_SURAT_MASUK'] ?>">
+                                                <a href="#" class="btn btn-secondary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#editModal-<?= $surat_masuk['ID_SURAT_MASUK'] ?>" id="edit-<?= $surat_masuk['ID_SURAT_MASUK'] ?>">
                                                     <span class="icon">
                                                         <i class="fas fa-edit"></i>
                                                     </span>
@@ -317,23 +317,38 @@
                                                 <form action="<?= base_url('data_surat_masuk/edit/' . $surat_masuk['ID_SURAT_MASUK']) ?>" method="post">
                                                     <?= csrf_field(); ?>
                                                     <div class="modal-body">
+                                                        <?php
+                                                        if (session()->getFlashData('error')) {
+                                                            $error = session()->getFlashData('error');
+                                                            if ($surat_masuk['ID_SURAT_MASUK'] == $error['id']) {
+                                                        ?>
+                                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                    <?= $error['error'] ?>
+                                                                    <button id="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                        <?php
+                                                            }
+                                                        }
+                                                        ?>
                                                         <div class="form-row">
                                                             <div class="form-group col-3">
                                                                 <label for="detailTanggalTerima" class="col-form-label">Tanggal Terima :</label>
-                                                                <input name='tanggal_terima' type="date" class="form-control" id="detailTanggalTerima" value="<?= date('Y-m-d', strtotime($surat_masuk['TANGGAL_TERIMA'])) ?>" required>
+                                                                <input onkeydown="return event.key != 'Enter';" name='tanggal_terima' type="date" class="form-control" id="detailTanggalTerima" value="<?= date('Y-m-d', strtotime($surat_masuk['TANGGAL_TERIMA'])) ?>" required>
                                                                 <small id="nomorKlasifikasiHelpBlock" class="form-text text-muted">
                                                                     Format : mm/dd/yyyy
                                                                 </small>
                                                             </div>
                                                             <div class="form-group col-9">
                                                                 <label for="detailNomorSurat" class="col-form-label">Nomor Surat :</label>
-                                                                <input name='nomor_surat' type="text" class="form-control" id="detailNomorSurat" value="<?= $surat_masuk['NOMOR_SURAT_MASUK'] ?>" required>
+                                                                <input onkeydown="return event.key != 'Enter';" name='nomor_surat' type="text" class="form-control" id="detailNomorSurat" value="<?= $surat_masuk['NOMOR_SURAT_MASUK'] ?>" required>
                                                             </div>
                                                         </div>
                                                         <div class="form-row">
                                                             <div class="form-group col-12">
                                                                 <label for="detailPengirim" class="col-form-label">Pengirim :</label>
-                                                                <input name="pengirim" type="text" class="form-control" id="detailPengirim" value="<?= $surat_masuk['INSTANSI_PENGIRIM'] ?>" required>
+                                                                <input onkeydown="return event.key != 'Enter';" name="pengirim" type="text" class="form-control" id="detailPengirim" value="<?= $surat_masuk['INSTANSI_PENGIRIM'] ?>" required>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -384,19 +399,25 @@
                 table.columns(4).search('').draw();
             }
         })
+
+        <?php
+        if (session()->getFlashData('error')) {
+            $error = session()->getFlashData('error');
+        ?>
+            $('#edit-<?= $error['id'] ?>').trigger('click');
+        <?php
+        }
+        ?>
     });
-
-    setTimeout("CallButton()", 2000);
-
-    function CallButton() {
-        document.getElementById("closeAlert").click();
-    }
 
     $(document).ready(function() {
         $('#dataTable').DataTable({
             bDestroy: true,
             scrollY: '47vh',
-            scrollCollapse: true
+            scrollCollapse: true,
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/id.json"
+            }
         });
     });
 

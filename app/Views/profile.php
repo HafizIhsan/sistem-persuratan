@@ -13,7 +13,7 @@
                         <div class="d-flex flex-column align-items-center text-center">
                             <img src="<?= base_url() ?>/assets/img/akun.png" alt="Admin" class="rounded-circle" width="150">
                             <div class="mt-3">
-                                <h4><?= session()->get('nama') ?></h4>
+                                <h4><?= $pengguna[0]['NAMA'] ?></h4>
                                 <p class="text-secondary mb-3"><?= session()->get('role') ?></p>
                             </div>
                         </div>
@@ -28,7 +28,7 @@
                                 <h6 class="mb-0">Nama</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <?= session()->get('nama') ?>
+                                <?= $pengguna[0]['NAMA'] ?>
                             </div>
                         </div>
                         <hr>
@@ -37,7 +37,7 @@
                                 <h6 class="mb-0">NIP</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <?= session()->get('nip') ?>
+                                <?= $pengguna[0]['NIP'] ?>
                             </div>
                         </div>
                         <hr>
@@ -46,7 +46,7 @@
                                 <h6 class="mb-0">No. HP</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <?= session()->get('no_hp') ?>
+                                <?= $pengguna[0]['NO_HP'] ?>
                             </div>
                         </div>
                         <hr>
@@ -55,7 +55,7 @@
                                 <h6 class="mb-0">Email</h6>
                             </div>
                             <div class="col-sm-9 text-secondary">
-                                <?= session()->get('email') ?>
+                                <?= $pengguna[0]['EMAIL'] ?>
                             </div>
                         </div>
                         <hr>
@@ -109,6 +109,13 @@
                 <form action="<?= base_url('profile/ubah_password/' . session()->get('id_pengguna')) ?>" method="post">
                     <?= csrf_field(); ?>
                     <div class="modal-body">
+                        <input type="email" name="email" value="<?= $pengguna[0]['EMAIL'] ?>" hidden>
+                        <div class="form-group row">
+                            <label for="password_lama" class="col-5 col-form-label">Password Lama</label>
+                            <div class="col-7">
+                                <input class="form-control" type="password" name="password_lama" id="password_lama" placeholder="Password lama" required>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <label for="password_baru" class="col-5 col-form-label">Password Baru</label>
                             <div class="col-7">
@@ -116,9 +123,9 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="verif_password" class="col-5 col-form-label">Verifikasi Password</label>
+                            <label for="verif_password" class="col-5 col-form-label">Verifikasi Password Baru</label>
                             <div class="col-7">
-                                <input class="form-control" type="password" name="verif_password" id="verif_password" placeholder="Verifikasi password" required>
+                                <input class="form-control" type="password" name="verif_password" id="verif_password" placeholder="Verifikasi password baru" required>
                             </div>
                         </div>
                     </div>

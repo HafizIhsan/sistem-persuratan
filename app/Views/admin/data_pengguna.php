@@ -22,7 +22,7 @@
                 <?php
                 }
                 ?>
-                <a href="tambah_klasifikasi" class="btn btn-success btn-icon-split btn-sm" data-toggle="modal" data-target="#tambahModal">
+                <a href="tambah_klasifikasi" class="btn btn-success btn-icon-split btn-sm" data-toggle="modal" data-target="#tambahModal" id="tambahPengguna">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
@@ -57,7 +57,7 @@
                                 <td><?= $pengguna['NO_HP'] ?></td>
                                 <td>
                                     <div class="d-flex justify-content-center">
-                                        <a href="#" class="btn btn-secondary btn-icon-split btn-sm" data-toggle="modal" data-target="#editModal-<?= $pengguna['ID_PENGGUNA'] ?>">
+                                        <a href="#" class="btn btn-secondary btn-icon-split btn-sm" data-toggle="modal" data-target="#editModal-<?= $pengguna['ID_PENGGUNA'] ?>" id="edit-<?= $pengguna['ID_PENGGUNA'] ?>">
                                             <span class="icon">
                                                 <i class="fas fa-edit"></i>
                                             </span>
@@ -84,6 +84,21 @@
                                         <form action="<?= base_url('data_pengguna/edit/' . $pengguna['ID_PENGGUNA']) ?>" method="post">
                                             <?= csrf_field(); ?>
                                             <div class="modal-body">
+                                                <?php
+                                                if (session()->getFlashData('error_edit')) {
+                                                    $error = session()->getFlashData('error_edit');
+                                                    if ($pengguna['ID_PENGGUNA'] == $error['id']) {
+                                                ?>
+                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                            <?= $error['error'] ?>
+                                                            <button id="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
                                                 <div class="form-row">
                                                     <div class="form-group col-6">
                                                         <label for="nama" class="col-form-label">Nama :</label>
@@ -233,7 +248,10 @@
         $('#dataTable').DataTable({
             bDestroy: true,
             scrollY: '47vh',
-            scrollCollapse: true
+            scrollCollapse: true,
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/id.json"
+            }
         });
     });
 
@@ -241,13 +259,30 @@
         $('#role').selectize({
             searchField: 'text'
         });
+
+        <?php
+        if (session()->getFlashData('error')) {
+        ?>
+            $('#tambahPengguna').trigger('click');
+        <?php
+        }
+        ?>
+
+        <?php
+        if (session()->getFlashData('error_edit')) {
+            $error = session()->getFlashData('error_edit');
+        ?>
+            $('#edit-<?= $error['id'] ?>').trigger('click');
+        <?php
+        }
+        ?>
     });
 
-    setTimeout("CallButton()", 2000)
+    // setTimeout("CallButton()", 2000)
 
-    function CallButton() {
-        document.getElementById("closeAlert").click();
-    }
+    // function CallButton() {
+    //     document.getElementById("closeAlert").click();
+    // }
 </script>
 
 <?= $this->endSection() ?>

@@ -99,7 +99,7 @@
                                                         <i class="fas fa-eye"></i>
                                                     </span>
                                                 </a>
-                                                <a href="#" class="btn btn-secondary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#editModal-<?= $surat_lainnya['ID_SURAT_LAINNYA'] ?>">
+                                                <a href="#" class="btn btn-secondary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#editModal-<?= $surat_lainnya['ID_SURAT_LAINNYA'] ?>" id="edit-<?= $surat_lainnya['ID_SURAT_LAINNYA'] ?>">
                                                     <span class="icon">
                                                         <i class="fas fa-edit"></i>
                                                     </span>
@@ -203,24 +203,39 @@
                                                 <form action="<?= base_url('data_surat_lainnya/edit/' . $surat_lainnya['ID_SURAT_LAINNYA']) ?>" method="post">
                                                     <?= csrf_field(); ?>
                                                     <div class="modal-body">
+                                                        <?php
+                                                        if (session()->getFlashData('error')) {
+                                                            $error = session()->getFlashData('error');
+                                                            if ($surat_lainnya['ID_SURAT_LAINNYA'] == $error['id']) {
+                                                        ?>
+                                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                    <?= $error['error'] ?>
+                                                                    <button id="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                        <?php
+                                                            }
+                                                        }
+                                                        ?>
                                                         <div class="form-row">
                                                             <div class="form-group col-4">
                                                                 <label for="detailJenisSurat" class="col-form-label">Jenis Surat: </label>
-                                                                <input name='jenis_surat_lainnya' type="text" class="form-control" id="detailJenisSurat" value="<?= $jenis_surat ?>" required readonly>
+                                                                <input onkeydown="return event.key != 'Enter';" name='jenis_surat_lainnya' type="text" class="form-control" id="detailJenisSurat" value="<?= $jenis_surat ?>" required readonly>
                                                             </div>
                                                             <div class="form-group col-8">
                                                                 <label for="detailNomorSurat" class="col-form-label">Nomor Surat :</label>
-                                                                <input name='nomor_surat' type="text" class="form-control" id="detailNomorSurat" value="<?= $surat_lainnya['NOMOR_SURAT'] ?>" required readonly>
+                                                                <input onkeydown="return event.key != 'Enter';" name='nomor_surat' type="text" class="form-control" id="detailNomorSurat" value="<?= $surat_lainnya['NOMOR_SURAT'] ?>" required>
                                                             </div>
                                                         </div>
                                                         <div class="form-row">
                                                             <div class="form-group col-6">
                                                                 <label for="detailPihak1" class="col-form-label">Pihak 1 :</label>
-                                                                <input name='pihak_1' type="text" class="form-control" id="detailPihak1" value="<?= $surat_lainnya['PIHAK_1'] ?>" required>
+                                                                <input onkeydown="return event.key != 'Enter';" name='pihak_1' type="text" class="form-control" id="detailPihak1" value="<?= $surat_lainnya['PIHAK_1'] ?>" required>
                                                             </div>
                                                             <div class="form-group col-6">
                                                                 <label for="detailPihak2" class="col-form-label">Pihak 2 :</label>
-                                                                <input name='pihak_2' type="text" class="form-control" id="detailPihak2" value="<?= $surat_lainnya['PIHAK_2'] ?>" required>
+                                                                <input onkeydown="return event.key != 'Enter';" name='pihak_2' type="text" class="form-control" id="detailPihak2" value="<?= $surat_lainnya['PIHAK_2'] ?>" required>
                                                             </div>
                                                         </div>
                                                         <div class="form-group">
@@ -253,7 +268,10 @@
         $('#dataTable').DataTable({
             bDestroy: true,
             scrollY: '47vh',
-            scrollCollapse: true
+            scrollCollapse: true,
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/id.json"
+            }
         });
     });
 
@@ -268,12 +286,21 @@
                 table.columns(1).search('').draw();
             }
         })
+
+        <?php
+        if (session()->getFlashData('error')) {
+            $error = session()->getFlashData('error');
+        ?>
+            $('#edit-<?= $error['id'] ?>').trigger('click');
+        <?php
+        }
+        ?>
     });
 
-    setTimeout("CallButton()", 2000);
+    // setTimeout("CallButton()", 5000);
 
-    function CallButton() {
-        document.getElementById("closeAlert").click();
-    }
+    // function CallButton() {
+    //     document.getElementById("closeAlert").click();
+    // }
 </script>
 <?= $this->endSection() ?>

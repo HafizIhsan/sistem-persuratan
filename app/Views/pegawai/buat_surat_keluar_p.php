@@ -90,7 +90,7 @@
                                 <label>Draft Surat Keluar</label>
                                 <div class="input-group">
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="draftSuratKeluar" name="file" type="application/msword">
+                                        <input type="file" class="custom-file-input" id="draftSuratKeluar" name="file" accept="application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword">
                                         <label class="custom-file-label" for="draftSuratKeluar" required>Pilih file</label>
                                     </div>
                                 </div>

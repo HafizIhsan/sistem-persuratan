@@ -155,7 +155,7 @@
                         </div>
                     <?php } else { ?>
                         <div class="d-flex justify-content-center">
-                            <h4>Semua surat keluar sudah terdokumentasi</h4>
+                            <h4>Semua surat keluar anda sudah terdokumentasi</h4>
                         </div>
                     <?php } ?>
                 </div>

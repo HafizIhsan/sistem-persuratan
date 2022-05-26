@@ -38,7 +38,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="pilihJenisSurat" class="col-form-label">Jenis Surat :</label>
-                                <select name="id_jenis_surat_lainnya" id="pilihJenisSurat" class="form-control">
+                                <select onkeydown="return event.key != 'Enter';" name="id_jenis_surat_lainnya" id="pilihJenisSurat" class="form-control">
                                     <option value="">Pilih jenis surat...</option>
                                     <?php foreach ($jenis_surat_lainnya as $key => $jenis_surat_lainnya) : ?>
                                         <option value="<?= $jenis_surat_lainnya['ID_JENIS_SURAT_LAINNYA'] ?>"><?= $jenis_surat_lainnya['JENIS_SURAT'] ?></option>
@@ -47,17 +47,17 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputNoSurat" class="col-form-label">Nomor Surat :</label>
-                                <input name="nomor_surat" type="text" class="form-control" id="inputNoSurat" placeholder="Nomor surat" required>
+                                <input onkeydown="return event.key != 'Enter';" name="nomor_surat" type="text" class="form-control" id="inputNoSurat" placeholder="Nomor surat" required>
                             </div>
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputPihakPertama" class="col-form-label">Pihak Pertama :</label>
-                                <input name="pihak_1" type="text" class="form-control" id="inputPihakPertama" placeholder="Pihak pertama" required>
+                                <input onkeydown="return event.key != 'Enter';" name="pihak_1" type="text" class="form-control" id="inputPihakPertama" placeholder="Pihak pertama" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPihakKedua" class="col-form-label">Pihak Kedua :</label>
-                                <input name="pihak_2" type="text" class="form-control" id="inputPihakKedua" placeholder="Pihak kedua" required>
+                                <input onkeydown="return event.key != 'Enter';" name="pihak_2" type="text" class="form-control" id="inputPihakKedua" placeholder="Pihak kedua" required>
                             </div>
                         </div>
                         <div class="form-group">
@@ -69,7 +69,7 @@
                                 <label class="col-form-label">Dokumentasi Surat :</label>
                                 <div class="custom-file">
                                     <label class="custom-file-label" for="dokumenSurat">Pilih file...</label>
-                                    <input name="file" type="file" class="custom-file-input" id="dokumenSurat" accept="application/pdf">
+                                    <input onkeydown="return event.key != 'Enter';" name="file" type="file" class="custom-file-input" id="dokumenSurat" accept="application/pdf">
                                 </div>
                                 <small id="klasifikasiHelpBlock" class="form-text text-muted">
                                     Tipe file pdf dan ukuran maksimum 2mb
@@ -136,10 +136,10 @@
         filled ? submit.disabled = false : submit.disabled = true;
     }
 
-    // setTimeout("CallButton()", 2000);
+    setTimeout("CallButton()", 2000);
 
-    // function CallButton() {
-    //     document.getElementById("closeAlert").click();
-    // }
+    function CallButton() {
+        document.getElementById("closeAlert").click();
+    }
 </script>
 <?= $this->endSection() ?>

@@ -44,34 +44,69 @@ class KlasifikasiSuratController extends BaseController
         return view('pegawai/klasifikasi_surat', $data);
     }
 
-    // public function kelola_klasifikasi()
-    // {
-    //     $data['klasifikasi_surat'] = $this->klasifikasi_surat->findAll();
-    //     $data['kategori_klasifikasi'] = $this->kategori_klasifikasi->findAll();
-    //     return view('admin/kelola_klasifikasi_surat', $data);
-    // }
-
     public function create()
     {
-        $this->klasifikasi_surat->insert([
-            'kode' => $this->request->getPost('kode'),
-            'nomor_klasifikasi' => $this->request->getPost('nomor_klasifikasi'),
-            'keterangan' => $this->request->getPost('keterangan'),
-        ]);
+        helper(['form', 'url']);
 
-        return redirect('admin/data_klasifikasi_surat')->with('success', 'Data berhasil ditambahkan');
+        $rules = [
+            'kode' => 'required|max_length[3]',
+            'nomor_klasifikasi' => 'required|numeric|min_length[3]|max_length[4]',
+            'keterangan' => 'required|min_length[5]'
+        ];
+
+        $error = [
+            'nomor_klasifikasi' => [
+                'min_length' => "Nomor klasifikasi setidaknya terdiri dari 3 angka",
+                'max_length' => "Nomor klasifikasi terlalu panjang",
+                'numeric' => "Nomor klasifikasi harus berupa angka"
+            ],
+            'keterangan' => [
+                'min_length' => "Keterangan setidaknya terdiri dari 5 karakter"
+            ],
+        ];
+
+        $input = $this->validate($rules, $error);
+
+        if (!$input) {
+            $msg = $this->validator;
+            return redirect()->to(base_url('data_klasifikasi_surat'))->with('error', $msg->listErrors());
+        } else {
+            $this->klasifikasi_surat->insert([
+                'kode' => $this->request->getPost('kode'),
+                'nomor_klasifikasi' => $this->request->getPost('nomor_klasifikasi'),
+                'keterangan' => $this->request->getPost('keterangan'),
+            ]);
+
+            return redirect('admin/data_klasifikasi_surat')->with('success', 'Data berhasil ditambahkan');
+        }
     }
 
     public function edit($id)
     {
+        helper(['form', 'url']);
 
-        $this->klasifikasi_surat->update($id, [
-            'kode' => $this->request->getPost('kode'),
-            'nomor_klasifikasi' => $this->request->getPost('nomor_klasifikasi'),
-            'keterangan' => $this->request->getPost('keterangan'),
-        ]);
+        $rules = [
+            'keterangan' => 'required|min_length[5]'
+        ];
 
-        return redirect('data_klasifikasi_surat')->with('success', 'Data berhasil diubah');
+        $error = [
+            'keterangan' => [
+                'min_length' => "Keterangan setidaknya terdiri dari 5 karakter"
+            ],
+        ];
+
+        $input = $this->validate($rules, $error);
+
+        if (!$input) {
+            $msg = $this->validator;
+            return redirect()->to(base_url('data_klasifikasi_surat'))->with('error_edit', ['error' => $msg->listErrors(), 'id' => $id]);
+        } else {
+            $this->klasifikasi_surat->update($id, [
+                'keterangan' => $this->request->getPost('keterangan'),
+            ]);
+
+            return redirect('data_klasifikasi_surat')->with('success', 'Data berhasil diubah');
+        }
     }
 
     public function delete($id)

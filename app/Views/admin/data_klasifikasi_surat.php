@@ -22,7 +22,7 @@
                 <?php
                 }
                 ?>
-                <a href="tambah_klasifikasi" class="btn btn-success btn-icon-split btn-sm" data-toggle="modal" data-target="#tambahModal">
+                <a href="tambah_klasifikasi" class="btn btn-success btn-icon-split btn-sm" data-toggle="modal" data-target="#tambahModal" id="tambahKlasifikasi">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
@@ -56,7 +56,7 @@
                                 <td><?= $klasifikasi_surat['KETERANGAN'] ?></td>
                                 <td>
                                     <div class="d-flex justify-content-center">
-                                        <a href="#" class="btn btn-secondary btn-icon-split btn-sm" data-toggle="modal" data-target="#editModal-<?= $klasifikasi_surat['ID_KLASIFIKASI_SURAT'] ?>">
+                                        <a href="#" class="btn btn-secondary btn-icon-split btn-sm" data-toggle="modal" data-target="#editModal-<?= $klasifikasi_surat['ID_KLASIFIKASI_SURAT'] ?>" id="edit-<?= $klasifikasi_surat['ID_KLASIFIKASI_SURAT'] ?>">
                                             <span class="icon">
                                                 <i class="fas fa-edit"></i>
                                             </span>
@@ -82,6 +82,21 @@
                                         <form action="<?= base_url('data_klasifikasi_surat/edit/' . $klasifikasi_surat['ID_KLASIFIKASI_SURAT']) ?>" method="post">
                                             <?= csrf_field(); ?>
                                             <div class="modal-body">
+                                                <?php
+                                                if (session()->getFlashData('error_edit')) {
+                                                    $error = session()->getFlashData('error_edit');
+                                                    if ($klasifikasi_surat['ID_KLASIFIKASI_SURAT'] == $error['id']) {
+                                                ?>
+                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                            <?= $error['error'] ?>
+                                                            <button id="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                <?php
+                                                    }
+                                                }
+                                                ?>
                                                 <div class="form-row">
                                                     <div class="form-group col-1">
                                                         <label for="kodeKlasifikasi" class="col-form-label">Kode :</label>
@@ -145,6 +160,17 @@
                     </button>
                 </div>
                 <div class="modal-body">
+                    <?php
+                    if (session()->getFlashData('error')) {
+                    ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <?= session()->getFlashData('error') ?>
+                            <button id="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php
+                    } ?>
                     <form id="formTambahKlasifikasi" method="POST" class="needs-validation">
                         <div class="form-row">
                             <div class="form-group col-8">
@@ -160,7 +186,7 @@
                                 <label for="inputNoKlasifikasi" class="col-form-label">Nomor Klasifikasi :</label>
                                 <input name='nomor_klasifikasi' type="text" class="form-control" id="inputNoKlasifikasi" placeholder="Nomor klasifikasi" required>
                                 <small id="nomorKlasifikasiHelpBlock" class="form-text text-muted">
-                                    Nomor klasifikasi terdiri dari 3 atau 4 angka <br> Contoh: 021, 130, 1101
+                                    Nomor klasifikasi terdiri dari 3 - 4 angka. Contoh: 021, 130, 1101
                                 </small>
                             </div>
                         </div>
@@ -190,7 +216,10 @@
         $('#dataTable').DataTable({
             bDestroy: true,
             scrollY: '47vh',
-            scrollCollapse: true
+            scrollCollapse: true,
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/id.json"
+            }
         });
     });
 
@@ -198,13 +227,30 @@
         $('#pilihKategori').selectize({
             searchField: 'text'
         });
+
+        <?php
+        if (session()->getFlashData('error')) {
+        ?>
+            $('#tambahKlasifikasi').trigger('click');
+        <?php
+        }
+        ?>
+
+        <?php
+        if (session()->getFlashData('error_edit')) {
+            $error = session()->getFlashData('error_edit');
+        ?>
+            $('#edit-<?= $error['id'] ?>').trigger('click');
+        <?php
+        }
+        ?>
     });
 
-    setTimeout("CallButton()", 2000)
+    // setTimeout("CallButton()", 2000)
 
-    function CallButton() {
-        document.getElementById("closeAlert").click();
-    }
+    // function CallButton() {
+    //     document.getElementById("closeAlert").click();
+    // }
 </script>
 
 <?= $this->endSection() ?>

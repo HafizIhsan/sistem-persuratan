@@ -47,14 +47,14 @@ class SuratMasukController extends BaseController
                 'instansi_pengirim' => 'required|min_length[5]|max_length[100]',
                 'perihal' => 'required|min_length[5]',
                 'file' => 'uploaded[file]|mime_in[file,application/pdf]|max_size[file,2048]',
-                'uraian_penugasan' => 'min_length[5]|max_length[100]'
+                'uraian_penugasan' => 'required|min_length[5]|max_length[100]'
             ];
         }
 
         $error = [
             'file' => [
                 'max_size' => "Ukuran file terlalu besar (Max 2MB)",
-                'mime_in' => "Tipe file dokuemntasi surat salah"
+                'mime_in' => "Format file harus pdf"
             ],
         ];
 
@@ -108,34 +108,90 @@ class SuratMasukController extends BaseController
 
     public function edit($id)
     {
-        $this->surat_masuk->update($id, [
-            'tanggal_terima' => $this->request->getPost('tanggal_terima'),
-            'nomor_surat' => $this->request->getPost('nomor_surat'),
-            'pengirim' => $this->request->getPost('pengirim'),
-            'status' => $this->request->getPost('status'),
-            'perihal' => $this->request->getPost('perihal')
-        ]);
+        helper(['form', 'url']);
 
-        return redirect()->to(base_url('data_surat_masuk'))->with('success', 'Data berhasil diubah');
+        $rules = [
+            'nomor_surat' => 'required|min_length[5]|max_length[30]',
+            'pengirim' => 'required|min_length[5]|max_length[100]',
+            'perihal' => 'required|min_length[5]'
+        ];
+
+        $error = [
+            'pengirim' => [
+                'min_length' => "Input pengirim setidaknya terdiri dari 5 karakter",
+                'max_length' => "Input pengirim terlalu panjang",
+            ],
+            'perihal' => [
+                'min_length' => "Input perihal setidaknya terdiri dari 5 karakter"
+            ],
+        ];
+
+        $input = $this->validate($rules, $error);
+        if (!$input) {
+            $msg = $this->validator;
+            return redirect()->to(base_url('data_surat_masuk'))->with('error', ['error' => $msg->listErrors(), 'id' => $id]);
+        } else {
+            $this->surat_masuk->update($id, [
+                'tanggal_terima' => $this->request->getPost('tanggal_terima'),
+                'nomor_surat_masuk' => $this->request->getPost('nomor_surat'),
+                'instansi_pengirim' => $this->request->getPost('pengirim'),
+                'perihal' => $this->request->getPost('perihal')
+            ]);
+            return redirect()->to(base_url('data_surat_masuk'))->with('success', 'Data berhasil diubah');
+        }
     }
 
     public function tambah_penugasan($id)
     {
         $tenggat_penugasan = date('Y-m-d', strtotime($this->request->getPost('tenggat_d'))) . " " . date('H:i:s', strtotime($this->request->getPost('tenggat_t')));
-        $this->surat_masuk->update($id, [
-            'uraian_penugasan' => $this->request->getPost('uraian_penugasan'),
-            'petugas' => $this->request->getPost('petugas'),
-            'status' => 'Dalam proses',
-            'tenggat_penugasan' => $tenggat_penugasan
-        ]);
 
-        return redirect()->to(base_url('data_surat_masuk'))->with('success', 'Penugasan berhasil dilakukan');
+        helper(['form', 'url']);
+
+        $rules = [
+            'nomor_surat' => 'required|min_length[5]|max_length[30]',
+            'pengirim' => 'required|min_length[5]|max_length[100]',
+            'perihal' => 'required|min_length[5]',
+            'uraian_penugasan' => 'required|min_length[10]'
+        ];
+
+        $error = [
+            'pengirim' => [
+                'min_length' => "Input pengirim setidaknya terdiri dari 5 karakter",
+                'max_length' => "Input pengirim terlalu panjang",
+            ],
+            'perihal' => [
+                'min_length' => "Input perihal setidaknya terdiri dari 5 karakter"
+            ],
+            'uraian_penugasan' => [
+                'min_length' => "Input uraian penugasan setidaknya terdiri dari 10 karakter",
+            ],
+        ];
+
+        $input = $this->validate($rules, $error);
+
+        if (!$input) {
+            $msg = $this->validator;
+            return redirect()->to(base_url('data_surat_masuk'))->with('error', $msg->listErrors());
+        } else {
+            $this->surat_masuk->update($id, [
+                'uraian_penugasan' => $this->request->getPost('uraian_penugasan'),
+                'petugas' => $this->request->getPost('petugas'),
+                'status' => 'Dalam proses',
+                'tenggat_penugasan' => $tenggat_penugasan
+            ]);
+
+            return redirect()->to(base_url('data_surat_masuk'))->with('success', 'Penugasan berhasil dilakukan');
+        }
     }
 
     public function surat_masuk_excel()
     {
         $dataSuratMasuk = $this->surat_masuk->findAll();
         $dataPengguna = $this->pengguna->findAll();
+
+        if (count($dataSuratMasuk) == 0) {
+            return redirect()->to(base_url('data_surat_masuk'))->with('error', 'Tidak ada data surat masuk');
+        }
 
         $spreadsheet = new Spreadsheet();
         // tulis header/nama kolom 

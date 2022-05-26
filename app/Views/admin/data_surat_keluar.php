@@ -134,7 +134,7 @@
                                                     </a>
                                                 <?php } ?>
 
-                                                <a href="#" class="btn btn-secondary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#editModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
+                                                <a href="#" class="btn btn-secondary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#editModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>" id="edit-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
                                                     <span class="icon">
                                                         <i class="fas fa-edit"></i>
                                                     </span>
@@ -270,28 +270,43 @@
                                                 <form action="<?= base_url('data_surat_keluar/edit/' . $surat_keluar['ID_SURAT_KELUAR']) ?>" method="post">
                                                     <?= csrf_field(); ?>
                                                     <div class="modal-body">
+                                                        <?php
+                                                        if (session()->getFlashData('error')) {
+                                                            $error = session()->getFlashData('error');
+                                                            if ($surat_keluar['ID_SURAT_KELUAR'] == $error['id']) {
+                                                        ?>
+                                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                    <?= $error['error'] ?>
+                                                                    <button id="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                        <?php
+                                                            }
+                                                        }
+                                                        ?>
                                                         <div class="form-row">
                                                             <div class="form-group col-6">
                                                                 <label for="detailNomorSurat" class="col-form-label">Nomor Surat :</label>
-                                                                <input name='nomor_surat' type="text" class="form-control" id="detailNomorSurat" value="<?= $surat_keluar['NOMOR_SURAT_KELUAR'] ?>" readonly>
+                                                                <input onkeydown="return event.key != 'Enter';" name='nomor_surat' type="text" class="form-control" id="detailNomorSurat" value="<?= $surat_keluar['NOMOR_SURAT_KELUAR'] ?>" readonly>
                                                             </div>
                                                             <div class="form-group col-3">
                                                                 <label for="detailTanggalSurat" class="col-form-label">Tanggal Surat :</label>
-                                                                <input name='tanggal_surat' type="text" class="form-control" id="detailTanggalSurat" value="<?= date('d-m-Y', strtotime($surat_keluar['CREATED_AT'])) ?>" readonly>
+                                                                <input onkeydown="return event.key != 'Enter';" name='tanggal_surat' type="text" class="form-control" id="detailTanggalSurat" value="<?= date('d-m-Y', strtotime($surat_keluar['CREATED_AT'])) ?>" readonly>
                                                             </div>
                                                             <div class="form-group col-3">
                                                                 <label for="detailPembuat" class="col-form-label">Pembuat Surat :</label>
-                                                                <input name='pengirim' type="text" class="form-control" id="detailPembuat" value="<?= $nama ?>" readonly>
+                                                                <input onkeydown="return event.key != 'Enter';" name='pengirim' type="text" class="form-control" id="detailPembuat" value="<?= $nama ?>" readonly>
                                                             </div>
                                                         </div>
                                                         <div class="form-row">
                                                             <div class="form-group col-6">
                                                                 <label for="detailPenerima" class="col-form-label">Penerima :</label>
-                                                                <input name='penerima' type="text" class="form-control" id="detailPenerima" value="<?= $surat_keluar['PENERIMA'] ?>" required>
+                                                                <input onkeydown="return event.key != 'Enter';" name='penerima' type="text" class="form-control" id="detailPenerima" value="<?= $surat_keluar['PENERIMA'] ?>" required>
                                                             </div>
                                                             <div class="form-group col-6">
                                                                 <label for="detailTTD" class="col-form-label">TTD :</label>
-                                                                <input name='ttd' type="text" class="form-control" id="detailTTD" value="<?= $surat_keluar['TTD'] ?>" required>
+                                                                <input onkeydown="return event.key != 'Enter';" name='ttd' type="text" class="form-control" id="detailTTD" value="<?= $surat_keluar['TTD'] ?>" required>
                                                             </div>
                                                         </div>
                                                         <div class="form-row">
@@ -347,19 +362,31 @@
                 table.columns(6).search('').draw();
             }
         })
+
+        <?php
+        if (session()->getFlashData('error')) {
+            $error = session()->getFlashData('error');
+        ?>
+            $('#edit-<?= $error['id'] ?>').trigger('click');
+        <?php
+        }
+        ?>
     });
 
-    setTimeout("CallButton()", 2000);
+    // setTimeout("CallButton()", 2000);
 
-    function CallButton() {
-        document.getElementById("closeAlert").click();
-    }
+    // function CallButton() {
+    //     document.getElementById("closeAlert").click();
+    // }
 
     $(document).ready(function() {
         $('#dataTable').DataTable({
             bDestroy: true,
             scrollY: '47vh',
-            scrollCollapse: true
+            scrollCollapse: true,
+            "language": {
+                "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/id.json"
+            }
         });
     });
 </script>
