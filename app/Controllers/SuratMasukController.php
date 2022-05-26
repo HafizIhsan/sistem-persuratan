@@ -64,6 +64,9 @@ class SuratMasukController extends BaseController
             $msg = $this->validator;
             return redirect()->to(base_url('dokumentasi_surat_masuk'))->with('error', $msg->listErrors());
         } else {
+            if (strpos($this->request->getPost('nomor_surat'), '/') === false || strpos($this->request->getPost('nomor_surat'), '-') === false) {
+                return redirect()->to(base_url('dokumentasi_surat_masuk'))->with('error', 'Penulisan nomor surat salah');
+            }
             $scan_surat_masuk = $this->request->getFile('file');
             $scan_surat_masuk->move('uploads/dokumentasi');
             $tenggat_penugasan = date('Y-m-d', strtotime($this->request->getPost('tenggat_d'))) . " " . date('H:i:s', strtotime($this->request->getPost('tenggat_t')));
@@ -131,6 +134,9 @@ class SuratMasukController extends BaseController
             $msg = $this->validator;
             return redirect()->to(base_url('data_surat_masuk'))->with('error', ['error' => $msg->listErrors(), 'id' => $id]);
         } else {
+            if (strpos($this->request->getPost('nomor_surat'), '/') === false || strpos($this->request->getPost('nomor_surat'), '-') === false) {
+                return redirect()->to(base_url('data_surat_masuk'))->with('error', ['error' => 'Penulisan nomor surat salah', 'id' => $id]);
+            }
             $this->surat_masuk->update($id, [
                 'tanggal_terima' => $this->request->getPost('tanggal_terima'),
                 'nomor_surat_masuk' => $this->request->getPost('nomor_surat'),
@@ -148,20 +154,10 @@ class SuratMasukController extends BaseController
         helper(['form', 'url']);
 
         $rules = [
-            'nomor_surat' => 'required|min_length[5]|max_length[30]',
-            'pengirim' => 'required|min_length[5]|max_length[100]',
-            'perihal' => 'required|min_length[5]',
             'uraian_penugasan' => 'required|min_length[10]'
         ];
 
         $error = [
-            'pengirim' => [
-                'min_length' => "Input pengirim setidaknya terdiri dari 5 karakter",
-                'max_length' => "Input pengirim terlalu panjang",
-            ],
-            'perihal' => [
-                'min_length' => "Input perihal setidaknya terdiri dari 5 karakter"
-            ],
             'uraian_penugasan' => [
                 'min_length' => "Input uraian penugasan setidaknya terdiri dari 10 karakter",
             ],
