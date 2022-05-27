@@ -24,6 +24,18 @@ class M_SuratMasuk extends Model
         }
     }
 
+    public function get_surat_masuk_by_tahun($tahun = false)
+    {
+        if ($tahun === false) {
+            return $this->findAll();
+        } else {
+            $sql = "SELECT * FROM surat_masuk WHERE TANGGAL_TERIMA LIKE '$tahun%'";
+            $query = $this->db->query($sql);
+            $row = $query->getResultArray();
+            return $row;
+        }
+    }
+
     // // Dates
     // protected $useTimestamps = false;
     // protected $dateFormat    = 'datetime';

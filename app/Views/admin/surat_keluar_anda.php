@@ -61,119 +61,107 @@
                     <?php
                     }
                     ?>
-                    <div class="table-responsive table-hover">
-                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>Tanggal Surat</th>
-                                    <th>Pembuat</th>
-                                    <th>Penerima</th>
-                                    <th>TTD</th>
-                                    <th>Perihal</th>
-                                    <th>Status</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                foreach ($surat_keluar as $key => $surat_keluar) : ?>
+                    <?php if (count($surat_keluar) != 0) { ?>
+                        <div class="table-responsive table-hover">
+                            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                <thead>
                                     <tr>
-                                        <td><?= ++$key ?></td>
-                                        <td><?= date('d-m-Y', strtotime($surat_keluar['CREATED_AT'])) ?></td>
-                                        <td><?= session()->get('nama') ?></td>
-                                        <td><?= $surat_keluar['PENERIMA'] ?></td>
-                                        <td><?= $surat_keluar['TTD'] ?></td>
-                                        <td><?= $surat_keluar['PERIHAL'] ?></td>
-                                        <td>
-                                            <?php
-                                            if ($surat_keluar['STATUS'] == 'Pengajuan') {
-                                                echo "<span class='badge badge-pill badge-secondary'>" . $surat_keluar['STATUS'] . "</span>";
-                                            } else if ($surat_keluar['STATUS'] == 'Belum terkirim') {
-                                                echo "<span class=' badge badge-pill badge-warning'>" . $surat_keluar['STATUS'] . "</span>";
-                                            } else if ($surat_keluar['STATUS'] == 'Sudah terkirim') {
-                                                echo "<span class='badge badge-pill badge-success'>" . $surat_keluar['STATUS'] . "</span>";
-                                            } ?>
-                                        </td>
-                                        <td>
-                                            <div class="d-flex justify-content-between">
-                                                <?php if ($surat_keluar['SCAN_SURAT_KELUAR'] == NULL) { ?>
-                                                    <a href="<?= base_url('uploads/dokumentasi/' . $surat_keluar['SCAN_SURAT_KELUAR']) ?>" class="btn btn-success btn-icon-split btn-sm disabled" target="_blank">
-                                                        <span class="icon">
-                                                            <i class="fas fa-eye"></i>
-                                                        </span>
-                                                    </a>
-                                                <?php } else { ?>
-                                                    <a href="<?= base_url('uploads/dokumentasi/' . $surat_keluar['SCAN_SURAT_KELUAR']) ?>" class="btn btn-success btn-icon-split btn-sm disable" target="_blank">
-                                                        <span class="icon">
-                                                            <i class="fas fa-eye"></i>
-                                                        </span>
-                                                    </a>
-                                                <?php } ?>
-
-                                                <a href="#" class="btn btn-secondary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#editModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>" id="edit-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
-                                                    <span class="icon">
-                                                        <i class="fas fa-edit"></i>
-                                                    </span>
-                                                </a>
-                                                <!-- <a href="#" class="btn btn-danger btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#hapusModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
-                                                    <span class="icon">
-                                                        <i class="fas fa-trash"></i>
-                                                    </span>
-                                                </a> -->
-                                                <a href="#" class="btn btn-primary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#detailModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
-                                                    <span class="text">Detail</span>
-                                                </a>
-                                            </div>
-                                            <p hidden><?= $surat_keluar['NOMOR_SURAT_KELUAR'] ?></p>
-                                        </td>
+                                        <th>No</th>
+                                        <th>Tanggal Surat</th>
+                                        <th>Pembuat</th>
+                                        <th>Penerima</th>
+                                        <th>TTD</th>
+                                        <th>Perihal</th>
+                                        <th>Status</th>
+                                        <th>Aksi</th>
                                     </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    foreach ($surat_keluar as $key => $surat_keluar) : ?>
+                                        <tr>
+                                            <td><?= ++$key ?></td>
+                                            <td><?= date('d-m-Y', strtotime($surat_keluar['CREATED_AT'])) ?></td>
+                                            <td><?= session()->get('nama') ?></td>
+                                            <td><?= $surat_keluar['PENERIMA'] ?></td>
+                                            <td><?= $surat_keluar['TTD'] ?></td>
+                                            <td><?= $surat_keluar['PERIHAL'] ?></td>
+                                            <td>
+                                                <?php
+                                                if ($surat_keluar['STATUS'] == 'Pengajuan') {
+                                                    echo "<span class='badge badge-pill badge-secondary'>" . $surat_keluar['STATUS'] . "</span>";
+                                                } else if ($surat_keluar['STATUS'] == 'Belum terkirim') {
+                                                    echo "<span class=' badge badge-pill badge-warning'>" . $surat_keluar['STATUS'] . "</span>";
+                                                } else if ($surat_keluar['STATUS'] == 'Sudah terkirim') {
+                                                    echo "<span class='badge badge-pill badge-success'>" . $surat_keluar['STATUS'] . "</span>";
+                                                } ?>
+                                            </td>
+                                            <td>
+                                                <div class="d-flex justify-content-between">
+                                                    <?php if ($surat_keluar['SCAN_SURAT_KELUAR'] == NULL) { ?>
+                                                        <a href="<?= base_url('uploads/dokumentasi/' . $surat_keluar['SCAN_SURAT_KELUAR']) ?>" class="btn btn-success btn-icon-split btn-sm disabled" target="_blank">
+                                                            <span class="icon">
+                                                                <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </a>
+                                                    <?php } else { ?>
+                                                        <a href="<?= base_url('uploads/dokumentasi/' . $surat_keluar['SCAN_SURAT_KELUAR']) ?>" class="btn btn-success btn-icon-split btn-sm disable" target="_blank">
+                                                            <span class="icon">
+                                                                <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </a>
+                                                    <?php } ?>
 
-                                    <!-- Hapus Modal -->
-                                    <!-- <div class="modal fade" id="hapusModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">Apakah anda yakin ingin menghapus data surat ini?</div>
-                                                <div class="modal-footer">
-                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
-                                                    <a class="btn btn-primary" href="<?= base_url('data_surat_keluar/delete/' . $surat_keluar['ID_SURAT_KELUAR']) ?>">Hapus</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
+                                                    <a href="#" class="btn btn-secondary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#editModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>" id="edit-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
+                                                        <span class="icon">
+                                                            <i class="fas fa-edit"></i>
+                                                        </span>
+                                                    </a>
 
-                                    <!-- Detail Modal -->
-                                    <div class="modal fade" id="detailModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-gradient-secondary">
-                                                    <h5 class="modal-title text-white" id="exampleModalLabel">Detail Surat</h5>
-                                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
+                                                    <a href="#" class="btn btn-primary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#detailModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
+                                                        <span class="text">Detail</span>
+                                                    </a>
                                                 </div>
-                                                <form>
-                                                    <?= csrf_field(); ?>
+                                                <p hidden><?= $surat_keluar['NOMOR_SURAT_KELUAR'] ?></p>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Detail Modal -->
+                                        <div class="modal fade" id="detailModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header bg-gradient-secondary">
+                                                        <h5 class="modal-title text-white" id="exampleModalLabel">Detail Surat</h5>
+                                                        <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
                                                     <div class="modal-body">
                                                         <div class="form-row">
-                                                            <div class="form-group col-2">
-                                                                <label for="detailDokumentasi" class="col-form-label">Dokumentasi :</label>
-                                                                <?php if ($surat_keluar['SCAN_SURAT_KELUAR'] == NULL) { ?>
-                                                                    <span class='badge badge-danger'>Belum Ada</span>
-                                                                <?php } else { ?>
+                                                            <?php if ($surat_keluar['SCAN_SURAT_KELUAR'] == NULL) { ?>
+                                                                <div class="form-group col-3">
+                                                                    <label for="detailDokumentasi" class="col-form-label">Dokumentasi :</label>
+                                                                    <form action="<?= base_url('SuratKeluarController/to_dokumentasi_surat_keluar') ?>" method="POST">
+                                                                        <input type="text" name="id_surat_keluar" value="<?= $surat_keluar['ID_SURAT_KELUAR'] ?>" hidden>
+                                                                        <button type="submit" class="btn btn-success btn-icon-split">
+                                                                            <span class="icon text-white-50">
+                                                                                <i class="fas fa-plus"></i>
+                                                                            </span>
+                                                                            <span class="text">Dokumentasi</span>
+                                                                        </button>
+                                                                    </form>
+                                                                </div>
+                                                            <?php } else { ?>
+                                                                <div class="form-group col-2">
+                                                                    <label for="detailDokumentasi" class="col-form-label">Dokumentasi :</label>
                                                                     <a href="<?= base_url('uploads/dokumentasi/' . $surat_keluar['SCAN_SURAT_KELUAR']) ?>" class="btn btn-success btn-icon-split" target="_blank">
                                                                         <span class="icon text-white-50">
                                                                             <i class="fas fa-eye"></i>
                                                                         </span>
                                                                         <span class="text">Lihat</span>
                                                                     </a>
-                                                                <?php } ?>
-                                                            </div>
+                                                                </div>
+                                                            <?php } ?>
                                                             <div class="form-group col-2">
                                                                 <label for="detailDraft" class="col-form-label">Draft :</label>
                                                                 <a href="<?= base_url('uploads/draft/' . $surat_keluar['DRAFT_SURAT_KELUAR']) ?>" class="btn btn-success btn-icon-split">
@@ -183,147 +171,164 @@
                                                                     <span class="text">Unduh</span>
                                                                 </a>
                                                             </div>
-                                                            <div class="form-group col-8">
-                                                                <label for="detailNomorSurat" class="col-form-label">Nomor Surat :</label>
-                                                                <input name='detailNomorSurat' type="text" class="form-control" id="detailNomorSurat" value="<?= $surat_keluar['NOMOR_SURAT_KELUAR'] ?>" readonly>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-row">
-                                                            <div class="form-group col-4">
-                                                                <label for="detailTanggalTerima" class="col-form-label">Tanggal Surat :</label>
-                                                                <input name='detailTanggalTerima' type="text" class="form-control" id="detailTanggalTerima" value="<?= date('d-m-Y', strtotime($surat_keluar['CREATED_AT'])) ?>" readonly>
-                                                            </div>
-                                                            <div class="form-group col-5">
-                                                                <label for="detailPengirim" class="col-form-label">Pembuat Surat :</label>
-                                                                <input name='detailPengirim' type="text" class="form-control" id="detailPengirim" value="<?= session()->get('nama') ?>" readonly>
-                                                            </div>
-                                                            <div class="form-group col-3">
-                                                                <label for="detailStatus" class="col-form-label">Status Surat :</label>
-                                                                <?php
-                                                                if ($surat_keluar['STATUS'] == 'Pengajuan') {
-                                                                    echo "<div class='bg-secondary btn-icon-split form-control'>";
-                                                                } else if ($surat_keluar['STATUS'] == 'Belum terkirim') {
-                                                                    echo "<div class='bg-warning btn-icon-split form-control'>";
-                                                                } else if ($surat_keluar['STATUS'] == 'Sudah terkirim') {
-                                                                    echo "<div class='bg-success btn-icon-split form-control'>";
-                                                                } ?>
-                                                                <span class="text text-white"><?= $surat_keluar['STATUS'] ?></span>
-                                                                <?php echo "</div>" ?>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-row">
-                                                            <div class="form-group col-6">
-                                                                <label for="detailPenerima" class="col-form-label">Penerima :</label>
-                                                                <input name='detailPenerima' type="text" class="form-control" id="detailPenerima" value="<?= $surat_keluar['PENERIMA'] ?>" readonly>
-                                                            </div>
-                                                            <div class="form-group col-6">
-                                                                <label for="detailTTD" class="col-form-label">TTD :</label>
-                                                                <input name='detailTTD' type="text" class="form-control" id="detailTTD" value="<?= $surat_keluar['TTD'] ?>" readonly>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="detailPerihal" class="col-form-label">Perihal :</label>
-                                                            <textarea name='detailPerihal' class="form-control" id="detailPerihal" rows="3" style="resize: none;" readonly><?= $surat_keluar['PERIHAL'] ?></textarea>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Edit Modal -->
-                                    <div class="modal fade" id="editModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog modal-lg" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header bg-gradient-secondary">
-                                                    <h5 class="modal-title text-white" id="exampleModalLabel">Edit Informasi Surat Keluar</h5>
-                                                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <form action="<?= base_url('surat_keluar_anda/edit/' . $surat_keluar['ID_SURAT_KELUAR']) ?>" method="post">
-                                                    <?= csrf_field(); ?>
-                                                    <div class="modal-body">
-                                                        <?php
-                                                        if (session()->getFlashData('error')) {
-                                                            $error = session()->getFlashData('error');
-                                                            if ($surat_keluar['ID_SURAT_KELUAR'] == $error['id']) {
-                                                        ?>
-                                                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                                                    <?= $error['error'] ?>
-                                                                    <button id="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
+                                                            <?php if ($surat_keluar['SCAN_SURAT_KELUAR'] == NULL) { ?>
+                                                                <div class="form-group col-7">
+                                                                <?php } else { ?>
+                                                                    <div class="form-group col-8">
+                                                                    <?php } ?>
+                                                                    <label for="detailNomorSurat" class="col-form-label">Nomor Surat :</label>
+                                                                    <input name='detailNomorSurat' type="text" class="form-control" id="detailNomorSurat" value="<?= $surat_keluar['NOMOR_SURAT_KELUAR'] ?>" readonly>
+                                                                    </div>
                                                                 </div>
-                                                        <?php
-                                                            }
-                                                        }
-                                                        ?>
-                                                        <div class="form-row">
-                                                            <div class="form-group col-6">
-                                                                <label for="detailNomorSurat" class="col-form-label">Nomor Surat :</label>
-                                                                <input name='nomor_surat' type="text" class="form-control" id="detailNomorSurat" value="<?= $surat_keluar['NOMOR_SURAT_KELUAR'] ?>" readonly>
-                                                            </div>
-                                                            <div class="form-group col-3">
-                                                                <label for="detailTanggalSurat" class="col-form-label">Tanggal Surat :</label>
-                                                                <input name='tanggal_surat' type="text" class="form-control" id="detailTanggalSurat" value="<?= date('d-m-Y', strtotime($surat_keluar['CREATED_AT'])) ?>" readonly>
-                                                            </div>
-                                                            <div class="form-group col-3">
-                                                                <label for="detailPembuat" class="col-form-label">Pembuat Surat :</label>
-                                                                <input name='pengirim' type="text" class="form-control" id="detailPembuat" value="<?= session()->get('nama') ?>" readonly>
-                                                            </div>
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-4">
+                                                                        <label for="detailTanggalTerima" class="col-form-label">Tanggal Surat :</label>
+                                                                        <input name='detailTanggalTerima' type="text" class="form-control" id="detailTanggalTerima" value="<?= date('d-m-Y', strtotime($surat_keluar['CREATED_AT'])) ?>" readonly>
+                                                                    </div>
+                                                                    <div class="form-group col-5">
+                                                                        <label for="detailPengirim" class="col-form-label">Pembuat Surat :</label>
+                                                                        <input name='detailPengirim' type="text" class="form-control" id="detailPengirim" value="<?= session()->get('nama') ?>" readonly>
+                                                                    </div>
+                                                                    <div class="form-group col-3">
+                                                                        <label for="detailStatus" class="col-form-label">Status Surat :</label>
+                                                                        <?php
+                                                                        if ($surat_keluar['STATUS'] == 'Pengajuan') {
+                                                                            echo "<div class='bg-secondary btn-icon-split form-control'>";
+                                                                        } else if ($surat_keluar['STATUS'] == 'Belum terkirim') {
+                                                                            echo "<div class='bg-warning btn-icon-split form-control'>";
+                                                                        } else if ($surat_keluar['STATUS'] == 'Sudah terkirim') {
+                                                                            echo "<div class='bg-success btn-icon-split form-control'>";
+                                                                        } ?>
+                                                                        <span class="text text-white"><?= $surat_keluar['STATUS'] ?></span>
+                                                                        <?php echo "</div>" ?>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-6">
+                                                                        <label for="detailPenerima" class="col-form-label">Penerima :</label>
+                                                                        <input name='detailPenerima' type="text" class="form-control" id="detailPenerima" value="<?= $surat_keluar['PENERIMA'] ?>" readonly>
+                                                                    </div>
+                                                                    <div class="form-group col-6">
+                                                                        <label for="detailTTD" class="col-form-label">TTD :</label>
+                                                                        <input name='detailTTD' type="text" class="form-control" id="detailTTD" value="<?= $surat_keluar['TTD'] ?>" readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="detailPerihal" class="col-form-label">Perihal :</label>
+                                                                    <textarea name='detailPerihal' class="form-control" id="detailPerihal" rows="3" style="resize: none;" readonly><?= $surat_keluar['PERIHAL'] ?></textarea>
+                                                                </div>
                                                         </div>
-                                                        <div class="form-row">
-                                                            <div class="form-group col-4">
-                                                                <label for="detailPenerima" class="col-form-label">Penerima :</label>
-                                                                <input name='penerima' type="text" class="form-control" id="detailPenerima" value="<?= $surat_keluar['PENERIMA'] ?>" required>
-                                                            </div>
-                                                            <div class="form-group col-4">
-                                                                <label for="detailTTD" class="col-form-label">TTD :</label>
-                                                                <input name='ttd' type="text" class="form-control" id="detailTTD" value="<?= $surat_keluar['TTD'] ?>" required>
-                                                            </div>
-                                                            <div class="form-group col-4">
-                                                                <label for="detailTTD" class="col-form-label">Status Surat :</label>
-                                                                <select name="status" id="pilihStatus" class="form-control">
-                                                                    <option value="<?= $surat_keluar['STATUS'] ?>"><?= $surat_keluar['STATUS'] ?> </option>
-                                                                    <?php
-                                                                    $optionStat = array('Belum terkirim', 'Sudah terkirim');
-                                                                    if (($key = array_search($surat_keluar['STATUS'], $optionStat)) !== false) {
-                                                                        unset($optionStat[$key]);
-                                                                    }
-                                                                    for ($x = 0; $x <= count($optionStat); $x++) {
-                                                                        if ($optionStat[$x] != NULL) {
-                                                                            echo "<option value='$optionStat[$x]'>$optionStat[$x]</option>";
-                                                                        }
-                                                                    }
-                                                                    ?>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-row">
-
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="detailPerihal" class="col-form-label">Perihal :</label>
-                                                            <textarea name='perihal' class="form-control" id="detailPerihal" rows="3" style="resize: none;" required><?= $surat_keluar['PERIHAL'] ?></textarea>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                                                         </div>
                                                     </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                                        <button type="submit" class="btn btn-primary">Simpan</button>
-                                                    </div>
-                                                </form>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                <?php endforeach;
-                                ?>
-                            </tbody>
-                        </table>
-                    </div>
+
+                                            <!-- Edit Modal -->
+                                            <div class="modal fade" id="editModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-lg" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header bg-gradient-secondary">
+                                                            <h5 class="modal-title text-white" id="exampleModalLabel">Edit Informasi Surat Keluar</h5>
+                                                            <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <form action="<?= base_url('surat_keluar_anda/edit/' . $surat_keluar['ID_SURAT_KELUAR']) ?>" method="post">
+                                                            <?= csrf_field(); ?>
+                                                            <div class="modal-body">
+                                                                <?php
+                                                                if (session()->getFlashData('error')) {
+                                                                    $error = session()->getFlashData('error');
+                                                                    if ($surat_keluar['ID_SURAT_KELUAR'] == $error['id']) {
+                                                                ?>
+                                                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                                                            <?= $error['error'] ?>
+                                                                            <button id="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                <?php
+                                                                    }
+                                                                }
+                                                                ?>
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-6">
+                                                                        <label for="detailNomorSurat" class="col-form-label">Nomor Surat :</label>
+                                                                        <input name='nomor_surat' type="text" class="form-control" id="detailNomorSurat" value="<?= $surat_keluar['NOMOR_SURAT_KELUAR'] ?>" readonly>
+                                                                    </div>
+                                                                    <div class="form-group col-3">
+                                                                        <label for="detailTanggalSurat" class="col-form-label">Tanggal Surat :</label>
+                                                                        <input name='tanggal_surat' type="text" class="form-control" id="detailTanggalSurat" value="<?= date('d-m-Y', strtotime($surat_keluar['CREATED_AT'])) ?>" readonly>
+                                                                    </div>
+                                                                    <div class="form-group col-3">
+                                                                        <label for="detailPembuat" class="col-form-label">Pembuat Surat :</label>
+                                                                        <input name='pengirim' type="text" class="form-control" id="detailPembuat" value="<?= session()->get('nama') ?>" readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-row">
+                                                                    <div class="form-group col-4">
+                                                                        <label for="detailPenerima" class="col-form-label">Penerima :</label>
+                                                                        <input name='penerima' type="text" class="form-control" id="detailPenerima" value="<?= $surat_keluar['PENERIMA'] ?>" required>
+                                                                    </div>
+                                                                    <div class="form-group col-4">
+                                                                        <label for="detailTTD" class="col-form-label">TTD :</label>
+                                                                        <input name='ttd' type="text" class="form-control" id="detailTTD" value="<?= $surat_keluar['TTD'] ?>" required>
+                                                                    </div>
+                                                                    <div class="form-group col-4">
+                                                                        <label for="detailStatus" class="col-form-label">Status Surat :</label>
+                                                                        <?php if ($surat_keluar['STATUS'] == "Pengajuan") { ?>
+                                                                            <input name='status' type="text" class="form-control" id="detailStatus" value="<?= $surat_keluar['STATUS'] ?>" readonly>
+                                                                        <?php } else { ?>
+                                                                            <select name="status" id="pilihStatus" class="form-control">
+                                                                                <option value="<?= $surat_keluar['STATUS'] ?>"><?= $surat_keluar['STATUS'] ?> </option>
+                                                                                <?php
+                                                                                $optionStat = array('Belum terkirim', 'Sudah terkirim');
+                                                                                if (($key = array_search($surat_keluar['STATUS'], $optionStat)) !== false) {
+                                                                                    unset($optionStat[$key]);
+                                                                                }
+                                                                                for ($x = 0; $x <= count($optionStat); $x++) {
+                                                                                    if ($optionStat[$x] != NULL) {
+                                                                                        echo "<option value='$optionStat[$x]'>$optionStat[$x]</option>";
+                                                                                    }
+                                                                                }
+                                                                                ?>
+                                                                            </select>
+                                                                        <?php } ?>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-row">
+
+                                                                </div>
+                                                                <div class="form-group">
+                                                                    <label for="detailPerihal" class="col-form-label">Perihal :</label>
+                                                                    <textarea name='perihal' class="form-control" id="detailPerihal" rows="3" style="resize: none;" required><?= $surat_keluar['PERIHAL'] ?></textarea>
+                                                                </div>
+
+                                                                <div class="form-group">
+                                                                    <label for="detailPerihal" class="col-form-label">Perihal :</label>
+                                                                    <textarea name='perihal' class="form-control" id="detailPerihal" rows="3" style="resize: none;" required><?= $surat_keluar['PERIHAL'] ?></textarea>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                                                <button type="submit" class="btn btn-primary">Simpan</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        <?php endforeach;
+                                        ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    <?php } else { ?>
+                        <div class="d-flex justify-content-center">
+                            <h4>Tidak ada surat keluar yang anda buat</h4>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div>

@@ -35,8 +35,13 @@
                     ?>
                     <form id="formDokumentasiSuratKeluar" action="<?= base_url('dokumentasi_surat_keluar/update_dokumentasi') ?>" method="post" enctype="multipart/form-data" onkeydown="return event.key != 'Enter';" onchange="validate();">
                         <div class="form-group">
+                            <?php if (session()->getFlashData('id')) {
+                                $data = session()->getFlashData('id')[0];
+                            } ?>
                             <label for="inputNoSurat" class="col-form-label">Nomor Surat :</label>
-                            <input type="text" class="form-control" id="nomor_surat" name="nomor_surat_keluar" placeholder="Nomor surat">
+                            <input type="text" class="form-control" id="nomor_surat" name="nomor_surat_keluar" placeholder="Nomor surat" value="<?php if (isset($data)) {
+                                                                                                                                                    echo $data['NOMOR_SURAT_KELUAR'];
+                                                                                                                                                } ?>">
                             <div id="msg"></div>
                         </div>
                         <div class="form-row">
@@ -117,6 +122,35 @@
             searchField: 'text'
         });
 
+        $('#msg').hide();
+        if ($('#nomor_surat').val() != null || $('#nomor_surat').val() != "") {
+            $.ajax({
+                type: 'post',
+                url: "<?= site_url('check-nomor-surat-availability') ?>",
+                data: JSON.stringify({
+                    nomor_surat: $('#nomor_surat').val()
+                }),
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'html',
+                cache: false,
+                beforeSend: function(f) {
+                    $('#msg').show();
+                    $('#msg').html('Mencari...');
+                },
+                success: function(msg) {
+                    $('#msg').show();
+                    $("#msg").html(msg);
+                    validate();
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    $('#msg').show();
+                    $("#msg").html(textStatus + " " + errorThrown);
+                }
+            });
+        } else {
+            validate();
+        }
+
         $("#nomor_surat").on("input", function(e) {
             $('#msg').hide();
             if ($('#nomor_surat').val() != null || $('#nomor_surat').val() != "") {
@@ -148,5 +182,11 @@
             }
         });
     });
+
+    setTimeout("CallButton()", 2000);
+
+    function CallButton() {
+        document.getElementById("closeAlert").click();
+    }
 </script>
 <?= $this->endSection() ?>

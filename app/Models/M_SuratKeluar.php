@@ -98,6 +98,27 @@ class M_SuratKeluar extends Model
         return false;
     }
 
+    public function get_surat_keluar_by_tahun($tahun = false)
+    {
+        if ($tahun === false) {
+            return $this->findAll();
+        } else {
+            $sql = "SELECT * FROM surat_keluar WHERE TANGGAL_SURAT LIKE '$tahun%'";
+            $query = $this->db->query($sql);
+            $row = $query->getResultArray();
+            return $row;
+        }
+    }
+
+    public function getSuratKeluarbyID($id = false)
+    {
+        if ($id === false) {
+            return $this->findAll();
+        } else {
+            return $this->getWhere(['id_surat_keluar' => $id])->getResultArray();
+        }
+    }
+
     // // Dates
     // protected $useTimestamps = false;
     // protected $dateFormat    = 'datetime';

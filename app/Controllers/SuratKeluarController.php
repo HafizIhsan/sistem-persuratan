@@ -74,8 +74,13 @@ class SuratKeluarController extends BaseController
 
     public function surat_keluar_excel()
     {
-        $dataSuratKeluar = $this->surat_keluar->findAll();
         $dataPengguna = $this->pengguna->findAll();
+        $tahun = $this->request->getPost('tahun');
+        if ($tahun != 'Semua') {
+            $dataSuratKeluar = $this->surat_keluar->get_surat_keluar_by_tahun($tahun);
+        } else {
+            $dataSuratKeluar = $this->surat_keluar->findAll();
+        }
 
         if (count($dataSuratKeluar) == 0) {
             return redirect()->to(base_url('data_surat_keluar'))->with('error', 'Tidak ada data surat');
@@ -92,7 +97,8 @@ class SuratKeluarController extends BaseController
             ->setCellValue('F1', 'Perihal')
             ->setCellValue('G1', 'Status')
             ->setCellValue('H1', 'Draft Final')
-            ->setCellValue('I1', 'Dokumentasi');
+            ->setCellValue('I1', 'Dokumentasi')
+            ->setCellValue('J1', 'Created at');
 
         $column = 2;
         // tulis data mobil ke cell
@@ -112,12 +118,13 @@ class SuratKeluarController extends BaseController
                 ->setCellValue('F' . $column, $data['PERIHAL'])
                 ->setCellValue('G' . $column, $data['STATUS'])
                 ->setCellValue('H' . $column, base_url('uploads/draft/' . $data['DRAFT_SURAT_KELUAR']))
-                ->setCellValue('I' . $column, base_url('uploads/dokumentasi/' . $data['SCAN_SURAT_KELUAR']));
+                ->setCellValue('I' . $column, base_url('uploads/dokumentasi/' . $data['SCAN_SURAT_KELUAR']))
+                ->setCellValue('J' . $column, date('d-m-Y H:i:s', strtotime($data['CREATED_AT'])));
             $column++;
         }
         // tulis dalam format .xlsx
         $writer = new Xlsx($spreadsheet);
-        $fileName = 'Data Surat Keluar (' . date("d-m-Y") . ')';
+        $fileName = 'Data Surat Keluar ' . $tahun . ' (exported at ' . date("d-m-Y") . ')';
 
         // Redirect hasil generate xlsx ke web client
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
@@ -284,6 +291,18 @@ class SuratKeluarController extends BaseController
             ]);
 
             return redirect()->to(base_url('surat_keluar_anda'))->with('success', 'Data berhasil diubah');
+        }
+    }
+
+    function to_dokumentasi_surat_keluar()
+    {
+        $id = $this->request->getPost('id_surat_keluar');
+        $data_surat_keluar = $this->surat_keluar->getSuratKeluarbyID($id);
+
+        if (session()->get('id_role') == 1) {
+            return redirect()->to(base_url('dokumentasi_surat_keluar'))->with('id', $data_surat_keluar);
+        } else if (session()->get('id_role') == 2) {
+            return redirect()->to(base_url('dokumentasi_surat_keluar_p'))->with('id', $data_surat_keluar);
         }
     }
 }

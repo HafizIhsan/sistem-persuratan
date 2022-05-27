@@ -186,8 +186,13 @@ class SuratMasukController extends BaseController
 
     public function surat_masuk_excel()
     {
-        $dataSuratMasuk = $this->surat_masuk->findAll();
         $dataPengguna = $this->pengguna->findAll();
+        $tahun = $this->request->getPost('tahun');
+        if ($tahun != 'Semua') {
+            $dataSuratMasuk = $this->surat_masuk->get_surat_masuk_by_tahun($tahun);
+        } else {
+            $dataSuratMasuk = $this->surat_masuk->findAll();
+        }
 
         if (count($dataSuratMasuk) == 0) {
             return redirect()->to(base_url('data_surat_masuk'))->with('error', 'Tidak ada data surat masuk');
@@ -204,7 +209,8 @@ class SuratMasukController extends BaseController
             ->setCellValue('F1', 'Petugas')
             ->setCellValue('G1', 'Uraian Penugasan')
             ->setCellValue('H1', 'Tenggat Penugasan')
-            ->setCellValue('I1', 'Dokumentasi');
+            ->setCellValue('I1', 'Dokumentasi')
+            ->setCellValue('J1', 'Created at');
 
         $column = 2;
         // tulis data mobil ke cell
@@ -224,12 +230,13 @@ class SuratMasukController extends BaseController
                 ->setCellValue('F' . $column, $nama)
                 ->setCellValue('G' . $column, $data['URAIAN_PENUGASAN'])
                 ->setCellValue('H' . $column, date('d-m-Y H:i:s', strtotime($data['TENGGAT_PENUGASAN'])))
-                ->setCellValue('I' . $column, base_url('uploads/dokumentasi/' . $data['SCAN_SURAT_MASUK']));
+                ->setCellValue('I' . $column, base_url('uploads/dokumentasi/' . $data['SCAN_SURAT_MASUK']))
+                ->setCellValue('J' . $column, date('d-m-Y H:i:s', strtotime($data['CREATED_AT'])));
             $column++;
         }
         // tulis dalam format .xlsx
         $writer = new Xlsx($spreadsheet);
-        $fileName = 'Data Surat Masuk (' . date("d-m-Y") . ')';
+        $fileName = 'Data Surat Masuk ' . $tahun . ' (exported at ' . date("d-m-Y") . ')';
 
         // Redirect hasil generate xlsx ke web client
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

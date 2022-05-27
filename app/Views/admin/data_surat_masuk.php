@@ -20,7 +20,7 @@
                             <option selected>Semua</option>
                             <?php
                             foreach ($surat_masuk as $i) {
-                                $year[] = date('Y', strtotime($i['CREATED_AT']));
+                                $year[] = date('Y', strtotime($i['TANGGAL_TERIMA']));
                             };
                             if (isset($year)) {
                                 $year_filter = array_unique($year);
@@ -68,14 +68,55 @@
                             </span>
                             <span class="text">Tambah</span>
                         </a>
-                        <form action="<?= base_url('SuratMasukController/surat_masuk_excel') ?>" method="POST">
-                            <button type="submit" class="btn btn-success btn-icon-split btn-sm ml-1">
-                                <span class="icon text-white-50">
-                                    <i class="fas fa-file-excel"></i>
-                                </span>
-                                <span class="text">Export</span>
-                            </button>
-                        </form>
+
+                        <button type="button" class="btn btn-success btn-icon-split btn-sm ml-1" data-toggle="modal" data-target="#exportModal">
+                            <span class="icon text-white-50">
+                                <i class="fas fa-file-excel"></i>
+                            </span>
+                            <span class="text">Export</span>
+                        </button>
+
+                        <!-- Export Modal -->
+                        <div class="modal fade" id="exportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-gradient-secondary">
+                                        <h5 class="modal-title text-white" id="exampleModalLabel">Export Data Surat Masuk</h5>
+                                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </div>
+                                    <form action="<?= base_url('SuratMasukController/surat_masuk_excel') ?>" method="POST">
+                                        <div class="modal-body">
+                                            <div class="form-group">
+                                                <label for="pilihTahun" class="col-form-label mr-3">Pilih Tahun</label>
+                                                <select id="pilihTahun" class="form-control custom-select-sm" name="tahun">
+                                                    <option selected>Semua</option>
+                                                    <?php
+                                                    foreach ($surat_masuk as $i) {
+                                                        $year[] = date('Y', strtotime($i['TANGGAL_TERIMA']));
+                                                    };
+                                                    if (isset($year)) {
+                                                        $year_filter = array_unique($year);
+                                                        for ($i = 0; $i < count($year_filter); $i++) {
+                                                    ?>
+                                                            <option value="<?= $year_filter[$i] ?>"><?= $year_filter[$i] ?></option>
+                                                    <?php
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Batal</button>
+                                            <button class="btn btn-primary" type="submit">Export</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <hr>
                     <div class="table-responsive table-hover">

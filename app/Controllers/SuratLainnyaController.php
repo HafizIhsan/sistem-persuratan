@@ -123,7 +123,7 @@ class SuratLainnyaController extends BaseController
         }
         // tulis dalam format .xlsx
         $writer = new Xlsx($spreadsheet);
-        $fileName = 'Data Surat Lainnya (' . date("d-m-Y") . ')';
+        $fileName = 'Data Surat Lainnya (exported at' . date("d-m-Y") . ')';
 
         // Redirect hasil generate xlsx ke web client
         header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');

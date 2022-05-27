@@ -140,14 +140,26 @@
                                         <th>No</th>
                                         <th>Nomor Surat</th>
                                         <th>Perihal</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php foreach ($surat_keluar_saya as $key => $surat_keluar_saya) : ?>
                                         <tr>
                                             <td><?= ++$key ?></td>
-                                            <td><?= $surat_keluar_saya['NOMOR_SURAT_KELUAR'] ?></td>
+                                            <td style="min-width: 30vh ;"><?= $surat_keluar_saya['NOMOR_SURAT_KELUAR'] ?></td>
                                             <td><?= $surat_keluar_saya['PERIHAL'] ?></td>
+                                            <td>
+                                                <form action="<?= base_url('SuratKeluarController/to_dokumentasi_surat_keluar') ?>" method="POST">
+                                                    <input type="text" name="id_surat_keluar" value="<?= $surat_keluar_saya['ID_SURAT_KELUAR'] ?>" hidden>
+                                                    <button type="submit" class="btn btn-success btn-icon-split btn-sm">
+                                                        <span class="icon text-white-50">
+                                                            <i class="fas fa-plus"></i>
+                                                        </span>
+                                                        <span class="text">Dokumentasi</span>
+                                                    </button>
+                                                </form>
+                                            </td>
                                         </tr>
                                     <?php endforeach; ?>
                                 </tbody>
