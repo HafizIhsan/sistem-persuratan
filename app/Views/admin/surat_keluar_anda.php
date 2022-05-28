@@ -305,11 +305,6 @@
                                                                     <label for="detailPerihal" class="col-form-label">Perihal :</label>
                                                                     <textarea name='perihal' class="form-control" id="detailPerihal" rows="3" style="resize: none;" required><?= $surat_keluar['PERIHAL'] ?></textarea>
                                                                 </div>
-
-                                                                <div class="form-group">
-                                                                    <label for="detailPerihal" class="col-form-label">Perihal :</label>
-                                                                    <textarea name='perihal' class="form-control" id="detailPerihal" rows="3" style="resize: none;" required><?= $surat_keluar['PERIHAL'] ?></textarea>
-                                                                </div>
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>

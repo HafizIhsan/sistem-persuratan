@@ -10,12 +10,6 @@ class KlasifikasiSuratController extends BaseController
 {
     protected $klasifikasi_surat;
 
-    public $output = [
-        'sukses'    => false,
-        'pesan'     => '',
-        'data'      => []
-    ];
-
     function __construct()
     {
         $this->klasifikasi_surat = new M_KlasifikasiSurat();
@@ -24,6 +18,11 @@ class KlasifikasiSuratController extends BaseController
 
     public function index()
     {
+        if (session()->get('id_role') != 1) {
+            echo 'Access denied';
+            exit;
+        }
+
         $data['klasifikasi_surat'] = $this->klasifikasi_surat->findAll();
         $data['kategori_klasifikasi'] = $this->kategori_klasifikasi->findAll();
 
@@ -35,6 +34,11 @@ class KlasifikasiSuratController extends BaseController
 
     public function klasifikasi_surat()
     {
+
+        if (session()->get('id_role') != 2) {
+            echo 'Access denied';
+            exit;
+        }
         $data['klasifikasi_surat'] = $this->klasifikasi_surat->findAll();
         $data['kategori_klasifikasi'] = $this->kategori_klasifikasi->findAll();
 

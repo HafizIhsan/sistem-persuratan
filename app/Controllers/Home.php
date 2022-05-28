@@ -31,6 +31,11 @@ class Home extends BaseController
 
     public function dashboard_admin()
     {
+        if (session()->get('id_role') != 1) {
+            echo 'Access denied';
+            exit;
+        }
+
         $surat_m = new M_SuratMasuk();
         $surat_k = new M_SuratKeluar();
 
@@ -52,6 +57,11 @@ class Home extends BaseController
 
     public function dashboard_pegawai()
     {
+        if (session()->get('id_role') != 2) {
+            echo 'Access denied';
+            exit;
+        }
+
         $surat_k = new M_SuratKeluar();
 
         $id = session()->get('id_pengguna');
@@ -66,16 +76,29 @@ class Home extends BaseController
 
     public function dokumentasi_surat_keluar()
     {
+        if (session()->get('id_role') != 1) {
+            echo 'Access denied';
+            exit;
+        }
         return view('admin/dokumentasi_surat_keluar');
     }
 
     public function dokumentasi_surat_keluar_p()
     {
+        if (session()->get('id_role') != 2) {
+            echo 'Access denied';
+            exit;
+        }
         return view('pegawai/dokumentasi_surat_keluar_p');
     }
 
     public function dokumentasi_surat_masuk()
     {
+        if (session()->get('id_role') != 1) {
+            echo 'Access denied';
+            exit;
+        }
+
         $id_role = 1;
         $pengguna = $this->pengguna->findAll();
         $data['admin'] = array_filter($pengguna, function ($value) use ($id_role) {
@@ -83,11 +106,6 @@ class Home extends BaseController
             return ($value["ID_ROLE"] == $id_role);
         });
         return view('admin/dokumentasi_surat_masuk', $data);
-    }
-
-    public function data_surat_keluar()
-    {
-        return view('admin/data_surat_keluar');
     }
 
     public function profile()

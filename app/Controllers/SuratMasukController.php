@@ -14,6 +14,10 @@ class SuratMasukController extends BaseController
 
     function __construct()
     {
+        if (session()->get('id_role') != 1) {
+            echo 'Access denied';
+            exit;
+        }
         $this->surat_masuk = new M_SuratMasuk();
         $this->pengguna = new M_Pengguna();
     }
@@ -71,7 +75,7 @@ class SuratMasukController extends BaseController
             $scan_surat_masuk->move('uploads/dokumentasi');
             $tenggat_penugasan = date('Y-m-d', strtotime($this->request->getPost('tenggat_d'))) . " " . date('H:i:s', strtotime($this->request->getPost('tenggat_t')));
 
-            if ($petugas != "") {
+            if ($petugas != "" || $petugas != NULL) {
                 $this->surat_masuk->insert([
                     'id_pengguna' => session()->get('id_pengguna'),
                     'nomor_surat_masuk' => $this->request->getPost('nomor_surat'),
@@ -85,6 +89,19 @@ class SuratMasukController extends BaseController
                     'tenggat_penugasan' => $tenggat_penugasan,
                     'created_at' => date('Y-m-d H:i:s')
                 ]);
+
+                $data_petugas = $this->pengguna->getPengguna($petugas);
+                $message =
+                    "<p>Berikut penugasan surat masuk untuk anda yang harus segera ditindaklanjuti</p>" .
+                    "<p>Nomor surat : " . $this->request->getPost('nomor_surat') . "</p>" .
+                    "<p>Pengirim : " . $this->request->getPost('instansi_pengirim') . "</p>" .
+                    "<p>Uraian penugasan : " . $this->request->getPost('uraian_penugasan') . "</p>" .
+                    "<p>Tenggat penugasan : " . date('d-m-Y', strtotime($this->request->getPost('tenggat_d'))) . " " . date('H:i', strtotime($this->request->getPost('tenggat_t'))) . " WIB</p>" .
+                    "<p>Detail selengkapnya : " . base_url() . "</p>" .
+                    "<hr><p>Note: Segera ditindaklanjuti kemudian memperbaharui status penugasan di " . base_url() . "</p>";
+                $to = $data_petugas[0]['EMAIL'];
+                $title = 'Penugasan Surat Masuk';
+                $this->_sendEmail($to, $title, $message);
             } else {
                 $this->surat_masuk->insert([
                     'id_pengguna' => session()->get('id_pengguna'),
@@ -153,6 +170,7 @@ class SuratMasukController extends BaseController
 
     public function tambah_penugasan($id)
     {
+        $petugas = $this->request->getPost('petugas');
         $tenggat_penugasan = date('Y-m-d', strtotime($this->request->getPost('tenggat_d'))) . " " . date('H:i:s', strtotime($this->request->getPost('tenggat_t')));
 
         helper(['form', 'url']);
@@ -179,6 +197,19 @@ class SuratMasukController extends BaseController
                 'status' => 'Dalam proses',
                 'tenggat_penugasan' => $tenggat_penugasan
             ]);
+
+            $data_petugas = $this->pengguna->getPengguna($petugas);
+            $message =
+                "<p>Berikut penugasan surat masuk untuk anda yang harus segera ditindaklanjuti</p>" .
+                "<p>Nomor surat : " . $this->request->getPost('nomor_surat') . "</p>" .
+                "<p>Pengirim : " . $this->request->getPost('instansi_pengirim') . "</p>" .
+                "<p>Uraian penugasan : " . $this->request->getPost('uraian_penugasan') . "</p>" .
+                "<p>Tenggat penugasan : " . date('d-m-Y', strtotime($this->request->getPost('tenggat_d'))) . " " . date('H:i', strtotime($this->request->getPost('tenggat_t'))) . " WIB</p>" .
+                "<p>Detail selengkapnya : " . base_url() . "</p>" .
+                "<hr><p>Note: Segera ditindaklanjuti kemudian memperbaharui status penugasan di " . base_url() . "</p>";
+            $to = $data_petugas[0]['EMAIL'];
+            $title = 'Penugasan Surat Masuk';
+            $this->_sendEmail($to, $title, $message);
 
             return redirect()->to(base_url('data_surat_masuk'))->with('success', 'Penugasan berhasil dilakukan');
         }
@@ -260,5 +291,20 @@ class SuratMasukController extends BaseController
         ]);
 
         return redirect()->to(base_url('penugasan_surat_masuk'))->with('success', 'Status penugasan berhasil diubah');
+    }
+
+    private function _sendEmail($to, $title, $message)
+    {
+        $email = \Config\Services::email();
+        $email->setFrom('persuratan.sistem@gmail.com', 'Sistem Persuratan : Biro Humas & Hukum BPS');
+        $email->setTo($to);
+        $email->setSubject($title);
+        $email->setMessage($message);
+
+        if ($email->send()) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

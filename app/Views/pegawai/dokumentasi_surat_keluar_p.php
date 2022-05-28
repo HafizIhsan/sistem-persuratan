@@ -47,7 +47,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="pilihStatusSurat" class="col-form-label">Status Surat :</label>
-                                <select id="pilihStatusSurat" class="form-control" name="status" placeholder="Pilih petugas">
+                                <select id="pilihStatusSurat" class="form-control" name="status" placeholder="Pilih status">
                                     <option value="">Pilih status...</option>
                                     <option value="Belum terkirim">Belum Terkirim</option>
                                     <option value="Sudah terkirim">Sudah Terkirim</option>

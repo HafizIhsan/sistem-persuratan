@@ -21,6 +21,11 @@ class SuratKeluarController extends BaseController
 
     function index()
     {
+        if (session()->get('id_role') != 1) {
+            echo 'Access denied';
+            exit;
+        }
+
         $data['surat_keluar'] = $this->surat_keluar->findAll();
         $data['pengguna'] = $this->pengguna->findAll();
         return view('admin/data_surat_keluar', $data);
@@ -74,6 +79,11 @@ class SuratKeluarController extends BaseController
 
     public function surat_keluar_excel()
     {
+        if (session()->get('id_role') != 1) {
+            echo 'Access denied';
+            exit;
+        }
+
         $dataPengguna = $this->pengguna->findAll();
         $tahun = $this->request->getPost('tahun');
         if ($tahun != 'Semua') {
@@ -92,7 +102,7 @@ class SuratKeluarController extends BaseController
             ->setCellValue('A1', 'Nomor Surat')
             ->setCellValue('B1', 'Tanggal Surat')
             ->setCellValue('C1', 'Pembuat')
-            ->setCellValue('D1', 'Penerima')
+            ->setCellValue('D1', 'Ditujukan kepada')
             ->setCellValue('E1', 'TTD')
             ->setCellValue('F1', 'Perihal')
             ->setCellValue('G1', 'Status')

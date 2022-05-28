@@ -175,6 +175,8 @@
                                                             <form action="<?= base_url('data_surat_masuk/tambah_penugasan/' . $surat_masuk['ID_SURAT_MASUK']) ?>" method="post">
                                                                 <?= csrf_field(); ?>
                                                                 <div class="modal-body">
+                                                                    <input type="text" name="nomor_surat" value="<?= $surat_masuk['NOMOR_SURAT_MASUK'] ?>" hidden>
+                                                                    <input type="text" name="instansi_pengirim" value="<?= $surat_masuk['INSTANSI_PENGIRIM'] ?>" hidden>
                                                                     <div class="form-group row">
                                                                         <label for="pilihPetugas" class="col-sm-2 col-form-label">Petugas</label>
                                                                         <div class="col-sm-5">

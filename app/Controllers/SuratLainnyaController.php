@@ -15,6 +15,11 @@ class SuratLainnyaController extends BaseController
 
     public function __construct()
     {
+        if (session()->get('id_role') != 1) {
+            echo 'Access denied';
+            exit;
+        }
+
         $this->surat_lainnya = new M_SuratLainnya();
         $this->pengguna = new M_Pengguna();
         $this->jenis_surat_lainnya = new M_JenisSuratLainnya();
@@ -176,7 +181,7 @@ class SuratLainnyaController extends BaseController
                 return redirect()->to(base_url('data_surat_masuk'))->with('error', 'Penulisan nomor surat salah');
             }
             $scan_surat_lainnya = $this->request->getFile('file');
-            $scan_surat_lainnya->move('uploads/dokumentasi', $this->request->getPost('nomor_surat'));
+            $scan_surat_lainnya->move('uploads/dokumentasi');
 
             $this->surat_lainnya->insert([
                 'id_pengguna' => session()->get('id_pengguna'),

@@ -61,17 +61,17 @@
                         </div>
                         <div class="form-row">
                             <div class="form-group col-md-6">
-                                <label for="inputPenerima">Penerima</label>
-                                <input onkeydown="return event.key != 'Enter';" type="text" class="form-control" id="inputPenerima" placeholder="" name="penerima" required>
+                                <label for="inputPenerima">Ditujukan kepada</label>
+                                <input onkeydown="return event.key != 'Enter';" type="text" class="form-control" id="inputPenerima" placeholder="Ditujukan kepada" name="penerima" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPenandatangan">TTD</label>
-                                <input onkeydown="return event.key != 'Enter';" type="text" class="form-control" id="inputTTD" name="ttd" placeholder="" required>
+                                <input onkeydown="return event.key != 'Enter';" type="text" class="form-control" id="inputTTD" name="ttd" placeholder="Penandatangan" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="inputPerihal">Perihal</label>
-                            <textarea class="form-control" id="inputPerihal" name="perihal" rows="2" required></textarea>
+                            <textarea class="form-control" id="inputPerihal" name="perihal" rows="2" placeholder="Perihal" required></textarea>
                         </div>
                         <hr>
                         <div class="form-group">

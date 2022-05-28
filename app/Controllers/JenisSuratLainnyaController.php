@@ -12,6 +12,11 @@ class JenisSuratLainnyaController extends BaseController
 
     function __construct()
     {
+        if (session()->get('id_role') != 1) {
+            echo 'Access denied';
+            exit;
+        }
+
         $this->jenis_surat_lainnya = new M_JenisSuratLainnya();
     }
 

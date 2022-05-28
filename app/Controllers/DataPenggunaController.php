@@ -12,6 +12,11 @@ class DataPenggunaController extends BaseController
 
     function __construct()
     {
+        if (session()->get('id_role') != 1) {
+            echo 'Access denied';
+            exit;
+        }
+
         $this->pengguna = new M_Pengguna();
         $this->role = new M_Role();
     }

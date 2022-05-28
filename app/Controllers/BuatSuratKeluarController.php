@@ -18,12 +18,20 @@ class BuatSuratKeluarController extends BaseController
 
     public function index()
     {
+        if (session()->get('id_role') != 1) {
+            echo 'Access denied';
+            exit;
+        }
         $data['klasifikasi_surat'] = $this->klasifikasi_surat->findAll();
         return view('admin/buat_surat_keluar', $data);
     }
 
     public function index_p()
     {
+        if (session()->get('id_role') != 2) {
+            echo 'Access denied';
+            exit;
+        }
         $data['klasifikasi_surat'] = $this->klasifikasi_surat->findAll();
         return view('pegawai/buat_surat_keluar_p', $data);
     }
@@ -103,11 +111,40 @@ class BuatSuratKeluarController extends BaseController
                 ]);
             }
 
+            $message =
+                "<p>Anda telah membuat surat keluar dengan</p><br>" .
+                "<p>Nomor surat : " . $this->request->getPost('nomor_surat_keluar') . "</p>" .
+                "<p>Tanggal surat : " . date('d-m-Y', strtotime($this->request->getPost('tanggal_surat'))) . "</p>" .
+                "<p>Ditujukan kepada : " . $this->request->getPost('penerima') . "</p>" .
+                "<p>TTD : " . $this->request->getPost('ttd') . "</p>" .
+                "<p>Perihal : " . $this->request->getPost('perihal') . "</p>" .
+                "<p>Detail selengkapnya : " . base_url() . "</p>" .
+
+                "<br><p style='font-weight:bold;'>Penting: Segera lakukan scan terhadap surat keluar setelah selesai di tanda tangani dan upload hasil scan surat di " . base_url() . "</p>";
+            $to = session()->get('email');
+            $title = 'Dokumentasi Surat Keluar Anda';
+            $this->_sendEmail($to, $title, $message);
+
             if ($role == 1) {
                 return redirect()->to(base_url('buat_surat_keluar'))->with('success', 'Surat keluar berhasil dibuat');
             } else if ($role == 2) {
                 return redirect()->to(base_url('buat_surat_keluar_p'))->with('success', 'Surat keluar berhasil dibuat');
             }
+        }
+    }
+
+    private function _sendEmail($to, $title, $message)
+    {
+        $email = \Config\Services::email();
+        $email->setFrom('persuratan.sistem@gmail.com', 'Sistem Persuratan : Biro Humas & Hukum BPS');
+        $email->setTo($to);
+        $email->setSubject($title);
+        $email->setMessage($message);
+
+        if ($email->send()) {
+            return true;
+        } else {
+            return false;
         }
     }
 }
