@@ -20,11 +20,16 @@ class UserController extends BaseController
 
             $rules = [
                 'email' => 'required|min_length[6]|max_length[50]|valid_email',
-                'password' => 'required|min_length[6]|max_length[255]|validateUser[email,password]',
+                'password' => 'required|min_length[6]|max_length[50]|validateUser[email,password]',
             ];
 
             $errors = [
                 'password' => [
+                    'min_length' => 'Email minimal terdiri dari 6 karakter',
+                    'valid_email' => 'Penulisan email salah'
+                ],
+                'password' => [
+                    'min_length' => 'Password minimal terdiri dari 6 karakter',
                     'validateUser' => "Email atau Password salah",
                 ],
             ];

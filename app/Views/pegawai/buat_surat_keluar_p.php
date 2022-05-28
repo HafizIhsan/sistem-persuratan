@@ -66,7 +66,20 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPenandatangan">TTD</label>
-                                <input onkeydown="return event.key != 'Enter';" type="text" class="form-control" id="inputTTD" name="ttd" placeholder="Penandatangan" required>
+                                <select onkeydown="return event.key != 'Enter';" id="inputTTD" class="form-control" placeholder="Pilih penandatangan surat..." name="ttd" required>
+                                    <option value="" selected>Pilih penandatangan surat ...</option>
+                                    <option value="Kepala BPS">Kepala BPS</option>
+                                    <option value="Sekretaris Utama">Sekretaris Utama</option>
+                                    <option value="Deputi Bidang Statistik Sosial">Deputi Bidang Statistik Sosial</option>
+                                    <option value="Deputi Bidang Statistik Produksi">Deputi Bidang Statistik Produksi</option>
+                                    <option value="Deputi Bidang Statistik Distribusi & Jasa">Deputi Bidang Statistik Distribusi & Jasa</option>
+                                    <option value="Deputi Bidang Neraca & Analisis Statistik">Deputi Bidang Neraca & Analisis Statistik</option>
+                                    <option value="Kepala Biro Humas dan Hukum">Kepala Biro Humas dan Hukum</option>
+                                    <option value="Kepala Biro Bina Program">Kepala Biro Bina Program</option>
+                                    <option value="Kepala Biro Keuangan">Kepala Biro Keuangan</option>
+                                    <option value="Kepala Biro Kepegawaian">Kepala Biro Kepegawaian</option>
+                                    <option value="Kepala Biro Umum">Kepala Biro Umum</option>
+                                </select>
                             </div>
                         </div>
                         <div class="form-group">
@@ -139,6 +152,16 @@
     $(document).ready(function() {
         $('#klasifikasiSurat').selectize({
             sortField: 'text'
+        });
+
+        $('#inputTTD').selectize({
+            create: true,
+            create: function(input) {
+                return {
+                    value: input,
+                    text: input
+                }
+            }
         });
     });
 

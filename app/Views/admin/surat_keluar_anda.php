@@ -40,6 +40,7 @@
                             <option>Pengajuan</option>
                             <option>Belum terkirim</option>
                             <option>Sudah terkirim</option>
+                            <option>Dibatalkan</option>
                         </select>
                     </div>
                 </div>
@@ -98,6 +99,11 @@
                                             </td>
                                             <td>
                                                 <div class="d-flex justify-content-between">
+                                                    <?php if ($surat_keluar['STATUS'] == 'Pengajuan' || $surat_keluar['STATUS'] == 'Belum terkirim') { ?>
+                                                        <a href="#" class="btn btn-danger btn-icon-split btn-sm mr-2" data-toggle="modal" data-target="#batalModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
+                                                            <span class="text">Batalkan</span>
+                                                        </a>
+                                                    <?php } ?>
                                                     <?php if ($surat_keluar['SCAN_SURAT_KELUAR'] == NULL) { ?>
                                                         <a href="<?= base_url('uploads/dokumentasi/' . $surat_keluar['SCAN_SURAT_KELUAR']) ?>" class="btn btn-success btn-icon-split btn-sm disabled" target="_blank">
                                                             <span class="icon">
