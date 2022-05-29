@@ -36,7 +36,9 @@ class SuratLainnyaController extends BaseController
 
     public function delete($id)
     {
+        $data = $this->surat_lainnya->get_surat_lainnya($id);
         $this->surat_lainnya->delete($id);
+        unlink("uploads/dokumentasi/" . $data[0]['SCAN_SURAT']);
 
         return redirect()->to(base_url('data_surat_lainnya'))->with('success', 'Data surat berhasil dihapus');
     }
@@ -190,7 +192,7 @@ class SuratLainnyaController extends BaseController
                 'pihak_1' => $this->request->getPost('pihak_1'),
                 'pihak_2' => $this->request->getPost('pihak_2'),
                 'tentang' => $this->request->getPost('tentang'),
-                'scan_surat_lainnya' =>  $scan_surat_lainnya->getName(),
+                'scan_surat' =>  $scan_surat_lainnya->getName(),
                 'created_at' => date('Y-m-d H:i:s')
             ]);
 

@@ -36,6 +36,15 @@ class M_SuratMasuk extends Model
         }
     }
 
+    public function get_surat_masuk($id = false)
+    {
+        if ($id === false) {
+            return $this->findAll();
+        } else {
+            return $this->getWhere(['ID_SURAT_MASUK' => $id])->getResultArray();
+        }
+    }
+
     // // Dates
     // protected $useTimestamps = false;
     // protected $dateFormat    = 'datetime';

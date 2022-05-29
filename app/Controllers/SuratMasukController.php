@@ -121,7 +121,9 @@ class SuratMasukController extends BaseController
 
     public function delete($id)
     {
+        $data = $this->surat_masuk->get_surat_masuk($id);
         $this->surat_masuk->delete($id);
+        unlink("uploads/dokumentasi/" . $data[0]['SCAN_SURAT_MASUK']);
 
         return redirect()->to(base_url('data_surat_masuk'))->with('success', 'Data surat berhasil dihapus');
     }

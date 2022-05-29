@@ -87,7 +87,7 @@
                                             <td><?= $surat_keluar['PENERIMA'] ?></td>
                                             <td><?= $surat_keluar['TTD'] ?></td>
                                             <td><?= $surat_keluar['PERIHAL'] ?></td>
-                                            <td>
+                                            <td class="d-flex justify-content-center">
                                                 <?php
                                                 if ($surat_keluar['STATUS'] == 'Pengajuan') {
                                                     echo "<span class='badge badge-pill badge-secondary'>" . $surat_keluar['STATUS'] . "</span>";
@@ -95,40 +95,71 @@
                                                     echo "<span class=' badge badge-pill badge-warning'>" . $surat_keluar['STATUS'] . "</span>";
                                                 } else if ($surat_keluar['STATUS'] == 'Sudah terkirim') {
                                                     echo "<span class='badge badge-pill badge-success'>" . $surat_keluar['STATUS'] . "</span>";
+                                                } else if ($surat_keluar['STATUS'] == 'Dibatalkan') {
+                                                    echo "<span class='badge badge-pill badge-danger'>" . $surat_keluar['STATUS'] . "</span>";
                                                 } ?>
                                             </td>
                                             <td>
                                                 <div class="d-flex justify-content-between">
-                                                    <?php if ($surat_keluar['STATUS'] == 'Pengajuan' || $surat_keluar['STATUS'] == 'Belum terkirim') { ?>
-                                                        <a href="#" class="btn btn-danger btn-icon-split btn-sm mr-2" data-toggle="modal" data-target="#batalModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
-                                                            <span class="text">Batalkan</span>
-                                                        </a>
-                                                    <?php } ?>
-                                                    <?php if ($surat_keluar['SCAN_SURAT_KELUAR'] == NULL) { ?>
-                                                        <a href="<?= base_url('uploads/dokumentasi/' . $surat_keluar['SCAN_SURAT_KELUAR']) ?>" class="btn btn-success btn-icon-split btn-sm disabled" target="_blank">
+                                                    <?php if ($surat_keluar['STATUS'] != 'Dibatalkan') {
+                                                        if ($surat_keluar['STATUS'] == 'Pengajuan' || $surat_keluar['STATUS'] == 'Belum terkirim') { ?>
+                                                            <a href="#" class="btn btn-danger btn-icon-split btn-sm mr-2" data-toggle="modal" data-target="#batalModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
+                                                                <span class="text">Batalkan</span>
+                                                            </a>
+                                                            <!-- Batal Modal -->
+                                                            <div class="modal fade" id="batalModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header bg-gradient-secondary">
+                                                                            <h5 class="modal-title text-white" id="exampleModalLabel">Alasan Pembatalan Surat</h5>
+                                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">×</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <form action="<?= base_url('surat_keluar_anda/batalkan_surat/' . $surat_keluar['ID_SURAT_KELUAR']) ?>" method="post">
+                                                                            <?= csrf_field(); ?>
+                                                                            <div class="modal-body">
+                                                                                <div class="form-group">
+                                                                                    <textarea name='keterangan' class="form-control" id="keterangan" rows="3" style="resize: none;" required placeholder="Masukkan alasan pembatalan surat ..."></textarea>
+                                                                                </div>
+                                                                                <p>Apakah anda sudah yakin ingin membatalkan surat ini?</p>
+                                                                            </div>
+
+                                                                            <div class="modal-footer">
+                                                                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Tidak</button>
+                                                                                <button class="btn btn-primary" type="submit">Ya</button>
+                                                                            </div>
+                                                                        </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        <?php } ?>
+                                                        <?php if ($surat_keluar['SCAN_SURAT_KELUAR'] == NULL) { ?>
+                                                            <a href="<?= base_url('uploads/dokumentasi/' . $surat_keluar['SCAN_SURAT_KELUAR']) ?>" class="btn btn-success btn-icon-split btn-sm disabled" target="_blank">
+                                                                <span class="icon">
+                                                                    <i class="fas fa-eye"></i>
+                                                                </span>
+                                                            </a>
+                                                        <?php } else { ?>
+                                                            <a href="<?= base_url('uploads/dokumentasi/' . $surat_keluar['SCAN_SURAT_KELUAR']) ?>" class="btn btn-success btn-icon-split btn-sm disable" target="_blank">
+                                                                <span class="icon">
+                                                                    <i class="fas fa-eye"></i>
+                                                                </span>
+                                                            </a>
+                                                        <?php } ?>
+
+                                                        <a href="#" class="btn btn-secondary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#editModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>" id="edit-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
                                                             <span class="icon">
-                                                                <i class="fas fa-eye"></i>
+                                                                <i class="fas fa-edit"></i>
                                                             </span>
                                                         </a>
-                                                    <?php } else { ?>
-                                                        <a href="<?= base_url('uploads/dokumentasi/' . $surat_keluar['SCAN_SURAT_KELUAR']) ?>" class="btn btn-success btn-icon-split btn-sm disable" target="_blank">
-                                                            <span class="icon">
-                                                                <i class="fas fa-eye"></i>
-                                                            </span>
+
+                                                        <a href="#" class="btn btn-primary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#detailModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
+                                                            <span class="text">Detail</span>
                                                         </a>
-                                                    <?php } ?>
-
-                                                    <a href="#" class="btn btn-secondary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#editModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>" id="edit-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
-                                                        <span class="icon">
-                                                            <i class="fas fa-edit"></i>
-                                                        </span>
-                                                    </a>
-
-                                                    <a href="#" class="btn btn-primary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#detailModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
-                                                        <span class="text">Detail</span>
-                                                    </a>
                                                 </div>
                                                 <p hidden><?= $surat_keluar['NOMOR_SURAT_KELUAR'] ?></p>
+                                            <?php } ?>
                                             </td>
                                         </tr>
 
@@ -204,6 +235,8 @@
                                                                             echo "<div class='bg-warning btn-icon-split form-control'>";
                                                                         } else if ($surat_keluar['STATUS'] == 'Sudah terkirim') {
                                                                             echo "<div class='bg-success btn-icon-split form-control'>";
+                                                                        } else if ($surat_keluar['STATUS'] == 'Dibatalkan') {
+                                                                            echo "<div class='bg-dannger btn-icon-split form-control'>";
                                                                         } ?>
                                                                         <span class="text text-white"><?= $surat_keluar['STATUS'] ?></span>
                                                                         <?php echo "</div>" ?>

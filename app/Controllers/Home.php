@@ -114,4 +114,9 @@ class Home extends BaseController
         $data['pengguna'] = $this->pengguna->getPengguna($id);
         return view('profile', $data);
     }
+
+    public function panduan()
+    {
+        return view('panduan');
+    }
 }

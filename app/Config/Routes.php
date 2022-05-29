@@ -35,6 +35,7 @@ $routes->setAutoRoute(true);
 // Home
 $routes->get('/', 'Home::home');
 $routes->get('/home', 'Home::home');
+$routes->get('/panduan', 'Home::panduan');
 
 // Login
 $routes->match(['get', 'post'], 'home', 'UserController::login', ["filter" => "noauth"]);
@@ -118,6 +119,7 @@ $routes->get('/data_pengguna/delete/(:segment)', 'DataPenggunaController::delete
 $routes->get('/surat_keluar_anda', 'SuratKeluarController::surat_keluar_anda', ["filter" => "auth"]);
 $routes->add('/surat_keluar_anda/edit/(:segment)', 'SuratKeluarController::edit_2/$1');
 $routes->add('/surat_keluar_anda_p/edit/(:segment)', 'SuratKeluarController::edit_2/$1');
+$routes->add('/surat_keluar_anda/batalkan_surat/(:segment)', 'SuratKeluarController::batalkan_surat/$1');
 
 $routes->get('/profile', 'Home::profile', ["filter" => "auth"]);
 $routes->add('/profile/ubah_password/(:segment)', 'UserController::ubah_password/$1');

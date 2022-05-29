@@ -9,7 +9,7 @@ class M_SuratKeluar extends Model
     protected $table            = 'surat_keluar';
     protected $primaryKey       = 'id_surat_keluar';
     protected $useAutoIncrement = true;
-    protected $allowedFields    = ['id_pengguna', 'id_klasifikasi_surat', 'no_urut', 'sub_no_urut', 'tanggal_surat', 'nomor_surat_keluar', 'penerima', 'ttd', 'perihal', 'draft_surat_keluar', 'scan_surat_keluar', 'status', 'created_at'];
+    protected $allowedFields    = ['id_pengguna', 'id_klasifikasi_surat', 'no_urut', 'sub_no_urut', 'tanggal_surat', 'nomor_surat_keluar', 'penerima', 'ttd', 'perihal', 'draft_surat_keluar', 'scan_surat_keluar', 'status', 'keterangan', 'created_at'];
 
     function get_nomor_surat_keluar($nomor_surat_keluar)
     {

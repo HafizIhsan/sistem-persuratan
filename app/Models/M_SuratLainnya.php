@@ -11,6 +11,15 @@ class M_SuratLainnya extends Model
     protected $useAutoIncrement = true;
     protected $allowedFields    = ['id_pengguna', 'id_jenis_surat_lainnya', 'nomor_surat', 'pihak_1', 'pihak_2', 'tentang', 'scan_surat', 'created_at'];
 
+    public function get_surat_lainnya($id = false)
+    {
+        if ($id === false) {
+            return $this->findAll();
+        } else {
+            return $this->getWhere(['ID_SURAT_LAINNYA' => $id])->getResultArray();
+        }
+    }
+
     // // Dates
     // protected $useTimestamps = false;
     // protected $dateFormat    = 'datetime';

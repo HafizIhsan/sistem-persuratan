@@ -61,6 +61,10 @@ class SuratKeluar extends Migration
                 'type'           => 'VARCHAR',
                 'constraint'     => 50
             ],
+            'keterangan' => [
+                'type'           => 'VARCHAR',
+                'constraint'     => 255
+            ],
             'created_at datetime default current_timestamp'
         ]);
 

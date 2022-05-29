@@ -315,4 +315,35 @@ class SuratKeluarController extends BaseController
             return redirect()->to(base_url('dokumentasi_surat_keluar_p'))->with('id', $data_surat_keluar);
         }
     }
+
+    public function batalkan_surat($id)
+    {
+        helper(['form', 'url']);
+
+        $rules = [
+            'perihal' => 'required|min_length[5]'
+        ];
+
+        $error = [
+            'penerima' => [
+                'min_length' => "Input penerima setidaknya terdiri dari 5 karakter",
+                'max_length' => "Input penerima terlalu panjang",
+            ],
+            'ttd' => [
+                'min_length' => "Input ttd setidaknya terdiri dari 5 karakter",
+                'max_length' => "Input ttd terlalu panjang",
+            ],
+            'perihal' => [
+                'min_length' => "Input perihal setidaknya terdiri dari 5 karakter"
+            ],
+        ];
+
+        $input = $this->validate($rules, $error);
+
+        $this->surat_keluar->update($id, [
+            'status' => 'Dibatalkan'
+        ]);
+
+        return redirect()->to(base_url('surat_keluar_anda'))->with('success', 'Surat berhasil dibatalkan');
+    }
 }

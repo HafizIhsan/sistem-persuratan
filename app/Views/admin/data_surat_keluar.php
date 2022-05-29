@@ -147,7 +147,7 @@
                                         <td><?= $surat_keluar['PENERIMA'] ?></td>
                                         <td><?= $surat_keluar['TTD'] ?></td>
                                         <td><?= $surat_keluar['PERIHAL'] ?></td>
-                                        <td>
+                                        <td class="d-flex justify-content-center">
                                             <?php
                                             if ($surat_keluar['STATUS'] == 'Pengajuan') {
                                                 echo "<span class='badge badge-pill badge-secondary'>" . $surat_keluar['STATUS'] . "</span>";
@@ -155,6 +155,8 @@
                                                 echo "<span class=' badge badge-pill badge-warning'>" . $surat_keluar['STATUS'] . "</span>";
                                             } else if ($surat_keluar['STATUS'] == 'Sudah terkirim') {
                                                 echo "<span class='badge badge-pill badge-success'>" . $surat_keluar['STATUS'] . "</span>";
+                                            } else if ($surat_keluar['STATUS'] == 'Dibatalkan') {
+                                                echo "<span class='badge badge-pill badge-danger'>" . $surat_keluar['STATUS'] . "</span>";
                                             } ?>
                                         </td>
                                         <td>
@@ -268,6 +270,8 @@
                                                                     echo "<div class='bg-warning btn-icon-split form-control'>";
                                                                 } else if ($surat_keluar['STATUS'] == 'Sudah terkirim') {
                                                                     echo "<div class='bg-success btn-icon-split form-control'>";
+                                                                } else if ($surat_keluar['STATUS'] == 'Dibatalkan') {
+                                                                    echo "<div class='bg-dannger btn-icon-split form-control'>";
                                                                 } ?>
                                                                 <span class="text text-white"><?= $surat_keluar['STATUS'] ?></span>
                                                                 <?php echo "</div>" ?>
