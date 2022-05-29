@@ -1,586 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <title>Bootstrap 4 project documentation theme for developers</title>
+    <title>Panduan - Sistem Persuratan Biro Humas & Hukum BPS</title>
     <!-- Meta -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
-    <meta name="author" content="">    
-    <link rel="shortcut icon" href="favicon.ico">  
+    <meta name="author" content="">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link rel="shortcut icon" href="<?= base_url() ?>/assets/vendor/landing-page/assets/images/plane.png" />
     <!-- FontAwesome JS -->
-    <script defer src="assets/fontawesome/js/all.js"></script>
+    <script defer src="<?= base_url() ?>/assets/vendor/panduan/assets/fontawesome/js/all.min.js"></script>
     <!-- Global CSS -->
-    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">   
-    <!-- Plugins CSS -->    
-    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
-    <link rel="stylesheet" href="assets/plugins/elegant_font/css/style.css">  
-      
-    <!-- Theme CSS -->
-    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
-    
-</head> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/vendor/panduan/assets/plugins/prism/prism.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/vendor/panduan/assets/plugins/elegant_font/css/style.css">
 
-<body class="body-green">
+    <!-- Theme CSS -->
+    <link id="theme-style" rel="stylesheet" href="<?= base_url() ?>/assets/vendor/panduan/assets/css/styles.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/vendor/landing-page/css/style.css">
+    <link rel="stylesheet" href="<?= base_url() ?>/assets/css/home.css">
+
+</head>
+
+<body class="body-blue">
     <div class="page-wrapper">
         <!-- ******Header****** -->
-        <header id="header" class="header">
-            <div class="container">
-                <div class="branding">
-                    <h1 class="logo">
-                        <a href="index.html">
-                            <span aria-hidden="true" class="icon_documents_alt icon"></span>
-                            <span class="text-highlight">Pretty</span><span class="text-bold">Docs</span>
-                        </a>
-                    </h1>
-                    
-                </div><!--//branding-->
-                
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                    <li class="breadcrumb-item active">Quick Start</li>
-                </ol>
-                
-                <div class="top-search-box">
-	                 <form class="form-inline search-form justify-content-center" action="" method="get">
-	            
-			            <input type="text" placeholder="Search..." name="search" class="form-control search-input">
-			            
-			            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
-			            
-			        </form>
-                </div>
-                
-            </div><!--//container-->
-        </header><!--//header-->
+        <div class="container mb-auto">
+            <header class="head my-3">
+                <nav class="navbar navbar-expand-lg navbar-light head__custom-nav">
+                    <a class="navbar-brand d-flex align-items-center" href="home">
+                        <img src="<?= base_url() ?>/assets/vendor/landing-page/assets/images/plane.png" alt="website logo">
+                        <span>Sistem Persuratan</span>
+                    </a>
+                    <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarNav">
+                        <span><i class="fas fa-bars"></i></span>
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="home">Beranda</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="panduan">Panduan</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+        </div>
+        <!--//header-->
+
         <div class="doc-wrapper">
             <div class="container">
                 <div id="doc-header" class="doc-header text-center">
-                    <h1 class="doc-title"><i class="icon fa fa-paper-plane"></i> Quick Start</h1>
-                    <div class="meta"><i class="far fa-clock"></i> Last updated: Oct 12th, 2020</div>
-                </div><!--//doc-header-->
+                    <h1 class="doc-title">Panduan</h1>
+                    <div class="meta">Sistem Persuratan Biro Humas dan Hukum BPS</div>
+                </div>
+                <!--//doc-header-->
                 <div class="doc-body row">
                     <div class="doc-content col-md-9 col-12 order-1">
                         <div class="content-inner">
-                            <section id="download-section" class="doc-section">
-                                <h2 class="section-title">Download</h2>
+                            <section id="pendahuluan-section" class="doc-section">
+                                <h2 class="section-title">Pendahuluan</h2>
                                 <div class="section-block">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec imperdiet turpis. Curabitur aliquet pulvinar ultrices. Etiam at posuere leo. Proin ultrices ex et dapibus feugiat <a href="#">link example</a> aenean purus leo, faucibus at elit vel, aliquet scelerisque dui. Etiam quis elit euismod, imperdiet augue sit amet, imperdiet odio. Aenean sem erat, hendrerit  eu gravida id, dignissim ut ante. Nam consequat porttitor libero euismod congue. 
-                                    </p>
-                                    <a href="https://themes.3rdwavemedia.com/bootstrap-templates/startup/prettydocs-free-bootstrap-theme-for-developers-and-startups/" class="btn btn-green" target="_blank"><i class="fas fa-download"></i> Download PrettyDocs</a>
-                                </div>
-                            </section><!--//doc-section-->
-                            <section id="installation-section" class="doc-section">
-                                <h2 class="section-title">Installation</h2>
-                                <div id="step1"  class="section-block">
-                                    <h3 class="block-title">Step One</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis.
-                                    </p>
-                                    <div class="code-block">
-                                        <h6>Default code example:</h6>
-                                        <p><code>bower install &lt;package&gt;</code></p>
-                                        <p><code>npm install &lt;package&gt;</code></p>
-                                    </div><!--//code-block-->
-                                </div><!--//section-block-->
-                                <div id="step2"  class="section-block">
-                                    <h3 class="block-title">Step Two</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.
+                                    <p>Sistem Persuratan Biro Humas dan Hukum memberikan layanan dalam pengelolaan persuratan di Biro Humas dan Hukum BPS. Fitur yang tersedia, yaitu
                                     </p>
                                     <div class="row">
                                         <div class="col-md-6 col-12">
-                                            <h6>Un-ordered list example</h6>
+                                            <h6>User Administrator</h6>
                                             <ul class="list">
-        										<li>Lorem ipsum dolor sit amet.</li>
-        										<li>Aliquam tincidunt mauris.</li>
-        										<li>Ultricies eget vel aliquam libero.
-        											<ul>
-        												<li>Turpis pulvinar</li>
-        												<li>Feugiat scelerisque</li>
-        												<li>Ut tincidunt</li>
-        											</ul>
-        										</li>
-        										<li>Pellentesque habitant morbi.</li>
-        										<li>Praesent dapibus, neque id.</li>
-        									</ul>
+                                                <li>Dashboard Administrator</li>
+                                                <li>Membuat surat keluar</li>
+                                                <li>Melihat surat keluar yang pernah dibuat</li>
+                                                <li>Penugasan surat masuk</li>
+                                                <li>Dokumentasi surat keluar</li>
+                                                <li>Dokumentasi surat masuk</li>
+                                                <li>Dokumentasi surat lainnya</li>
+                                                <li>Kelola data surat</li>
+                                                <li>Kelola data pengguna</li>
+                                                <li>Kelola data klasifikasi surat</li>
+                                            </ul>
                                         </div>
                                         <div class="col-md-6 col-12">
-                                            <h6>Ordered list example</h6>
-                                            <ol class="list">
-        										<li>Lorem ipsum dolor sit amet.</li>
-        										<li>Aliquam tincidunt mauris.</li>
-        										<li>Ultricies eget vel aliquam libero.
-        											<ul>
-        												<li>Turpis pulvinar</li>
-        												<li>Feugiat scelerisque</li>
-        												<li>Ut tincidunt</li>
-        											</ul>
-        										</li>
-        										<li>Pellentesque habitant morbi.</li>
-        										<li>Praesent dapibus, neque id.</li>
-        									</ol>
+                                            <h6>User Pegawai</h6>
+                                            <ul class="list">
+                                                <li>Dashboard Pegawai</li>
+                                                <li>Membuat surat keluar baru</li>
+                                                <li>Dokumentasi surat keluar</li>
+                                                <li>Melihat surat keluar yang pernah dibuat</li>
+                                            </ul>
                                         </div>
-                                    </div><!--//row-->
-                                </div><!--//section-block-->
-                                <div id="step3"  class="section-block">
-                                    <h3 class="block-title">Step Three</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis.
-                                    </p>
-                                </div><!--//section-block-->
-                            </section><!--//doc-section-->
-                            
-                            <section id="code-section" class="doc-section">
-                                <h2 class="section-title">Code</h2>
-                                <div class="section-block">
-                                    <p>
-                                        <a href="https://prismjs.com/" target="_blank">PrismJS</a> is used as the syntax highlighter here. You can <a href="https://prismjs.com/download.html" target="_blank">build your own version</a> via their website should you need to.
-                                    </p>
-                                    
-                                </div><!--//section-block-->
-                                <div id="html" class="section-block">
-                                    
-                                    <div class="callout-block callout-success">
-                                        <div class="icon-holder">
-                                            <i class="fas fa-thumbs-up"></i>
-                                        </div><!--//icon-holder-->
-                                        <div class="content">
-                                            <h4 class="callout-title">Useful Tip:</h4>
-                                            <p>You can use this online <a href="https://mothereff.in/html-entities" target="_blank">HTML entity encoder/decoder</a> to generate your code examples.</p>
-                                        </div><!--//content-->
                                     </div>
-                                    <div class="code-block">
-                                        <h6>HTML Code Example</h6>
-                                        <pre><code class="language-markup">&lt;!DOCTYPE html&gt; 
-&lt;html lang=&quot;en&quot;&gt; 
-    ...
-    &lt;div class=&quot;jumbotron&quot;&gt; 
-        &lt;h1&gt;Hello, world!&lt;/h1&gt; 
-        &lt;p&gt;...&lt;/p&gt; 
-        &lt;p&gt;&lt;a class=&quot;btn btn-primary btn-lg&quot; href=&quot;#&quot; role=&quot;button&quot;&gt;Learn more&lt;/a&gt;&lt;/p&gt; 
-    &lt;/div&gt;
-    &lt;div class=&quot;jumbotron&quot;&gt; 
-        &lt;h1&gt;Hello, world!&lt;/h1&gt; 
-        &lt;p&gt;...&lt;/p&gt; 
-        &lt;p&gt;&lt;a class=&quot;btn btn-primary btn-lg&quot; href=&quot;#&quot; role=&quot;button&quot;&gt;Learn more&lt;/a&gt;&lt;/p&gt; 
-    &lt;/div&gt;
-    ...
-&lt;/html&gt;</code></pre>
-                                    </div><!--//code-block-->
-                                </div><!--//section-block-->
-                                <div id="css" class="section-block">
-                                    <div class="code-block">
-                                        <h6>CSS Code Example</h6>
-                                        <pre><code class="language-css">/* ======= Base Styling ======= */
-body {
-    font-family: 'Open Sans', arial, sans-serif; 
-    color: #333; 
-    font-size: 16px; 
-    -webkit-font-smoothing: antialiased; 
-    -moz-osx-font-smoothing: grayscale; 
-}</code></pre>
-                                    </div><!--//code-block-->
-                                </div><!--//section-block-->
-                                <div id="sass" class="section-block">
-                                    <div class="code-block">
-                                        <h6>SCSS Code Example</h6>
-                                        <pre><code class="language-css">@mixin transform($property) {
-  -webkit-transform: $property;
-      -ms-transform: $property;
-          transform: $property;
-}
-
-.box { @include transform(rotate(30deg)); }</code></pre>
-                                    </div><!--//code-block-->
-                                </div><!--//section-block-->
-                                <div id="less" class="section-block">
-                                    <div class="code-block">
-                                        <h6>LESS Code Example</h6>
-                                        <pre><code class="language-css">@base: #f04615;
-@width: 0.5;
-
-.class {
-  width: percentage(@width); // returns &#x60;50%&#x60;
-  color: saturate(@base, 5%);
-  background-color: spin(lighten(@base, 25%), 8);
-}</code></pre>
-                                    </div><!--//code-block-->
-                                </div><!--//section-block-->
-                                <div id="javascript" class="section-block">
-                                    <div class="code-block">
-                                        <h6>JavaScript Code Example</h6>
-                                        <pre><code class="language-javascript">&lt;script&gt; 
-    function myFunction(a, b) { 
-        return a * b; 
-    } 
-    
-    document.getElementById(&quot;demo&quot;).innerHTML = myFunction(4, 3); 
-&lt;/script&gt;</code></pre>
-                                    </div><!--//code-block-->
-                                </div><!--//section-block-->
-                                <div id="python" class="section-block">
-                                    <div class="code-block">
-                                        <h6>Python Code Example</h6>
-                                        <pre><code class="language-python">&gt;&gt;&gt; x = int(input(&quot;
-Please enter an integer: &quot;)) Please enter an integer: 42 
-&gt;&gt;&gt; if x &lt; 0: 
-... x = 0 
-... print('Negative changed to zero') 
-... elif x == 0: 
-... print('Zero') 
-... elif x == 1: 
-... print('Single') 
-... else: 
-... print('More') 
-... More</code></pre>
-                                    </div><!--//code-block-->
-                                </div><!--//section-block-->
-                                <div id="php" class="section-block">
-                                    <div class="code-block">
-                                        <h6>PHP Code Example</h6>
-                                        <pre><code class="language-php">&lt;?php 
-$txt = &quot;Hello world!&quot;; 
-$x = 5; 
-$y = 10.5; 
-
-echo $txt; 
-echo &quot;&lt;br&gt;&quot;; 
-echo $x; 
-echo &quot;&lt;br&gt;&quot;; 
-echo $y; 
-?&gt;</code></pre>
-                                    </div><!--//code-block-->
-                                </div><!--//section-block-->
-                                <div id="handlebars" class="section-block">
-                                    <div class="code-block">
-                                        <h6>Handlebars Code Example</h6>
-                                        <pre><code class="language-handlebars">Handlebars.registerHelper('list', function(items, options) { 
-  var out = &quot;&lt;ul&gt;&quot;; 
-  
-  for(var i=0, l=items.length; i&lt;l; i++) { 
-    out = out + &quot;&lt;li&gt;&quot; + options.fn(items[i]) + &quot;&lt;/li&gt;&quot;; 
-  } 
-  
-  return out + &quot;&lt;/ul&gt;&quot;; 
-});</code></pre>
-                                    </div><!--//code-block-->
-                                    <div class="code-block">
-                                        <h6>Git Code Example</h6>
-                                        <pre><code class="language-git">$ git add Documentation.txt</code></pre>
-                                    </div><!--//code-block-->
-                                </div><!--//section-block-->
-                            </section><!--//doc-section-->
-                            <section id="callouts-section" class="doc-section">
-                                <h2 class="section-title">Callouts</h2>
+                                </div>
+                            </section>
+                            <!--//doc-section-->
+                            <section id="buatSuratKeluar-section" class="doc-section">
+                                <h2 class="section-title">Membuat Surat Keluar</h2>
                                 <div class="section-block">
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. 
+                                    <p>Alur dalam pembuatan surat keluar adalah sebagai berikut.
                                     </p>
+                                    <ol class="list">
+                                        <li>Persiapkan draft surat keluar dengan format file .docx atau .doc dan ukuran maksidmum 2 MB.</li>
+                                        <li>Klik "Membuat Surat Keluar".</li>
+                                        <li>Isi <span style="font-style: italic;">field</span> <span style="font-weight: bold;"> tanggal surat, klasifikasi surat, ditujukan kepada, ttd,</span> dan <span style="font-weight: bold;">perihal</span> dengan informasi surat yang akan dibuat. Pastikan tidak ada kesalahan dalam memasukkan informasi surat.</li>
+                                        <li>Klik tombol <button type="button" class="btn btn-blue btn-sm">Generate</button> untuk mendapatkan nomor surat keluar terbaru.</li>
+                                        <li>Salin nomor surat yang didapatkan kemudian masukkan kedalam draft surat keluar yang telah dipersiapkan</li>
+                                        <li>Unggah file draft surat keluar yang sudah terisi dengan nomor surat baru melalui <span style="font-style: italic;">field</span> <span style="font-weight: bold;">draft surat keluar</span></li>
+                                        <li>Klik <button type="button" class="btn btn-blue btn-sm">Submit</button></li>
+                                        <li>Selanjutnya anda sudah dapat mengajukan tanda tangan untuk surat yang sudah anda buat</li>
+                                        <li>Anda juga akan mendapatkan email untuk melakukan dokumentasi surat keluar</li>
+                                    </ol>
+                                    <p>Surat keluar yang sudah dibuat dapat dilihat pada halaman "Surat Keluar Anda"</p>
+                                </div>
+                                <!--//section-block-->
+                            </section>
+
+                            <section id="dokumentasiSurat-section" class="doc-section">
+                                <h2 class="section-title">Dokumentasi Surat</h2>
+                                <!--//section-block-->
+                                <div id="dokumentasiSuratKeluar-section" class="section-block">
+                                    <h3>Dokumentasi Surat Keluar</h3>
+                                    <p>Setelah membuat surat keluar melalui halaman "Membuat Surat Keluar", anda harus mengunggah scan hasil akhir surat keluar tersebut. Hasil akhir dari surat keluar yaitu surat keluar yang sudah selesai atau sudah ditandatangani.</p>
+                                    <ol class="list">
+                                        <li>Pertama, scan surat keluar yang akan didokumentasikan. Hasil scan dalam format file .pdf dan ukuran maksimum 2 MB.</li>
+                                        <li>Klik "Dokumentasi Surat Keluar" atau dapat juga melalui "Dashboard" lalu klik <button type="submit" class="btn btn-success btn-icon-split btn-sm">
+                                                <span class="icon text-white-50">
+                                                    <i class="fas fa-plus"></i>
+                                                </span>
+                                                <span class="text">Dokumentasi</span>
+                                            </button> pada tabel "Surat Keluar Belum di Dokumentasi"</li>
+                                        <li>Isi <span style="font-style: italic;">field</span> <span style="font-weight: bold;"> nomor surat</span> dan <span style="font-weight: bold;">status surat</span>.</li>
+                                        <li>Unggah file scan surat keluar melalui <span style="font-style: italic;">field</span> <span style="font-weight: bold;">dokumentasi surat</span></li>
+                                        <li>Klik <button type="button" class="btn btn-blue btn-sm">Submit</button></li>
+                                    </ol>
+                                    <p>Data surat keluar dapat dilihat pada halaman "Surat Keluar Anda"</p>
+                                    <!--//section-block-->
                                 </div>
 
-                                <div class="section-block">
-                                    <div class="callout-block callout-info">
-                                        <div class="icon-holder">
-                                            <i class="fas fa-info-circle"></i>
-                                        </div><!--//icon-holder-->
-                                        <div class="content">
-                                            <h4 class="callout-title">Aenean imperdiet</h4>
-                                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium <code>&lt;code&gt;</code> , Nemo enim ipsam voluptatem quia voluptas <a href="#">link example</a> sit aspernatur aut odit aut fugit.</p>
-                                        </div><!--//content-->
-                                    </div><!--//callout-block-->
-                                    
-                                    <div class="callout-block callout-warning">
-                                        <div class="icon-holder">
-                                            <i class="fas fa-bug"></i>
-                                        </div><!--//icon-holder-->
-                                        <div class="content">
-                                            <h4 class="callout-title">Morbi posuere</h4>
-                                            <p>Nunc hendrerit odio quis dignissim efficitur. Proin ut finibus libero. Morbi posuere fringilla felis eget sagittis. Fusce sem orci, cursus in tortor <a href="#">link example</a> tellus vel diam viverra elementum.</p>
-                                        </div><!--//content-->
-                                    </div><!--//callout-block-->
-                                    
-                                    <div class="callout-block callout-success">
-                                        <div class="icon-holder">
-                                            <i class="fas fa-thumbs-up"></i>
-                                        </div><!--//icon-holder-->
-                                        <div class="content">
-                                            <h4 class="callout-title">Lorem ipsum dolor sit amet</h4>
-                                            <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <a href="#">Link example</a> aenean commodo ligula eget dolor.</p>
-                                        </div><!--//content-->
-                                    </div><!--//callout-block-->
-                                    
-                                    <div class="callout-block callout-danger">
-                                        <div class="icon-holder">
-                                            <i class="fas fa-exclamation-triangle"></i>
-                                        </div><!--//icon-holder-->
-                                        <div class="content">
-                                            <h4 class="callout-title">Interdum et malesuada</h4>
-                                            <p>Morbi eget interdum sapien. Donec sed turpis sed nulla lacinia accumsan vitae ut tellus. Aenean vestibulum <a href="#">Link example</a> maximus ipsum vel dignissim. Morbi ornare elit sit amet massa feugiat, viverra dictum ipsum pellentesque. </p>
-                                        </div><!--//content-->
-                                    </div><!--//callout-block-->
+                                <div id="dokumentasiSuratMasuk-section" class="section-block">
+                                    <h3>Dokumentasi Surat Masuk</h3>
+                                    <p>Dokumentasi surat masuk hanya dapat dilakukan oleh Administrator. Alur dokumentasi surat masuk adalah sebagai berikut.</p>
+                                    <ol class="list">
+                                        <li>Pertama, scan surat masuk yang akan didokumentasikan. Hasil scan dalam format file .pdf dan ukuran maksimum 2 MB.</li>
+                                        <li>Klik "Dokumentasi Surat Masuk"</li>
+                                        <li>Isi <span style="font-style: italic;">field</span> <span style="font-weight: bold;"> nomor surat, pengirim, perihal,</span> dan <span style="font-weight: bold;">tanggal terima</span>.</li>
+                                        <li>Unggah file scan surat masuk melalui <span style="font-style: italic;">field</span> <span style="font-weight: bold;">dokumentasi surat</span></li>
+                                        <li>Jika terdapat penugasan, dapat mengisi <span style="font-style: italic;">field</span> <span style="font-weight: bold;"> petugas, uraian penugasan,</span> dan <span style="font-weight: bold;">tenggat penugasan</span>. Apabila belum ada penugasan, <span style="font-style: italic;">field</span> tersebut dapat dikosongkan.</li>
+                                        <li>Klik <button type="button" class="btn btn-blue btn-sm">Submit</button></li>
+                                    </ol>
+                                    <p>Data surat masuk dapat dilihat pada bagian kelola data untuk "Data Surat Masuk"</p>
+                                    <!--//section-block-->
                                 </div>
-                            </section><!--//doc-section-->
-                            <section id="tables-section" class="doc-section">
-                                <h2 class="section-title">Tables</h2>
-                                <div class="section-block">
-                                    <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis.
-                                    </p>
+
+                                <div id="dokumentasiSuratLainnya-section" class="section-block">
+                                    <h3>Dokumentasi Surat Lainnya</h3>
+                                    <p>Dokumentasi surat lainnya hanya dapat dilakukan oleh Administrator. Surat lainnya terdiri dari tiga jenis surat yaitu Nota Kesepahaman (MoU), Perjanjian Kerja Sama, dan Berita Acara. Alur dokumentasi surat lainnya adalah sebagai berikut.</p>
+                                    <ol class="list">
+                                        <li>Pertama, scan surat yang akan didokumentasikan. Hasil scan dalam format file .pdf dan ukuran maksimum 2 MB.</li>
+                                        <li>Klik "Dokumentasi Surat Lainnya"</li>
+                                        <li>Isi <span style="font-style: italic;">field</span> <span style="font-weight: bold;"> jenis surat, nomor surat, pihak pertama, pihak kedua,</span> dan <span style="font-weight: bold;">tentang</span>.</li>
+                                        <li>Unggah file scan surat lainnya melalui <span style="font-style: italic;">field</span> <span style="font-weight: bold;">dokumentasi surat</span></li>
+                                        <li>Klik <button type="button" class="btn btn-blue btn-sm">Submit</button></li>
+                                    </ol>
+                                    <p>Data surat lainnya dapat dilihat pada bagian kelola data untuk "Data Surat Lainnya"</p>
+                                    <!--//section-block-->
                                 </div>
+                            </section>
+
+                            <section id="penugasanSuratMasuk-section" class="doc-section">
+                                <h2 class="section-title">Penugasan Surat Masuk</h2>
                                 <div class="section-block">
-                                    <h6>Basic Table</h6>
-                                    <div class="table-responsive">
-                                        <table class="table">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Username</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td>Larry</td>
-                                                    <td>the Bird</td>
-                                                    <td>@twitter</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div><!--//table-responsive-->
-                                    <h6>Striped Table</h6>
-                                    <div class="table-responsive">
-                                        <table class="table table-striped">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Username</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td>Larry</td>
-                                                    <td>the Bird</td>
-                                                    <td>@twitter</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div><!--//table-responsive-->
-                                    <h6>Bordered Table</h6>
-                                    <div class="table-responsive">
-                                        <table class="table table-bordered">
-                                            <thead>
-                                                <tr>
-                                                    <th>#</th>
-                                                    <th>First Name</th>
-                                                    <th>Last Name</th>
-                                                    <th>Username</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">1</th>
-                                                    <td>Mark</td>
-                                                    <td>Otto</td>
-                                                    <td>@mdo</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">2</th>
-                                                    <td>Jacob</td>
-                                                    <td>Thornton</td>
-                                                    <td>@fat</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">3</th>
-                                                    <td>Larry</td>
-                                                    <td>the Bird</td>
-                                                    <td>@twitter</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div><!--//table-responsive-->
-                                </div><!--//section-block-->
-                            </section><!--//doc-section-->
-                            <section id="buttons-section" class="doc-section">
-                                <h2 class="section-title">Buttons</h2>
+                                    <p>Halaman "Penugasan Surat Masuk" menampilkan daftar penugasan surat masuk yang diterima oleh pengguna. Hal yang dapat dilakukan dalam halaman ini adalah sebagai berikut.</p>
+                                    <ul class="list">
+                                        <li>Memperbaharui status penugasan jika telah selesai dilakukan dengan menekan <button class="btn btn-blue btn-sm">Selesai</button></li>
+                                        <li>Memlihat dokumen surat masuk yang ditugaskan dengan menekan <button class="btn-green btn-sm"><span class="icon"><i class="fas fa-eye"></i></span></button></li>
+                                        <li>Memlihat detail surat masuk yang ditugaskan dengan menekan <button class="btn btn-primary btn-sm">Detail</button></li>
+                                    </ul>
+                                </div>
+                                <!--//section-block-->
+                            </section>
+
+                            <section id="suratKeluarAnda-section" class="doc-section">
+                                <h2 class="section-title">Surat Keluar Anda</h2>
                                 <div class="section-block">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec imperdiet turpis. Curabitur aliquet pulvinar ultrices. Etiam at posuere leo. Proin ultrices ex et dapibus feugiat <a href="#">link example</a> aenean purus leo, faucibus at elit vel, aliquet scelerisque dui. Etiam quis elit euismod, imperdiet augue sit amet, imperdiet odio. Aenean sem erat, hendrerit  eu gravida id, dignissim ut ante. Nam consequat porttitor libero euismod congue. 
-                                    </p>
-                                    <div class="row">
-                                        <div class="col-md-6 col-12">
-                                            <h6>Basic Buttons</h6>
-                                            <ul class="list list-unstyled">
-                                                <li><a href="#" class="btn btn-primary">Primary Button</a></li>
-                                                <li><a href="#" class="btn btn-green">Green Button</a></li>
-                                                <li><a href="#" class="btn btn-blue">Blue Button</a></li>
-                                                <li><a href="#" class="btn btn-orange">Orange Button</a></li>
-                                                <li><a href="#" class="btn btn-red">Red Button</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-md-6 col-12">
-                                            <h6>CTA Buttons</h6>
-                                            <ul class="list list-unstyled">
-                                                <li><a href="#" class="btn btn-primary btn-cta"><i class="fas fa-download"></i> Download Now</a></li>
-                                                <li><a href="#" class="btn btn-green btn-cta"><i class="fas fa-code-branch"></i> Fork Now</a></li>
-                                                <li><a href="#" class="btn btn-blue btn-cta"><i class="fas fa-play-circle"></i> Find Out Now</a></li>
-                                                <li><a href="#" class="btn btn-orange btn-cta"><i class="fas fa-bug"></i> Report Bugs</a></li>
-                                                <li><a href="#" class="btn btn-red btn-cta"><i class="fas fa-exclamation-circle"></i> Submit Issues</a></li>
-                                            </ul>
-                                        </div>
-                                    </div><!--//row-->
-                                </div><!--//section-block-->
-                            </section><!--//doc-section-->
-                            <section id="video-section" class="doc-section">
-                                <h2 class="section-title">Video</h2>
+                                    <p>Halaman "Surat Keluar Anda" menampilkan daftar surat keluar yang dibuat oleh pengguna. Hal yang dapat dilakukan dalam halaman ini adalah sebagai berikut.</p>
+                                    <ul class="list">
+                                        <li>Memlihat dokumen surat keluar dengan menekan <button class="btn-green btn-sm"><span class="icon"><i class="fas fa-eye"></i></span></button></li>
+                                        <li>Memperbaharui status surat dan mengubah data surat keluar dengan menekan <button class="btn-grey btn-sm"><span class="icon"><i class="fas fa-edit"></i></span></button></li>
+                                        <li>Memlihat detail surat keluar dengan menekan <button class="btn btn-primary btn-sm">Detail</button></li>
+                                        <li>Jika status surat dalam Pengajuan atau Belum terkirim, anda dapat membatalkan surat keluar dengan menekan <button class="btn btn-red btn-sm">Batalkan</button></li>
+                                    </ul>
+                                </div>
+                                <!--//section-block-->
+                            </section>
+
+                            <section id="kelolaData-section" class="doc-section">
+                                <h2 class="section-title">Kelola Data</h2>
                                 <div class="section-block">
-                                    <div class="row">
-                                        <div class="col-md-6 col-12">
-                                            <h6>Responsive Video 16:9</h6>
-                                            <!-- 16:9 aspect ratio -->
-                                            <div class="embed-responsive embed-responsive-16by9">
-                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ejBkOjEG6F0?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-12">
-                                            <h6>Responsive Video 4:3</h6>
-                                            <!-- 4:3 aspect ratio -->
-                                            <div class="embed-responsive embed-responsive-4by3">
-                                                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/ejBkOjEG6F0?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
-                                            </div>
-                                        </div>
-                                    </div><!--//row-->
-                                </div><!--//section-block-->
-                            <section id="icons-section" class="doc-section">
-                                <h2 class="section-title">Icons</h2>
-                                <div class="section-block">
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec imperdiet turpis. Curabitur aliquet pulvinar ultrices. Etiam at posuere leo. Proin ultrices ex et dapibus feugiat <a href="#">link example</a> aenean purus leo, faucibus at elit vel, aliquet scelerisque dui. Etiam quis elit euismod, imperdiet augue sit amet, imperdiet odio. Aenean sem erat, hendrerit  eu gravida id, dignissim ut ante. Nam consequat porttitor libero euismod congue. 
-                                    </p>
-                                </div><!--//section-block-->
-                                <div class="section-block">
-                                    <h6>Elegant Icon Font</h6>
-                                    <a href="https://www.elegantthemes.com/blog/resources/elegant-icon-font" target="_blank"><img class="img-fluid" src="assets/images/demo/elegant-icon-font.jpg" alt="elegant icons" /></a>
-                                </div><!--//section-block-->
-                                <div class="section-block">
-                                    <h6>FontAwesome Icon Font</h6>
-                                    <a href="https://fortawesome.github.io/Font-Awesome/" target="_blank"><img class="img-fluid" src="assets/images/demo/fontawesome-icons.png" alt="fontawesome" /></a>
-                                </div><!--//section-block-->
-                                
-                            </section><!--//doc-section-->
-                            
-                            </section><!--//doc-section-->
-                        </div><!--//content-inner-->
-                    </div><!--//doc-content-->
+                                    <p>Kelola data hanya dapat dilakukan oleh Administrator. Data yang dapat dikelola, yaitu Data Surat, Data Pengguna, dan Data Klasifikasi Surat.</p>
+                                </div>
+                                <!--//section-block-->
+                                <div id="dataSurat-section" class="section-block">
+                                    <h3>Data Surat</h3>
+                                    <p>Pengelolaan data surat dapat dilakukan pada bagian kelola data "Data Surat". Terdapat tiga jenis data surat yang dapat dikelola, yaitu surat keluar, surat masuk, dan surat lainnya. Hal yang dapat dilakukan dalam bagian ini adalah sebagai berikut.</p>
+                                    <ul class="list">
+                                        <li>Export surat menjadi Excel dengan menekan <button class="btn btn-green btn-icon-split btn-sm"><span class="icon"><i class="fas fa-file-excel"></i></span><span class="text">Export</span></button></li>
+                                        <li>Mengubah data surat dengan menekan <button class="btn-grey btn-sm"><span class="icon"><i class="fas fa-edit"></i></span></button></li>
+                                        <li>Menghapus data surat dengan menekan <button class="btn-red btn-sm"><span class="icon"><i class="fas fa-trash"></i></span></button></li>
+                                        <li>Memlihat detail surat dengan menekan <button class="btn btn-primary btn-sm">Detail</button></li>
+                                        <li>Pada kelola data surat masuk, jika status surat Belum ditugaskan maka akan muncul tombol <button class="btn btn-blue btn-sm">Tambah Penugasan</button></li>
+                                    </ul>
+                                    <!--//section-block-->
+                                </div>
+
+                                <div id="dataPengguna-section" class="section-block">
+                                    <h3>Data Pengguna</h3>
+                                    <p>Pengelolaan data pengguna dapat dilakukan pada bagian kelola data "Data Pengguna". Hal yang dapat dilakukan dalam bagian ini adalah sebagai berikut.</p>
+                                    <ul class="list">
+                                        <li>Menambah data pengguna dengan menekan <button class="btn btn-green btn-icon-split btn-sm"><span class="icon"><i class="fas fa-plus"></i></span><span class="text">Tambah</span></button></li>
+                                        <li>Mengubah role dan mengubah data pengguna dengan menekan <button class="btn-grey btn-sm"><span class="icon"><i class="fas fa-edit"></i></span></button></li>
+                                        <li>Menghapus data pengguna dengan menekan <button class="btn-red btn-sm"><span class="icon"><i class="fas fa-trash"></i></span></button></li>
+                                    </ul>
+                                    <!--//section-block-->
+                                </div>
+
+                                <div id="dataKlasifikasiSurat-section" class="section-block">
+                                    <h3>Data Klasifikasi Surat</h3>
+                                    <p>Pengelolaan data klasifikasi surat dapat dilakukan pada bagian kelola data "Data Klasifikasi Surat". Hal yang dapat dilakukan dalam bagian ini adalah sebagai berikut.</p>
+                                    <ul class="list">
+                                        <li>Menambah data klasifikasi surat dengan menekan <button class="btn btn-green btn-icon-split btn-sm"><span class="icon"><i class="fas fa-plus"></i></span><span class="text">Tambah</span></button></li>
+                                        <li>Mengubah data klasifikasi surat dengan menekan <button class="btn-grey btn-sm"><span class="icon"><i class="fas fa-edit"></i></span></button></li>
+                                        <li>Menghapus data klasifikasi surat dengan menekan <button class="btn-red btn-sm"><span class="icon"><i class="fas fa-trash"></i></span></button></li>
+                                        <li>Memlihat detail klasifikasi surat dengan menekan <button class="btn btn-primary btn-sm">Detail</button></li>
+                                    </ul>
+                                    <!--//section-block-->
+                                </div>
+                            </section>
+                            <!--//doc-section-->
+                        </div>
+                        <!--//content-inner-->
+                    </div>
+                    <!--//doc-content-->
                     <div class="doc-sidebar col-md-3 col-12 order-0 d-none d-md-flex">
                         <div id="doc-nav" class="doc-nav">
-	                        
-	                            <nav id="doc-menu" class="nav doc-menu flex-column sticky">
-	                                <a class="nav-link scrollto" href="#download-section">Download</a>
-	                                <a class="nav-link scrollto" href="#installation-section">Installation</a>
-                                    <nav class="doc-sub-menu nav flex-column">
-                                        <a class="nav-link scrollto" href="#step1">Step One</a>
-                                        <a class="nav-link scrollto" href="#step2">Step Two</a>
-                                        <a class="nav-link scrollto" href="#step3">Step Three</a>
-                                    </nav><!--//nav-->
-	                                <a class="nav-link scrollto" href="#code-section">Code</a>
-                                    <nav class="doc-sub-menu nav flex-column">
-                                        <a class="nav-link scrollto" href="#html">HTML</a>
-                                        <a class="nav-link scrollto" href="#css">CSS</a>
-                                        <a class="nav-link scrollto" href="#sass">Sass</a>
-                                        <a class="nav-link scrollto" href="#less">LESS</a>
-                                        <a class="nav-link scrollto" href="#javascript">JavaScript</a>
-                                        <a class="nav-link scrollto" href="#python">Python</a>
-                                        <a class="nav-link scrollto" href="#php">PHP</a>
-                                        <a class="nav-link scrollto" href="#handlebars">Handlebars</a>
-                                    </nav><!--//nav-->
-	                                <a class="nav-link scrollto" href="#callouts-section">Callouts</a>
-	                                <a class="nav-link scrollto" href="#tables-section">Tables</a>
-	                                <a class="nav-link scrollto" href="#buttons-section">Buttons</a>
-	                                <a class="nav-link scrollto" href="#video-section">Video</a>
-	                                <a class="nav-link scrollto" href="#icons-section">Icons</a>
-	                            </nav><!--//doc-menu-->
-	                        
-                        </div>
-                    </div><!--//doc-sidebar-->
-                </div><!--//doc-body-->              
-            </div><!--//container-->
-        </div><!--//doc-wrapper-->
-        
-        <div id="promo-block" class="promo-block">
-            <div class="container">
-                <div class="promo-block-inner">
-                    <h3 class="promo-title text-center"><i class="fas fa-heart"></i> <a href="https://themes.3rdwavemedia.com/bootstrap-templates/portfolio/instance-bootstrap-portfolio-theme-for-developers/" target="_blank">Are you an ambitious and entrepreneurial developer?</a></h3>
-                    <div class="row">
-                        <div class="figure-holder col-lg-5 col-md-6 col-12">
-                            <div class="figure-holder-inner">
-                                <a href="https://themes.3rdwavemedia.com/bootstrap-templates/portfolio/instance-bootstrap-portfolio-theme-for-developers/" target="_blank"><img class="img-fluid" src="assets/images/demo/instance-promo.jpg" alt="Instance Theme" /></a>
-                                <a class="mask" href="https://themes.3rdwavemedia.com/bootstrap-templates/portfolio/instance-bootstrap-portfolio-theme-for-developers/"><i class="icon fa fa-heart pink"></i></a>
-                                
-                            </div>
-                        </div><!--//figure-holder-->
-                        <div class="content-holder col-lg-7 col-md-6 col-12">
-                            <div class="content-holder-inner">
-                                <div class="desc">
-                                    <h4 class="content-title"><strong> Instance - Bootstrap 4 Portfolio Theme for Aspiring Developers</strong></h4>
-                                    <p>Check out <a href="https://themes.3rdwavemedia.com/bootstrap-templates/portfolio/instance-bootstrap-portfolio-theme-for-developers/" target="_blank">Instance</a> - a Bootstrap personal portfolio theme I created for developers. The UX design is focused on selling a developer’s skills and experience to potential employers or clients, and has <strong class="highlight">all the winning ingredients to get you hired</strong>. It’s not only a HTML site template but also a marketing framework for you to <strong class="highlight">build an impressive online presence with a high conversion rate</strong>. </p>
-                                    <p><strong class="highlight">[Tip for developers]:</strong> If your project is Open Source, you can use this area to promote your other projects or hold third party adverts like Bootstrap and FontAwesome do!</p>
-                                    <a class="btn btn-cta" href="https://themes.3rdwavemedia.com/bootstrap-templates/portfolio/instance-bootstrap-portfolio-theme-for-developers/" target="_blank"><i class="fas fa-external-link-alt"></i> View Demo</a>
-                                    
-                                </div><!--//desc-->
-                                
-                                
-                                <div class="author"><a href="https://themes.3rdwavemedia.com">Xiaoying Riley</a></div>
-                            </div><!--//content-holder-inner-->
-                        </div><!--//content-holder-->
-                    </div><!--//row-->
-                </div><!--//promo-block-inner-->  
-            </div><!--//container-->
-        </div><!--//promo-block-->
-        
-    </div><!--//page-wrapper-->
-    
-    <footer id="footer" class="footer text-center">
-        <div class="container">
-            <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
-            <small class="copyright">Designed with <i class="fas fa-heart"></i> by <a href="https://themes.3rdwavemedia.com/" target="_blank">Xiaoying Riley</a> for developers</small>
-            
-        </div><!--//container-->
-    </footer><!--//footer-->
-    
-     
-    <!-- Main Javascript -->          
-    <script type="text/javascript" src="assets/plugins/jquery-3.4.1.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>    
-    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>      
-    <script type="text/javascript" src="assets/plugins/stickyfill/dist/stickyfill.min.js"></script>                                                             
-    <script type="text/javascript" src="assets/js/main.js"></script>
-    
-</body>
-</html> 
 
+                            <nav id="doc-menu" class="nav doc-menu flex-column sticky">
+                                <a class="nav-link scrollto" href="#pendahuluan-section">Pendahuluan</a>
+                                <a class="nav-link scrollto" href="#buatSuratKeluar-section">Membuat Surat Keluar</a>
+                                <a class="nav-link scrollto" href="#dokumentasiSurat-section">Dokumentasi Surat</a>
+                                <nav class="doc-sub-menu nav flex-column">
+                                    <a class="nav-link scrollto" href="#dokumentasiSuratKeluar-section">Dokumentasi Surat Keluar</a>
+                                    <a class="nav-link scrollto" href="#dokumentasiSuratMasuk-section">Dokumentasi Surat Masuk</a>
+                                    <a class="nav-link scrollto" href="#dokumentasiSuratLainnya-section">Dokumentasi Surat Lainnya</a>
+                                </nav>
+                                <a class="nav-link scrollto" href="#penugasanSuratMasuk-section">Penugasan Surat Masuk</a>
+                                <a class="nav-link scrollto" href="#suratKeluarAnda-section">Surat Keluar Anda</a>
+                                <a class="nav-link scrollto" href="#kelolaData-section">Kelola Data</a>
+                                <nav class="doc-sub-menu nav flex-column">
+                                    <a class="nav-link scrollto" href="#dataSurat-section">Data Surat</a>
+                                    <a class="nav-link scrollto" href="#dataPengguna-section">Data Pengguna</a>
+                                    <a class="nav-link scrollto" href="#dataKlasifikasiSurat-section">Data Klasifikasi Surat</a>
+                                </nav>
+                            </nav>
+                            <!--//doc-menu-->
+
+                        </div>
+                    </div>
+                    <!--//doc-sidebar-->
+                </div>
+                <!--//doc-body-->
+            </div>
+            <!--//container-->
+        </div>
+        <!--//doc-wrapper-->
+
+    </div>
+    <!--//page-wrapper-->
+
+    <footer id="footer" class="footer text-center">
+        <div class="container my-auto">
+            <div class="copyright text-center my-auto text-white">
+                <span>Copyright &copy; Biro Humas dan Hukum BPS RI <?= Date('Y') ?> </span>
+            </div>
+        </div>
+        <!--//container-->
+    </footer>
+    <!--//footer-->
+
+
+    <!-- Main Javascript -->
+    <script type="text/javascript" src="<?= base_url() ?>/assets/vendor/panduan/assets/plugins/jquery-3.4.1.min.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>/assets/vendor/panduan/assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>/assets/vendor/panduan/assets/plugins/prism/prism.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>/assets/vendor/panduan/assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>/assets/vendor/panduan/assets/plugins/stickyfill/dist/stickyfill.min.js"></script>
+    <script type="text/javascript" src="<?= base_url() ?>/assets/vendor/panduan/assets/js/main.js"></script>
+
+</body>
+
+</html>
