@@ -62,6 +62,18 @@
                     <?php
                     }
                     ?>
+                    <?php
+                    if (session()->getFlashData('error')) {
+                    ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <?= session()->getFlashData('error') ?>
+                            <button id="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php
+                    }
+                    ?>
                     <?php if (count($surat_keluar) != 0) { ?>
                         <div class="table-responsive table-hover">
                             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -159,7 +171,26 @@
                                                         </a>
                                                 </div>
                                                 <p hidden><?= $surat_keluar['NOMOR_SURAT_KELUAR'] ?></p>
-                                            <?php } ?>
+                                            <?php } else { ?>
+                                                <?php if ($surat_keluar['SCAN_SURAT_KELUAR'] == NULL) { ?>
+                                                    <a href="<?= base_url('uploads/dokumentasi/' . $surat_keluar['SCAN_SURAT_KELUAR']) ?>" class="btn btn-success btn-icon-split btn-sm disabled" target="_blank">
+                                                        <span class="icon">
+                                                            <i class="fas fa-eye"></i>
+                                                        </span>
+                                                    </a>
+                                                <?php } else { ?>
+                                                    <a href="<?= base_url('uploads/dokumentasi/' . $surat_keluar['SCAN_SURAT_KELUAR']) ?>" class="btn btn-success btn-icon-split btn-sm disable" target="_blank">
+                                                        <span class="icon">
+                                                            <i class="fas fa-eye"></i>
+                                                        </span>
+                                                    </a>
+                                                <?php } ?>
+                                                <a href="#" class="btn btn-primary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#detailModal-<?= $surat_keluar['ID_SURAT_KELUAR'] ?>">
+                                                    <span class="text">Detail</span>
+                                                </a>
+                                            <?php
+                                                    }
+                                            ?>
                                             </td>
                                         </tr>
 
@@ -178,15 +209,20 @@
                                                             <?php if ($surat_keluar['SCAN_SURAT_KELUAR'] == NULL) { ?>
                                                                 <div class="form-group col-3">
                                                                     <label for="detailDokumentasi" class="col-form-label">Dokumentasi :</label>
-                                                                    <form action="<?= base_url('SuratKeluarController/to_dokumentasi_surat_keluar') ?>" method="POST">
-                                                                        <input type="text" name="id_surat_keluar" value="<?= $surat_keluar['ID_SURAT_KELUAR'] ?>" hidden>
-                                                                        <button type="submit" class="btn btn-success btn-icon-split">
-                                                                            <span class="icon text-white-50">
-                                                                                <i class="fas fa-plus"></i>
-                                                                            </span>
-                                                                            <span class="text">Dokumentasi</span>
-                                                                        </button>
-                                                                    </form>
+                                                                    <?php if ($surat_keluar['STATUS'] != 'Dibatalkan') { ?>
+                                                                        <form action="<?= base_url('SuratKeluarController/to_dokumentasi_surat_keluar') ?>" method="POST">
+                                                                            <input type="text" name="id_surat_keluar" value="<?= $surat_keluar['ID_SURAT_KELUAR'] ?>" hidden>
+                                                                            <button type="submit" class="btn btn-success btn-icon-split">
+                                                                                <span class="icon text-white-50">
+                                                                                    <i class="fas fa-plus"></i>
+                                                                                </span>
+                                                                                <span class="text">Dokumentasi</span>
+                                                                            </button>
+                                                                        </form>
+                                                                    <?php } else { ?>
+                                                                        <br>
+                                                                        <span class='badge badge-danger'>Tidak Ada</span>
+                                                                    <?php } ?>
                                                                 </div>
                                                             <?php } else { ?>
                                                                 <div class="form-group col-2">
@@ -236,7 +272,7 @@
                                                                         } else if ($surat_keluar['STATUS'] == 'Sudah terkirim') {
                                                                             echo "<div class='bg-success btn-icon-split form-control'>";
                                                                         } else if ($surat_keluar['STATUS'] == 'Dibatalkan') {
-                                                                            echo "<div class='bg-dannger btn-icon-split form-control'>";
+                                                                            echo "<div class='bg-danger btn-icon-split form-control'>";
                                                                         } ?>
                                                                         <span class="text text-white"><?= $surat_keluar['STATUS'] ?></span>
                                                                         <?php echo "</div>" ?>
@@ -256,6 +292,12 @@
                                                                     <label for="detailPerihal" class="col-form-label">Perihal :</label>
                                                                     <textarea name='detailPerihal' class="form-control" id="detailPerihal" rows="3" style="resize: none;" readonly><?= $surat_keluar['PERIHAL'] ?></textarea>
                                                                 </div>
+                                                                <?php if ($surat_keluar['STATUS'] == 'Dibatalkan') { ?>
+                                                                    <div class="form-group">
+                                                                        <label for="detailKeterangan" class="col-form-label">Alasan Pembatalan Surat :</label>
+                                                                        <textarea name='detailKeterangan' class="form-control" id="detailKeterangan" rows="3" style="resize: none;" readonly><?= $surat_keluar['KETERANGAN'] ?></textarea>
+                                                                    </div>
+                                                                <?php } ?>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -278,8 +320,8 @@
                                                             <?= csrf_field(); ?>
                                                             <div class="modal-body">
                                                                 <?php
-                                                                if (session()->getFlashData('error')) {
-                                                                    $error = session()->getFlashData('error');
+                                                                if (session()->getFlashData('error_edit')) {
+                                                                    $error = session()->getFlashData('error_edit');
                                                                     if ($surat_keluar['ID_SURAT_KELUAR'] == $error['id']) {
                                                                 ?>
                                                                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -397,8 +439,8 @@
         })
 
         <?php
-        if (session()->getFlashData('error')) {
-            $error = session()->getFlashData('error');
+        if (session()->getFlashData('error_edit')) {
+            $error = session()->getFlashData('error_edit');
         ?>
             $('#edit-<?= $error['id'] ?>').trigger('click');
         <?php

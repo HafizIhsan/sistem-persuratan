@@ -125,7 +125,7 @@
             <div class="card shadow h-100">
                 <div class="card-header py-3">
                     <div class="d-flex justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Surat Keluar Anda (Belum di Dokumentasi)</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Surat Keluar Belum di Dokumentasi</h6>
                         <a href="surat_keluar_anda" style="text-decoration-line: underline;" class="text-gray-600">Lihat selengkapnya</a>
                     </div>
                 </div>

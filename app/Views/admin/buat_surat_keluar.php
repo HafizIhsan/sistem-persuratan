@@ -62,7 +62,7 @@
                         <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="inputPenerima">Ditujukan kepada</label>
-                                <input onkeydown="return event.key != 'Enter';" type="text" class="form-control" id="inputPenerima" placeholder="Penerima" name="penerima" required>
+                                <input onkeydown="return event.key != 'Enter';" type="text" class="form-control" id="inputPenerima" placeholder="Ditujukan kepada" name="penerima" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="inputPenandatangan">TTD</label>

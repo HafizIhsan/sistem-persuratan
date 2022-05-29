@@ -64,38 +64,49 @@ class M_SuratKeluar extends Model
 
     public function get_no_urut_akhir($tanggal_surat)
     {
-        $sql = "SELECT * FROM surat_keluar WHERE TANGGAL_SURAT = ?";
-        $query = $this->db->query($sql, [$tanggal_surat]);
-        $row = $query->getResultArray();
-
         $now = date('Y-m-d');
         $yearNow = date('Y');
         $tgl = date('Y-m-d', strtotime($tanggal_surat));
 
-        if ($tgl == $now) {
-            $tmp = $this->db->query("SELECT max(NO_URUT) as max_no_urut, SUB_NO_URUT as max_sub_no_urut FROM surat_keluar WHERE TANGGAL_SURAT LIKE '$yearNow%'")->getResultArray();
-            $data = end($tmp);
-            if (count($data) == 0) {
-                $data['max_no_urut'] = 1;
-                $data['max_sub_no_urut'] = NULL;
-            }
+        $x = "SELECT * FROM surat_keluar WHERE TANGGAL_SURAT LIKE '$yearNow%' AND STATUS = 'Dibatalkan' AND SUB_NO_URUT IS NULL";
+        $surat_batal = $this->db->query($x)->getResultArray();
+        if (count($surat_batal) != 0) {
+            $kategori  = array_column($surat_batal, 'NO_URUT');
+            array_multisort($kategori, SORT_ASC, $surat_batal);
+            $first_row = reset($surat_batal);
+            $data['max_no_urut'] = ($first_row['NO_URUT'] - 1);
+            $data['max_sub_no_urut'] = NULL;
             return $data;
-        } else if ($tgl != $now) {
-            if (count($row) != 0) {
-                $last_row = end($row);
-                $data['max_no_urut'] = $last_row['NO_URUT'];
-                $data['max_sub_no_urut'] = $last_row['SUB_NO_URUT'];
-            } else {
-                $tmp1 = end($this->db->query("SELECT max(NO_URUT) as max_no_urut FROM surat_keluar WHERE TANGGAL_SURAT < '$tgl'")->getResultArray());
-                $data['max_no_urut'] = $tmp1['max_no_urut'];
-                $q = "SELECT max(SUB_NO_URUT) as max_sub_no_urut FROM surat_keluar WHERE NO_URUT = ? ";
-                $tmp2 = end($this->db->query($q, [$data['max_no_urut']])->getResultArray());
-                $data['max_sub_no_urut'] = $tmp2['max_sub_no_urut'];
-            }
-            return $data;
-        }
+        } else {
+            if ($tgl == $now) {
+                $tmp = $this->db->query("SELECT max(NO_URUT) as max_no_urut, SUB_NO_URUT as max_sub_no_urut FROM surat_keluar WHERE TANGGAL_SURAT LIKE '$yearNow%'")->getResultArray();
+                $data = end($tmp);
+                if (count($data) == 0) {
+                    $data['max_no_urut'] = 1;
+                    $data['max_sub_no_urut'] = NULL;
+                }
+                return $data;
+            } else if ($tgl != $now) {
+                $sql = "SELECT * FROM surat_keluar WHERE TANGGAL_SURAT = ?";
+                $query = $this->db->query($sql, [$tanggal_surat]);
+                $row = $query->getResultArray();
 
-        return false;
+                if (count($row) != 0) {
+                    $last_row = end($row);
+                    $data['max_no_urut'] = $last_row['NO_URUT'];
+                    $data['max_sub_no_urut'] = $last_row['SUB_NO_URUT'];
+                } else {
+                    $tmp1 = end($this->db->query("SELECT max(NO_URUT) as max_no_urut FROM surat_keluar WHERE TANGGAL_SURAT < '$tgl'")->getResultArray());
+                    $data['max_no_urut'] = $tmp1['max_no_urut'];
+                    $q = "SELECT max(SUB_NO_URUT) as max_sub_no_urut FROM surat_keluar WHERE NO_URUT = ? ";
+                    $tmp2 = end($this->db->query($q, [$data['max_no_urut']])->getResultArray());
+                    $data['max_sub_no_urut'] = $tmp2['max_sub_no_urut'];
+                }
+                return $data;
+            }
+
+            return false;
+        }
     }
 
     public function get_surat_keluar_by_tahun($tahun = false)

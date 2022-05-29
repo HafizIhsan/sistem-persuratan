@@ -33,7 +33,10 @@ class SuratKeluarController extends BaseController
 
     public function delete($id)
     {
+        $data = $this->surat_keluar->getSuratKeluarbyID($id);
         $this->surat_keluar->delete($id);
+        unlink("uploads/dokumentasi/" . $data[0]['SCAN_SURAT_KELUAR']);
+        unlink("uploads/draft/" . $data[0]['DRAFT_SURAT_KELUAR']);
 
         return redirect()->to(base_url('data_surat_keluar'))->with('success', 'Data surat berhasil dihapus');
     }
@@ -96,6 +99,9 @@ class SuratKeluarController extends BaseController
             return redirect()->to(base_url('data_surat_keluar'))->with('error', 'Tidak ada data surat');
         }
 
+        $kategori  = array_column($dataSuratKeluar, 'NOMOR_SURAT_KELUAR');
+        array_multisort($kategori, SORT_STRING, $dataSuratKeluar);
+
         $spreadsheet = new Spreadsheet();
         // tulis header/nama kolom 
         $spreadsheet->setActiveSheetIndex(0)
@@ -108,7 +114,8 @@ class SuratKeluarController extends BaseController
             ->setCellValue('G1', 'Status')
             ->setCellValue('H1', 'Draft Final')
             ->setCellValue('I1', 'Dokumentasi')
-            ->setCellValue('J1', 'Created at');
+            ->setCellValue('J1', 'Alasan Pembatalan')
+            ->setCellValue('K1', 'Created at');
 
         $column = 2;
         // tulis data mobil ke cell
@@ -129,7 +136,8 @@ class SuratKeluarController extends BaseController
                 ->setCellValue('G' . $column, $data['STATUS'])
                 ->setCellValue('H' . $column, base_url('uploads/draft/' . $data['DRAFT_SURAT_KELUAR']))
                 ->setCellValue('I' . $column, base_url('uploads/dokumentasi/' . $data['SCAN_SURAT_KELUAR']))
-                ->setCellValue('J' . $column, date('d-m-Y H:i:s', strtotime($data['CREATED_AT'])));
+                ->setCellValue('J' . $column, $data['KETERANGAN'])
+                ->setCellValue('K' . $column, date('d-m-Y H:i:s', strtotime($data['CREATED_AT'])));
             $column++;
         }
         // tulis dalam format .xlsx
@@ -291,7 +299,7 @@ class SuratKeluarController extends BaseController
 
         if (!$input) {
             $msg = $this->validator;
-            return redirect()->to(base_url('surat_keluar_anda'))->with('error', ['error' => $msg->listErrors(), 'id' => $id]);
+            return redirect()->to(base_url('surat_keluar_anda'))->with('error_edit', ['error' => $msg->listErrors(), 'id' => $id]);
         } else {
             $this->surat_keluar->update($id, [
                 'status' => $this->request->getPost('status'),
@@ -321,29 +329,28 @@ class SuratKeluarController extends BaseController
         helper(['form', 'url']);
 
         $rules = [
-            'perihal' => 'required|min_length[5]'
+            'keterangan' => 'required|min_length[5]'
         ];
 
         $error = [
-            'penerima' => [
-                'min_length' => "Input penerima setidaknya terdiri dari 5 karakter",
-                'max_length' => "Input penerima terlalu panjang",
-            ],
-            'ttd' => [
-                'min_length' => "Input ttd setidaknya terdiri dari 5 karakter",
-                'max_length' => "Input ttd terlalu panjang",
-            ],
-            'perihal' => [
-                'min_length' => "Input perihal setidaknya terdiri dari 5 karakter"
-            ],
+            'keterangan' => [
+                'min_length' => "Alasan pembatalan surat setidaknya terdiri dari 5 karakter"
+            ]
         ];
 
         $input = $this->validate($rules, $error);
 
-        $this->surat_keluar->update($id, [
-            'status' => 'Dibatalkan'
-        ]);
+        if (!$input) {
+            $msg = $this->validator;
+            return redirect()->to(base_url('surat_keluar_anda'))->with('error', $msg->listErrors());
+        } else {
+            $this->surat_keluar->update($id, [
+                'nomor_surat_keluar' => NULL,
+                'status' => 'Dibatalkan',
+                'keterangan' => $this->request->getPost('keterangan')
+            ]);
 
-        return redirect()->to(base_url('surat_keluar_anda'))->with('success', 'Surat berhasil dibatalkan');
+            return redirect()->to(base_url('surat_keluar_anda'))->with('success', 'Surat berhasil dibatalkan');
+        }
     }
 }

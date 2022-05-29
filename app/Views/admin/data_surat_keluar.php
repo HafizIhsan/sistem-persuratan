@@ -271,7 +271,7 @@
                                                                 } else if ($surat_keluar['STATUS'] == 'Sudah terkirim') {
                                                                     echo "<div class='bg-success btn-icon-split form-control'>";
                                                                 } else if ($surat_keluar['STATUS'] == 'Dibatalkan') {
-                                                                    echo "<div class='bg-dannger btn-icon-split form-control'>";
+                                                                    echo "<div class='bg-danger btn-icon-split form-control'>";
                                                                 } ?>
                                                                 <span class="text text-white"><?= $surat_keluar['STATUS'] ?></span>
                                                                 <?php echo "</div>" ?>
@@ -291,6 +291,12 @@
                                                             <label for="detailPerihal" class="col-form-label">Perihal :</label>
                                                             <textarea name='detailPerihal' class="form-control" id="detailPerihal" rows="3" style="resize: none;" readonly><?= $surat_keluar['PERIHAL'] ?></textarea>
                                                         </div>
+                                                        <?php if ($surat_keluar['STATUS'] == 'Dibatalkan') { ?>
+                                                            <div class="form-group">
+                                                                <label for="detailKeterangan" class="col-form-label">Alasan Pembatalan Surat :</label>
+                                                                <textarea name='detailKeterangan' class="form-control" id="detailKeterangan" rows="3" style="resize: none;" readonly><?= $surat_keluar['KETERANGAN'] ?></textarea>
+                                                            </div>
+                                                        <?php } ?>
                                                     </div>
                                                     <div class="modal-footer">
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
