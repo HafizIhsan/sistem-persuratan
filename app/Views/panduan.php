@@ -285,7 +285,7 @@
     <footer id="footer" class="footer text-center">
         <div class="container my-auto">
             <div class="copyright text-center my-auto text-white">
-                <span>Copyright &copy; Biro Humas dan Hukum BPS RI <?= Date('Y') ?> </span>
+                <span>Copyright &copy; Biro Humas dan Hukum BPS<?= Date('Y') ?> </span>
             </div>
         </div>
         <!--//container-->
