@@ -108,8 +108,9 @@
         },
         paging: false,
         searching: false,
-        scrollY: '47vh',
-        scrollX: true,
+        "initComplete": function(settings, json) {
+            $("#dataTable").wrap("<div style='overflow:auto; width:100%;position:relative; max-height:47vh;'></div>");
+        },
         scrollCollapse: true
     });
 </script>

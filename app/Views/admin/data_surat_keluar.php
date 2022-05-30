@@ -431,8 +431,9 @@
     $(document).ready(function() {
         $('#dataTable').DataTable({
             bDestroy: true,
-            scrollY: '47vh',
-            scrollX: true,
+            "initComplete": function(settings, json) {
+                $("#dataTable").wrap("<div style='overflow:auto; width:100%;position:relative; max-height:47vh;'></div>");
+            },
             scrollCollapse: true,
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/id.json"

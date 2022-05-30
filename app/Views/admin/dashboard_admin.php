@@ -193,8 +193,9 @@
         "language": {
             "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/id.json"
         },
-        scrollY: '47vh',
-        scrollX: true,
+        "initComplete": function(settings, json) {
+            $("#dataTable").wrap("<div style='overflow:auto; width:100%;position:relative; max-height:47vh;'></div>");
+        },
         scrollCollapse: true
     });
     $('#dataTable2').dataTable({
@@ -205,8 +206,9 @@
         "language": {
             "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/id.json"
         },
-        scrollY: '47vh',
-        scrollX: true,
+        "initComplete": function(settings, json) {
+            $("#dataTable").wrap("<div style='overflow:auto; width:100%;position:relative; max-height:47vh;'></div>");
+        },
         scrollCollapse: true
     });
 </script>
