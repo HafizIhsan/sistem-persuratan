@@ -72,7 +72,7 @@
                                     <input onkeydown="return event.key != 'Enter';" name="file" type="file" class="custom-file-input" id="dokumenSurat" accept="application/pdf">
                                 </div>
                                 <small id="klasifikasiHelpBlock" class="form-text text-muted">
-                                    Tipe file pdf dan ukuran maksimum 2mb
+                                    Tipe file pdf dan ukuran maksimum 1 MB
                                 </small>
                             </div>
                         </div>

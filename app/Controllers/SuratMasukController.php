@@ -43,21 +43,21 @@ class SuratMasukController extends BaseController
                 'nomor_surat' => 'required|min_length[5]|max_length[30]',
                 'instansi_pengirim' => 'required|min_length[5]|max_length[100]',
                 'perihal' => 'required|min_length[5]',
-                'file' => 'uploaded[file]|mime_in[file,application/pdf]|max_size[file,2048]',
+                'file' => 'uploaded[file]|mime_in[file,application/pdf]|max_size[file,1024]',
             ];
         } else {
             $rules = [
                 'nomor_surat' => 'required|min_length[5]|max_length[30]',
                 'instansi_pengirim' => 'required|min_length[5]|max_length[100]',
                 'perihal' => 'required|min_length[5]',
-                'file' => 'uploaded[file]|mime_in[file,application/pdf]|max_size[file,2048]',
+                'file' => 'uploaded[file]|mime_in[file,application/pdf]|max_size[file,1024]',
                 'uraian_penugasan' => 'required|min_length[5]|max_length[100]'
             ];
         }
 
         $error = [
             'file' => [
-                'max_size' => "Ukuran file terlalu besar (Max 2MB)",
+                'max_size' => "Ukuran file terlalu besar (Max 1 MB)",
                 'mime_in' => "Format file harus pdf"
             ],
         ];

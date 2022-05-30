@@ -47,12 +47,12 @@ class BuatSuratKeluarController extends BaseController
             'penerima' => 'required|min_length[5]|max_length[50]',
             'ttd' => 'required|min_length[5]|max_length[50]',
             'perihal' => 'required|min_length[5]',
-            'file' => 'uploaded[file]|mime_in[file,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword]|max_size[file,2048]'
+            'file' => 'uploaded[file]|mime_in[file,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/msword]|max_size[file,1024]'
         ];
 
         $error = [
             'file' => [
-                'max_size' => "Ukuran file terlalu besar (Max 2MB)",
+                'max_size' => "Ukuran file terlalu besar (Max 1 MB)",
                 'mime_in' => "Format file harus doc atau docx"
             ],
         ];

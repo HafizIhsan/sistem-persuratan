@@ -63,7 +63,7 @@
 
     <!-- Content Row -->
     <div class="row" style="min-height:30vh;">
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-6 mb-4">
             <div class="card shadow h-100">
                 <div class="card-header py-3">
                     <div class="d-flex justify-content-between">
@@ -194,6 +194,7 @@
             "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/id.json"
         },
         scrollY: '47vh',
+        scrollX: true,
         scrollCollapse: true
     });
     $('#dataTable2').dataTable({
@@ -205,6 +206,7 @@
             "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/id.json"
         },
         scrollY: '47vh',
+        scrollX: true,
         scrollCollapse: true
     });
 </script>

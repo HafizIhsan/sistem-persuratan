@@ -148,7 +148,7 @@ class SuratLainnyaController extends BaseController
             'pihak_1' => 'required|min_length[5]|max_length[50]',
             'pihak_2' => 'required|min_length[5]|max_length[50]',
             'tentang' => 'required|min_length[5]',
-            'file' => 'uploaded[file]|mime_in[file,application/pdf]|max_size[file,2048]',
+            'file' => 'uploaded[file]|mime_in[file,application/pdf]|max_size[file,1024]',
         ];
 
         $error = [
@@ -168,7 +168,7 @@ class SuratLainnyaController extends BaseController
                 'min_length' => "Tentang setidaknya terdiri dari 5 karakter"
             ],
             'file' => [
-                'max_size' => "Ukuran file terlalu besar (Max 2MB)",
+                'max_size' => "Ukuran file terlalu besar (Max 1 MB)",
                 'mime_in' => "Format file harus pdf"
             ],
         ];

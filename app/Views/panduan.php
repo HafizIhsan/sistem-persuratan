@@ -105,7 +105,7 @@
                                     <p>Alur dalam pembuatan surat keluar adalah sebagai berikut.
                                     </p>
                                     <ol class="list">
-                                        <li>Persiapkan draft surat keluar dengan format file .docx atau .doc dan ukuran maksidmum 2 MB.</li>
+                                        <li>Persiapkan draft surat keluar dengan format file .docx atau .doc dan ukuran maksidmum 1 MB.</li>
                                         <li>Klik "Membuat Surat Keluar".</li>
                                         <li>Isi <span style="font-style: italic;">field</span> <span style="font-weight: bold;"> tanggal surat, klasifikasi surat, ditujukan kepada, ttd,</span> dan <span style="font-weight: bold;">perihal</span> dengan informasi surat yang akan dibuat. Pastikan tidak ada kesalahan dalam memasukkan informasi surat.</li>
                                         <li>Klik tombol <button type="button" class="btn btn-blue btn-sm">Generate</button> untuk mendapatkan nomor surat keluar terbaru.</li>
@@ -127,7 +127,7 @@
                                     <h3>Dokumentasi Surat Keluar</h3>
                                     <p>Setelah membuat surat keluar melalui halaman "Membuat Surat Keluar", anda harus mengunggah scan hasil akhir surat keluar tersebut. Hasil akhir dari surat keluar yaitu surat keluar yang sudah selesai atau sudah ditandatangani.</p>
                                     <ol class="list">
-                                        <li>Pertama, scan surat keluar yang akan didokumentasikan. Hasil scan dalam format file .pdf dan ukuran maksimum 2 MB.</li>
+                                        <li>Pertama, scan surat keluar yang akan didokumentasikan. Hasil scan dalam format file .pdf dan ukuran maksimum 1 MB.</li>
                                         <li>Klik "Dokumentasi Surat Keluar" atau dapat juga melalui "Dashboard" lalu klik <button type="submit" class="btn btn-success btn-icon-split btn-sm">
                                                 <span class="icon text-white-50">
                                                     <i class="fas fa-plus"></i>
@@ -146,7 +146,7 @@
                                     <h3>Dokumentasi Surat Masuk</h3>
                                     <p>Dokumentasi surat masuk hanya dapat dilakukan oleh Administrator. Alur dokumentasi surat masuk adalah sebagai berikut.</p>
                                     <ol class="list">
-                                        <li>Pertama, scan surat masuk yang akan didokumentasikan. Hasil scan dalam format file .pdf dan ukuran maksimum 2 MB.</li>
+                                        <li>Pertama, scan surat masuk yang akan didokumentasikan. Hasil scan dalam format file .pdf dan ukuran maksimum 1 MB.</li>
                                         <li>Klik "Dokumentasi Surat Masuk"</li>
                                         <li>Isi <span style="font-style: italic;">field</span> <span style="font-weight: bold;"> nomor surat, pengirim, perihal,</span> dan <span style="font-weight: bold;">tanggal terima</span>.</li>
                                         <li>Unggah file scan surat masuk melalui <span style="font-style: italic;">field</span> <span style="font-weight: bold;">dokumentasi surat</span></li>
@@ -161,7 +161,7 @@
                                     <h3>Dokumentasi Surat Lainnya</h3>
                                     <p>Dokumentasi surat lainnya hanya dapat dilakukan oleh Administrator. Surat lainnya terdiri dari tiga jenis surat yaitu Nota Kesepahaman (MoU), Perjanjian Kerja Sama, dan Berita Acara. Alur dokumentasi surat lainnya adalah sebagai berikut.</p>
                                     <ol class="list">
-                                        <li>Pertama, scan surat yang akan didokumentasikan. Hasil scan dalam format file .pdf dan ukuran maksimum 2 MB.</li>
+                                        <li>Pertama, scan surat yang akan didokumentasikan. Hasil scan dalam format file .pdf dan ukuran maksimum 1 MB.</li>
                                         <li>Klik "Dokumentasi Surat Lainnya"</li>
                                         <li>Isi <span style="font-style: italic;">field</span> <span style="font-weight: bold;"> jenis surat, nomor surat, pihak pertama, pihak kedua,</span> dan <span style="font-weight: bold;">tentang</span>.</li>
                                         <li>Unggah file scan surat lainnya melalui <span style="font-style: italic;">field</span> <span style="font-weight: bold;">dokumentasi surat</span></li>

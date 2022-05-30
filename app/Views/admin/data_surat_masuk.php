@@ -225,11 +225,6 @@
                                                         <i class="fas fa-eye"></i>
                                                     </span>
                                                 </a>
-                                                <!-- <a href="#" class="btn btn-success btn-icon-split btn-sm" data-toggle="modal" data-target="#viewModal-<?= $surat_masuk['ID_SURAT_MASUK'] ?>">
-                                                    <span class="icon">
-                                                        <i class="fas fa-eye"></i>
-                                                    </span>
-                                                </a> -->
                                                 <a href="#" class="btn btn-secondary btn-icon-split btn-sm ml-2" data-toggle="modal" data-target="#editModal-<?= $surat_masuk['ID_SURAT_MASUK'] ?>" id="edit-<?= $surat_masuk['ID_SURAT_MASUK'] ?>">
                                                     <span class="icon">
                                                         <i class="fas fa-edit"></i>
@@ -457,6 +452,7 @@
         $('#dataTable').DataTable({
             bDestroy: true,
             scrollY: '47vh',
+            scrollX: true,
             scrollCollapse: true,
             "language": {
                 "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/id.json"

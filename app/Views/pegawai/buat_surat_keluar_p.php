@@ -108,7 +108,7 @@
                                     </div>
                                 </div>
                                 <small id="fileHelpBlock" class="form-text text-muted">
-                                    Tipe file doc atau docx dan ukuran maksimum 2mb
+                                    Tipe file doc atau docx dan ukuran maksimum 1 MB
                                 </small>
                             </div>
                         </div>

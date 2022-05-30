@@ -109,6 +109,7 @@
         paging: false,
         searching: false,
         scrollY: '47vh',
+        scrollX: true,
         scrollCollapse: true
     });
 </script>
