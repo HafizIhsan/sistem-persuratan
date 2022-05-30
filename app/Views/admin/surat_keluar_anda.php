@@ -369,7 +369,7 @@
                                                                                 if (($key = array_search($surat_keluar['STATUS'], $optionStat)) !== false) {
                                                                                     unset($optionStat[$key]);
                                                                                 }
-                                                                                for ($x = 0; $x <= count($optionStat); $x++) {
+                                                                                for ($x = 0; $x < count($optionStat); $x++) {
                                                                                     if ($optionStat[$x] != NULL) {
                                                                                         echo "<option value='$optionStat[$x]'>$optionStat[$x]</option>";
                                                                                     }

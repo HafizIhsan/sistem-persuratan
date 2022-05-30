@@ -43,7 +43,7 @@
                     </thead>
                     <tbody>
                         <?php foreach ($pengguna as $key => $pengguna) : ?>
-                            <?php for ($i = 0; $i <= count($role); $i++) {
+                            <?php for ($i = 0; $i < count($role); $i++) {
                                 if ($pengguna['ID_ROLE'] === $role[$i]['ID_ROLE']) {
                                     $jenis_pengguna = $role[$i]['JENIS_PENGGUNA'];
                                 }

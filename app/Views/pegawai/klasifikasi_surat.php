@@ -23,7 +23,7 @@
                     <tbody>
                         <?php
                         foreach ($klasifikasi_surat as $key => $klasifikasi_surat) : ?>
-                            <?php for ($i = 0; $i <= count($kategori_klasifikasi); $i++) {
+                            <?php for ($i = 0; $i < count($kategori_klasifikasi); $i++) {
                                 if ($klasifikasi_surat['KODE'] === $kategori_klasifikasi[$i]['KODE']) {
                                     $kategori = $kategori_klasifikasi[$i]['KATEGORI'];
                                 }

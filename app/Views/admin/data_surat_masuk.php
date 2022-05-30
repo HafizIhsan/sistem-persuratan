@@ -135,7 +135,7 @@
                             <tbody>
                                 <?php
                                 foreach ($surat_masuk as $key => $surat_masuk) : ?>
-                                    <?php for ($i = 0; $i <= count($pengguna); $i++) {
+                                    <?php for ($i = 0; $i < count($pengguna); $i++) {
                                         if ($surat_masuk['PETUGAS'] === $pengguna[$i]['ID_PENGGUNA']) {
                                             $nama = $pengguna[$i]['NAMA'];
                                         }

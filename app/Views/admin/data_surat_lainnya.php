@@ -74,12 +74,12 @@
                             <tbody>
                                 <?php
                                 foreach ($surat_lainnya as $key => $surat_lainnya) : ?>
-                                    <?php for ($i = 0; $i <= count($pengguna); $i++) {
+                                    <?php for ($i = 0; $i < count($pengguna); $i++) {
                                         if ($surat_lainnya['ID_PENGGUNA'] === $pengguna[$i]['ID_PENGGUNA']) {
                                             $nama = $pengguna[$i]['NAMA'];
                                         }
                                     }
-                                    for ($i = 0; $i <= count($jenis_surat_lainnya); $i++) {
+                                    for ($i = 0; $i < count($jenis_surat_lainnya); $i++) {
                                         if ($surat_lainnya['ID_JENIS_SURAT_LAINNYA'] === $jenis_surat_lainnya[$i]['ID_JENIS_SURAT_LAINNYA']) {
                                             $jenis_surat = $jenis_surat_lainnya[$i]['JENIS_SURAT'];
                                         }
