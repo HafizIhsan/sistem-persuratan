@@ -76,15 +76,24 @@ class BuatSuratKeluarController extends BaseController
                 }
             }
 
+            $sub_no = $this->request->getPost('sub_no_urut');
+            $no_urut =  $this->request->getPost('no_urut');
+
+            if ($this->surat_keluar->cek_nomor_urut_surat_keluar($no_urut, $sub_no)) {
+                if ($role == 1) {
+                    return redirect()->to(base_url('buat_surat_keluar'))->with('error', 'Nomor urut surat sudah digunakan. Silahkan coba lagi.');
+                } else if ($role == 2) {
+                    return redirect()->to(base_url('buat_surat_keluar_p'))->with('error', 'Nomor urut surat sudah digunakan. Silahkan coba lagi.');
+                }
+            }
             $draft_surat_keluar = $this->request->getFile('file');
             $draft_surat_keluar->move('uploads/draft');
-            $sub_no = $this->request->getPost('sub_no_urut');
 
             if ($sub_no == "") {
                 $this->surat_keluar->insert([
                     'id_pengguna' => session()->get('id_pengguna'),
                     'id_klasifikasi_surat' => $id_klasifikasi_surat,
-                    'no_urut' => $this->request->getPost('no_urut'),
+                    'no_urut' => $no_urut,
                     'tanggal_surat' => date('Y-m-d', strtotime($this->request->getPost('tanggal_surat'))),
                     'nomor_surat_keluar' => $this->request->getPost('nomor_surat_keluar'),
                     'penerima' => $this->request->getPost('penerima'),
@@ -98,7 +107,7 @@ class BuatSuratKeluarController extends BaseController
                 $this->surat_keluar->insert([
                     'id_pengguna' => session()->get('id_pengguna'),
                     'id_klasifikasi_surat' => $id_klasifikasi_surat,
-                    'no_urut' => $this->request->getPost('no_urut'),
+                    'no_urut' => $no_urut,
                     'sub_no_urut' => $this->request->getPost('sub_no_urut'),
                     'tanggal_surat' => date('Y-m-d', strtotime($this->request->getPost('tanggal_surat'))),
                     'nomor_surat_keluar' => $this->request->getPost('nomor_surat_keluar'),

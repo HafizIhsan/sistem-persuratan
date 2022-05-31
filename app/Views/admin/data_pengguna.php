@@ -22,6 +22,18 @@
                 <?php
                 }
                 ?>
+                <?php
+                if (session()->getFlashData('error')) {
+                ?>
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <?= session()->getFlashData('error') ?>
+                        <button id="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                <?php
+                }
+                ?>
                 <a href="tambah_klasifikasi" class="btn btn-success btn-icon-split btn-sm" data-toggle="modal" data-target="#tambahModal" id="tambahPengguna">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
@@ -175,10 +187,10 @@
                 </div>
                 <div class="modal-body">
                     <?php
-                    if (session()->getFlashData('error')) {
+                    if (session()->getFlashData('error_tambah')) {
                     ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <?= session()->getFlashData('error') ?>
+                            <?= session()->getFlashData('error_tambah') ?>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -263,7 +275,7 @@
         });
 
         <?php
-        if (session()->getFlashData('error')) {
+        if (session()->getFlashData('error_tambah')) {
         ?>
             $('#tambahPengguna').trigger('click');
         <?php

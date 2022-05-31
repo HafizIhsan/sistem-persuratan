@@ -25,6 +25,23 @@ class M_SuratKeluar extends Model
         return false;
     }
 
+    function cek_nomor_urut_surat_keluar($no_urut, $sub_no_urut)
+    {
+        if ($sub_no_urut != "") {
+            $sql = "SELECT * FROM surat_keluar WHERE NO_URUT = $no_urut AND SUB_NO_URUT = $sub_no_urut AND NOMOR_SURAT_KELUAR IS NOT NULL";
+        } else {
+            $sql = "SELECT * FROM surat_keluar WHERE NO_URUT = $no_urut AND SUB_NO_URUT IS NULL AND NOMOR_SURAT_KELUAR IS NOT NULL";
+        }
+
+        $row = $this->db->query($sql)->getRow();
+
+        if ($row) {
+            return true;
+        }
+
+        return false;
+    }
+
     public function getSuratKeluar($id = false)
     {
         if ($id === false) {

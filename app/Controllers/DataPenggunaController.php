@@ -73,7 +73,7 @@ class DataPenggunaController extends BaseController
         $input = $this->validate($rules, $error);
         if (!$input) {
             $msg = $this->validator;
-            return redirect()->to(base_url('data_pengguna'))->with('error', $msg->listErrors());
+            return redirect()->to(base_url('data_pengguna'))->with('error_tambah', $msg->listErrors());
         } else {
             $this->pengguna->insert([
                 'id_role' => $this->request->getPost('role'),
@@ -140,8 +140,12 @@ class DataPenggunaController extends BaseController
 
     public function delete($id)
     {
-        $this->pengguna->delete($id);
-
-        return redirect()->to(base_url('data_pengguna'))->with('success', 'Data berhasis dihapus');
+        $cek_id = session()->get('id_pengguna');
+        if ($cek_id == $id) {
+            return redirect()->to(base_url('data_pengguna'))->with('error', 'Tidak bisa menghapus data anda sendiri');
+        } else {
+            $this->pengguna->delete($id);
+            return redirect()->to(base_url('data_pengguna'))->with('success', 'Data berhasis dihapus');
+        }
     }
 }

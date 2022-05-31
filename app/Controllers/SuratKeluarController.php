@@ -34,9 +34,11 @@ class SuratKeluarController extends BaseController
     public function delete($id)
     {
         $data = $this->surat_keluar->getSuratKeluarbyID($id);
-        $this->surat_keluar->delete($id);
-        unlink("uploads/dokumentasi/" . $data[0]['SCAN_SURAT_KELUAR']);
+        if ($data[0]['SCAN_SURAT_KELUAR'] != NULL || $data[0]['SCAN_SURAT_KELUAR'] != "") {
+            unlink("uploads/dokumentasi/" . $data[0]['SCAN_SURAT_KELUAR']);
+        }
         unlink("uploads/draft/" . $data[0]['DRAFT_SURAT_KELUAR']);
+        $this->surat_keluar->delete($id);
 
         return redirect()->to(base_url('data_surat_keluar'))->with('success', 'Data surat berhasil dihapus');
     }

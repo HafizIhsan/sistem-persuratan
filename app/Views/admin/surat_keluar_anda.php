@@ -81,7 +81,6 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Tanggal Surat</th>
-                                        <th>Pembuat</th>
                                         <th>Penerima</th>
                                         <th>TTD</th>
                                         <th>Perihal</th>
@@ -95,7 +94,6 @@
                                         <tr>
                                             <td><?= ++$key ?></td>
                                             <td><?= date('d-m-Y', strtotime($surat_keluar['CREATED_AT'])) ?></td>
-                                            <td><?= session()->get('nama') ?></td>
                                             <td><?= $surat_keluar['PENERIMA'] ?></td>
                                             <td><?= $surat_keluar['TTD'] ?></td>
                                             <td><?= $surat_keluar['PERIHAL'] ?></td>
