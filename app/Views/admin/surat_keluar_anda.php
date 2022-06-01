@@ -364,13 +364,9 @@
                                                                                 <option value="<?= $surat_keluar['STATUS'] ?>"><?= $surat_keluar['STATUS'] ?> </option>
                                                                                 <?php
                                                                                 $optionStat = array('Belum terkirim', 'Sudah terkirim');
-                                                                                if (($key = array_search($surat_keluar['STATUS'], $optionStat)) !== false) {
-                                                                                    unset($optionStat[$key]);
-                                                                                }
-                                                                                for ($x = 0; $x < count($optionStat); $x++) {
-                                                                                    if ($optionStat[$x] != NULL) {
-                                                                                        echo "<option value='$optionStat[$x]'>$optionStat[$x]</option>";
-                                                                                    }
+                                                                                $arr = array_diff($optionStat, array($surat_keluar['STATUS']));
+                                                                                foreach ($arr as $arr) {
+                                                                                    echo "<option value='$arr'>$arr</option>";
                                                                                 }
                                                                                 ?>
                                                                             </select>

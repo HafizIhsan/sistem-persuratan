@@ -33,7 +33,6 @@
                             ?>
                         </select>
                     </div>
-                    <?php $optionStat = array('Pengajuan', 'Belum terkirim', 'Sudah terkirim'); ?>
                     <div class="form-group">
                         <label for="filterStatus" class="col-form-label">Status</label>
                         <select id="filterStatus" class="form-control custom-select-sm">
@@ -374,7 +373,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                <?php endforeach;
+                                <?php
+                                    $nama = NULL;
+                                endforeach;
                                 ?>
                             </tbody>
                         </table>

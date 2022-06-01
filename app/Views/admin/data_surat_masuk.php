@@ -402,7 +402,9 @@
                                             </div>
                                         </div>
                                     </div>
-                                <?php endforeach;
+                                <?php
+                                    $nama = NULL;
+                                endforeach;
                                 ?>
                             </tbody>
                         </table>

@@ -22,12 +22,67 @@
                 <?php
                 }
                 ?>
-                <a href="tambah_klasifikasi" class="btn btn-success btn-icon-split btn-sm" data-toggle="modal" data-target="#tambahModal" id="tambahKlasifikasi">
+                <a href="" class="btn btn-success btn-icon-split btn-sm" data-toggle="modal" data-target="#tambahModal" id="tambahKlasifikasi">
                     <span class="icon text-white-50">
                         <i class="fas fa-plus"></i>
                     </span>
                     <span class="text">Tambah</span>
                 </a>
+                <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="tambahModalLabel" aria-hidden="true">
+                    <div class="modal-dialog  modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header bg-gradient-secondary">
+                                <h5 class="modal-title text-white" id="tambahModalLabel">Tambah Klasifikasi Surat</h5>
+                                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <?php
+                                if (session()->getFlashData('error')) {
+                                ?>
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <?= session()->getFlashData('error') ?>
+                                        <button id="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                <?php
+                                } ?>
+                                <form id="formTambahKlasifikasi" method="POST" class="needs-validation">
+                                    <div class="form-row">
+                                        <div class="form-group col-8">
+                                            <label for="pilihKategori" class="col-form-label">Kategori :</label>
+                                            <select name='kode' id="pilihKategori" class="form-control" placeholder="Pilih kategori" required>
+                                                <option value="" selected>Pilih kategori</option>
+                                                <?php foreach ($kategori_klasifikasi as $key => $i) : ?>
+                                                    <option value="<?= $i['KODE'] ?>"><?php echo $i['KATEGORI'] . " (" . $i['KODE'] . ")"; ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
+                                        </div>
+                                        <div class="form-group col-4">
+                                            <label for="inputNoKlasifikasi" class="col-form-label">Nomor Klasifikasi :</label>
+                                            <input name='nomor_klasifikasi' type="text" class="form-control" id="inputNoKlasifikasi" placeholder="Nomor klasifikasi" required>
+                                            <small id="nomorKlasifikasiHelpBlock" class="form-text text-muted">
+                                                Nomor klasifikasi terdiri dari 3 - 4 angka. Contoh: 021, 130, 1101
+                                            </small>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="uraianKlasifikasi" class="col-form-label">Keterangan Klasifikasi :</label>
+                                        <textarea name='keterangan' class="form-control" id="uraianKlasifikasi" rows="3" required placeholder="Keterangan klasifikasi" style="resize: none;"></textarea>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                                            <button id="tambahKlasifikasi" type="submit" class="btn btn-primary">Tambah</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <hr>
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
@@ -146,62 +201,6 @@
                         ?>
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade" id="tambahModal" tabindex="-1" role="dialog" aria-labelledby="tambahModalLabel" aria-hidden="true">
-        <div class="modal-dialog  modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-gradient-secondary">
-                    <h5 class="modal-title text-white" id="tambahModalLabel">Tambah Klasifikasi Surat</h5>
-                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <?php
-                    if (session()->getFlashData('error')) {
-                    ?>
-                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <?= session()->getFlashData('error') ?>
-                            <button id="closeAlert" type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                    <?php
-                    } ?>
-                    <form id="formTambahKlasifikasi" method="POST" class="needs-validation">
-                        <div class="form-row">
-                            <div class="form-group col-8">
-                                <label for="pilihKategori" class="col-form-label">Kategori :</label>
-                                <select name='kode' id="pilihKategori" class="form-control" placeholder="Pilih kategori" required>
-                                    <option value="" selected>Pilih kategori</option>
-                                    <?php foreach ($kategori_klasifikasi as $key => $kategori_klasifikasi) : ?>
-                                        <option value="<?= $kategori_klasifikasi['KODE'] ?>"><?php echo $kategori_klasifikasi['KATEGORI'] . " (" . $kategori_klasifikasi['KODE'] . ")"; ?></option>
-                                    <?php endforeach; ?>
-                                </select>
-                            </div>
-                            <div class="form-group col-4">
-                                <label for="inputNoKlasifikasi" class="col-form-label">Nomor Klasifikasi :</label>
-                                <input name='nomor_klasifikasi' type="text" class="form-control" id="inputNoKlasifikasi" placeholder="Nomor klasifikasi" required>
-                                <small id="nomorKlasifikasiHelpBlock" class="form-text text-muted">
-                                    Nomor klasifikasi terdiri dari 3 - 4 angka. Contoh: 021, 130, 1101
-                                </small>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="uraianKlasifikasi" class="col-form-label">Keterangan Klasifikasi :</label>
-                            <textarea name='keterangan' class="form-control" id="uraianKlasifikasi" rows="3" required placeholder="Keterangan klasifikasi" style="resize: none;"></textarea>
-                        </div>
-                        <div class="modal-footer">
-                            <div class="form-group">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                                <button id="tambahKlasifikasi" type="submit" class="btn btn-primary">Tambah</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
             </div>
         </div>
     </div>
