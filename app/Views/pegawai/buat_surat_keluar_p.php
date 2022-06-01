@@ -171,7 +171,7 @@
         var klasifikasi_surat = document.getElementById("klasifikasiSurat").value == "" ? false : true;
 
         var filled = (tanggal_surat && klasifikasi_surat);
-        filled ? submit.disabled = false : submit.disabled = true;
+        filled ? generate.disabled = false : generate.disabled = true;
     }
 
     $(document).ready(function() {
@@ -230,12 +230,12 @@
 
     $('#klasifikasiSurat').on('change', function(e) {
         document.getElementById('inputNomorSurat').setAttribute('value', '');
-        document.getElementById('generate').disabled = false;
+        generate();
     });
 
     $('#tanggalSurat').on('change', function(e) {
         document.getElementById('inputNomorSurat').setAttribute('value', '');
-        document.getElementById('generate').disabled = false;
+        generate();
     });
 
     function validate() {

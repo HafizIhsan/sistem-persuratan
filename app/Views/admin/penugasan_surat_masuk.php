@@ -8,45 +8,7 @@
 
     <!-- DataTales Example -->
     <div class="row">
-        <div class="col-12 col-lg-2">
-            <div class="card shadow mb-4">
-                <div class="card-header">
-                    <h6 class="m-0 font-weight-bold text-secondary">Filter</h6>
-                </div>
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="filterTahun" class="col-form-label">Tahun</label>
-                        <select id="filterTahun" class="form-control custom-select-sm">
-                            <option selected>Semua</option>
-                            <?php
-                            foreach ($surat_masuk as $i) {
-                                $year[] = date('Y', strtotime($i['CREATED_AT']));
-                            };
-                            if (isset($year)) {
-                                $year_filter = array_unique($year);
-                                for ($i = 0; $i < count($year_filter); $i++) {
-                            ?>
-                                    <option value="<?= $year_filter[$i] ?>"><?= $year_filter[$i] ?></option>
-                            <?php
-                                }
-                            }
-                            ?>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="filterStatus" class="col-form-label">Status Penugasan</label>
-                        <select id="filterStatus" class="form-control custom-select-sm">
-                            <option selected>Semua</option>
-                            <option>Belum ditugaskan</option>
-                            <option>Dalam proses</option>
-                            <option>Selesai</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-12 col-lg-10">
+        <div class="col-12 col-lg-12">
             <div class="card shadow mb-4">
                 <div class="card-body">
                     <?php
