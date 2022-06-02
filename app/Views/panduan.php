@@ -178,8 +178,8 @@
                                     <p>Halaman "Penugasan Surat Masuk" menampilkan daftar penugasan surat masuk yang diterima oleh pengguna. Hal yang dapat dilakukan dalam halaman ini adalah sebagai berikut.</p>
                                     <ul class="list">
                                         <li>Memperbaharui status penugasan jika telah selesai dilakukan dengan menekan <button class="btn btn-blue btn-sm">Selesai</button></li>
-                                        <li>Memlihat dokumen surat masuk yang ditugaskan dengan menekan <button class="btn-green btn-sm"><span class="icon"><i class="fas fa-eye"></i></span></button></li>
-                                        <li>Memlihat detail surat masuk yang ditugaskan dengan menekan <button class="btn btn-primary btn-sm">Detail</button></li>
+                                        <li>Melihat dokumen surat masuk yang ditugaskan dengan menekan <button class="btn-green btn-sm"><span class="icon"><i class="fas fa-eye"></i></span></button></li>
+                                        <li>Melihat detail surat masuk yang ditugaskan dengan menekan <button class="btn btn-primary btn-sm">Detail</button></li>
                                     </ul>
                                 </div>
                                 <!--//section-block-->
@@ -190,9 +190,9 @@
                                 <div class="section-block">
                                     <p>Halaman "Surat Keluar Anda" menampilkan daftar surat keluar yang dibuat oleh pengguna. Hal yang dapat dilakukan dalam halaman ini adalah sebagai berikut.</p>
                                     <ul class="list">
-                                        <li>Memlihat dokumen surat keluar dengan menekan <button class="btn-green btn-sm"><span class="icon"><i class="fas fa-eye"></i></span></button></li>
+                                        <li>Melihat dokumen surat keluar dengan menekan <button class="btn-green btn-sm"><span class="icon"><i class="fas fa-eye"></i></span></button></li>
                                         <li>Memperbaharui status surat dan mengubah data surat keluar dengan menekan <button class="btn-grey btn-sm"><span class="icon"><i class="fas fa-edit"></i></span></button></li>
-                                        <li>Memlihat detail surat keluar dengan menekan <button class="btn btn-primary btn-sm">Detail</button></li>
+                                        <li>Melihat detail surat keluar dengan menekan <button class="btn btn-primary btn-sm">Detail</button></li>
                                         <li>Jika status surat dalam Pengajuan atau Belum terkirim, anda dapat membatalkan surat keluar dengan menekan <button class="btn btn-red btn-sm">Batalkan</button></li>
                                     </ul>
                                 </div>
@@ -212,7 +212,7 @@
                                         <li>Export surat menjadi Excel dengan menekan <button class="btn btn-green btn-icon-split btn-sm"><span class="icon"><i class="fas fa-file-excel"></i></span><span class="text">Export</span></button></li>
                                         <li>Mengubah data surat dengan menekan <button class="btn-grey btn-sm"><span class="icon"><i class="fas fa-edit"></i></span></button></li>
                                         <li>Menghapus data surat dengan menekan <button class="btn-red btn-sm"><span class="icon"><i class="fas fa-trash"></i></span></button></li>
-                                        <li>Memlihat detail surat dengan menekan <button class="btn btn-primary btn-sm">Detail</button></li>
+                                        <li>Melihat detail surat dengan menekan <button class="btn btn-primary btn-sm">Detail</button></li>
                                         <li>Pada kelola data surat masuk, jika status surat Belum ditugaskan maka akan muncul tombol <button class="btn btn-blue btn-sm">Tambah Penugasan</button></li>
                                     </ul>
                                     <!--//section-block-->
@@ -236,7 +236,7 @@
                                         <li>Menambah data klasifikasi surat dengan menekan <button class="btn btn-green btn-icon-split btn-sm"><span class="icon"><i class="fas fa-plus"></i></span><span class="text">Tambah</span></button></li>
                                         <li>Mengubah data klasifikasi surat dengan menekan <button class="btn-grey btn-sm"><span class="icon"><i class="fas fa-edit"></i></span></button></li>
                                         <li>Menghapus data klasifikasi surat dengan menekan <button class="btn-red btn-sm"><span class="icon"><i class="fas fa-trash"></i></span></button></li>
-                                        <li>Memlihat detail klasifikasi surat dengan menekan <button class="btn btn-primary btn-sm">Detail</button></li>
+                                        <li>Melihat detail klasifikasi surat dengan menekan <button class="btn btn-primary btn-sm">Detail</button></li>
                                     </ul>
                                     <!--//section-block-->
                                 </div>
