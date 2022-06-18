@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-12 col-lg-7 mb-3">
             <div class="card shadow">
-                <div class="card-body">le
+                <div class="card-body">
                     <?php
                     if (session()->getFlashData('error')) {
                     ?>
