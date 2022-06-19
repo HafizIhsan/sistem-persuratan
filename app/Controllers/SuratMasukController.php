@@ -68,7 +68,7 @@ class SuratMasukController extends BaseController
             $msg = $this->validator;
             return redirect()->to(base_url('dokumentasi_surat_masuk'))->with('error', $msg->listErrors());
         } else {
-            if (strpos($this->request->getPost('nomor_surat'), '/') === false || strpos($this->request->getPost('nomor_surat'), '-') === false) {
+            if (!(strpos($this->request->getPost('nomor_surat'), '/') >= 0 || strpos($this->request->getPost('nomor_surat'), '-') >= NULL)) {
                 return redirect()->to(base_url('dokumentasi_surat_masuk'))->with('error', 'Penulisan nomor surat salah');
             }
             $scan_surat_masuk = $this->request->getFile('file');

@@ -18,7 +18,7 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $surat_keluar ?></div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
+                            <i class="fas ri-mail-send-fill fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>
@@ -34,7 +34,7 @@
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= count($surat_keluar_saya) ?></div>
                         </div>
                         <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                            <i class="fas ri-mail-send-fill fa-2x text-gray-300"></i>
                         </div>
                     </div>
                 </div>

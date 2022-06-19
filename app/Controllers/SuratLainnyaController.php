@@ -179,8 +179,8 @@ class SuratLainnyaController extends BaseController
             $msg = $this->validator;
             return redirect()->to(base_url('dokumentasi_surat_lainnya'))->with('error', $msg->listErrors());
         } else {
-            if (strpos($this->request->getPost('nomor_surat'), '/') === false || strpos($this->request->getPost('nomor_surat'), '-') === false) {
-                return redirect()->to(base_url('data_surat_masuk'))->with('error', 'Penulisan nomor surat salah');
+            if (!(strpos($this->request->getPost('nomor_surat'), '/') >= 0 || strpos($this->request->getPost('nomor_surat'), '-') >= NULL)) {
+                return redirect()->to(base_url('dokumentasi_surat_masuk'))->with('error', 'Penulisan nomor surat salah');
             }
             $scan_surat_lainnya = $this->request->getFile('file');
             $scan_surat_lainnya->move('uploads/dokumentasi');

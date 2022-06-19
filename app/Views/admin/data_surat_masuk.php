@@ -182,8 +182,8 @@
                                                                         <div class="col-sm-5">
                                                                             <select id="pilihPetugas" class="form-control" placeholder="Pilih petugas" name="petugas" onkeydown="return event.key != 'Enter';" required>
                                                                                 <option value="" selected>Pilih petugas</option>
-                                                                                <?php foreach ($admin as $key => $admin) : ?>
-                                                                                    <option value="<?= $admin['ID_PENGGUNA'] ?>"><?php echo $admin['NAMA'] ?></option>
+                                                                                <?php foreach ($admin as $key => $adm) : ?>
+                                                                                    <option value="<?= $adm['ID_PENGGUNA'] ?>"><?php echo $adm['NAMA'] ?></option>
                                                                                 <?php endforeach; ?>
                                                                             </select>
                                                                         </div>

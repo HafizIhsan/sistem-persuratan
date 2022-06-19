@@ -213,9 +213,7 @@
             };
         }
 
-
         let val = '';
-
         if (bulan < 10) {
             val = 'B-' + no + '/02410/' + klasifikasi_surat + '/0' + bulan + '/' + tahun;
         } else {
