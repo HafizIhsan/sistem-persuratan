@@ -145,7 +145,7 @@ class BuatSuratKeluarController extends BaseController
     private function _sendEmail($to, $title, $message)
     {
         $email = \Config\Services::email();
-        $email->setFrom('persuratan.sistem@gmail.com', 'Sistem Persuratan : Biro Humas & Hukum BPS');
+        $email->setFrom('spersuratan@gmail.com', 'Sistem Persuratan : Biro Humas & Hukum BPS');
         $email->setTo($to);
         $email->setSubject($title);
         $email->setMessage($message);
