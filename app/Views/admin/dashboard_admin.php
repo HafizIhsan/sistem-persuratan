@@ -121,7 +121,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-12 col-lg-6">
+        <div class="col-12 col-lg-6 mb-4">
             <div class="card shadow h-100">
                 <div class="card-header py-3">
                     <div class="d-flex justify-content-between">

@@ -227,7 +227,7 @@ class SuratKeluarController extends BaseController
         if ('post' === $this->request->getMethod() && $tanggal_surat) {
             $model = new M_SuratKeluar();
 
-            $data = $model->get_no_urut_akhir($tanggal_surat);
+            $data = $model->get_no_urut($tanggal_surat);
 
             $now = date('Y-m-d');
             $tgl = date('Y-m-d', strtotime($tanggal_surat));

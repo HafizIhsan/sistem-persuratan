@@ -53,7 +53,8 @@ class M_SuratKeluar extends Model
 
     public function getSuratKeluarTanpaDokumentasi($id)
     {
-        return $this->getWhere(['SCAN_SURAT_KELUAR' => NULL, 'ID_PENGGUNA' => $id])->getResultArray();
+        $x = "SELECT * FROM surat_keluar WHERE SCAN_SURAT_KELUAR IS NULL AND STATUS <> 'Dibatalkan' AND ID_PENGGUNA = $id";
+        return $this->db->query($x)->getResultArray();
     }
 
     public function get_surat_keluar_by_pengguna($id)
@@ -79,7 +80,7 @@ class M_SuratKeluar extends Model
         return false;
     }
 
-    public function get_no_urut_akhir($tanggal_surat)
+    public function get_no_urut($tanggal_surat)
     {
         $now = date('Y-m-d');
         $yearNow = date('Y');
