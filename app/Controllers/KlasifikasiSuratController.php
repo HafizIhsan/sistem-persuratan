@@ -81,7 +81,7 @@ class KlasifikasiSuratController extends BaseController
                 'keterangan' => $this->request->getPost('keterangan'),
             ]);
 
-            return redirect('admin/data_klasifikasi_surat')->with('success', 'Data berhasil ditambahkan');
+            return redirect()->to('data_klasifikasi_surat')->with('success', 'Data berhasil ditambahkan');
         }
     }
 
@@ -109,7 +109,7 @@ class KlasifikasiSuratController extends BaseController
                 'keterangan' => $this->request->getPost('keterangan'),
             ]);
 
-            return redirect('data_klasifikasi_surat')->with('success', 'Data berhasil diubah');
+            return redirect()->to('data_klasifikasi_surat')->with('success', 'Data berhasil diubah');
         }
     }
 
@@ -117,6 +117,6 @@ class KlasifikasiSuratController extends BaseController
     {
         $this->klasifikasi_surat->delete($id);
 
-        return redirect('admin/data_klasifikasi_surat')->with('success', 'Data berhasis dihapus');
+        return redirect()->to('data_klasifikasi_surat')->with('success', 'Data berhasis dihapus');
     }
 }

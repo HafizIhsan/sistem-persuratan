@@ -129,10 +129,6 @@ $routes->add('/penugasan_surat_masuk/update_status/(:segment)', 'SuratMasukContr
 
 
 
-// $routes->get('/send_email', 'SuratMasukController::send_email');
-
-
-
 
 
 
