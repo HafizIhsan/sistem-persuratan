@@ -167,9 +167,13 @@ class SuratKeluarController extends BaseController
 
             $result = $model->get_nomor_surat_keluar($nomor_surat);
 
-            if ($result === true) {
-                echo '<small id="klasifikasiHelpBlock" class="form-text text-success">Nomor surat ditemukan</small>';
-                echo "<input type='text' class='form-control' name='id_surat_keluar' id='id_surat_keluar' value=" . $data[0]['ID_SURAT_KELUAR'] . " hidden>";
+            if ($result === true && $data[0]['ID_PENGGUNA'] == session()->get('id_pengguna')) {
+                if ($data[0]['SCAN_SURAT_KELUAR'] == NULL) {
+                    echo '<small id="klasifikasiHelpBlock" class="form-text text-success">Nomor surat ditemukan</small>';
+                    echo "<input type='text' class='form-control' name='id_surat_keluar' id='id_surat_keluar' value=" . $data[0]['ID_SURAT_KELUAR'] . " hidden>";
+                } else {
+                    echo '<small id="klasifikasiHelpBlock" class="form-text text-danger">Surat dengan nomor ini sudah terdokumentasi</small>';
+                }
             } else {
                 echo '<small id="klasifikasiHelpBlock" class="form-text text-danger">Nomor surat tidak ditemukan</small>';
             }
