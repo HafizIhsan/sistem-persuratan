@@ -426,9 +426,9 @@
             var status = $('#filterStatus').val();
 
             if (status != 'Semua') {
-                table.columns(6).search(status).draw();
+                table.columns(5).search(status).draw();
             } else {
-                table.columns(6).search('').draw();
+                table.columns(5).search('').draw();
             }
         })
 
