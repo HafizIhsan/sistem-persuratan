@@ -85,7 +85,6 @@
                             <table class="table table-bordered" id="dataTable1" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
                                         <th>Perihal</th>
                                         <th>Uraian Penugasan</th>
                                         <th>Tenggat Penugasan</th>
@@ -96,7 +95,6 @@
                                     <?php foreach ($tugas_saya as $key => $tugas_saya) :
                                         if ($tugas_saya['STATUS'] != 'Selesai') { ?>
                                             <tr>
-                                                <td><?= ++$key ?></td>
                                                 <td><?= $tugas_saya['PERIHAL'] ?></td>
                                                 <td><?= $tugas_saya['URAIAN_PENUGASAN'] ?></td>
                                                 <td><?= date('d-m-y H:i', strtotime($tugas_saya['TENGGAT_PENUGASAN'])) . " WIB" ?></td>
@@ -137,7 +135,6 @@
                             <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                        <th>No</th>
                                         <th>Nomor Surat</th>
                                         <th>Perihal</th>
                                         <th>Aksi</th>
@@ -146,7 +143,6 @@
                                 <tbody>
                                     <?php foreach ($surat_keluar_saya as $key => $surat_keluar_saya) : ?>
                                         <tr>
-                                            <td><?= ++$key ?></td>
                                             <td style="min-width: 30vh ;"><?= $surat_keluar_saya['NOMOR_SURAT_KELUAR'] ?></td>
                                             <td><?= $surat_keluar_saya['PERIHAL'] ?></td>
                                             <td>
